@@ -3,3 +3,5 @@
 .metadata
 *classes
 *META-INF
+.project
+.settings

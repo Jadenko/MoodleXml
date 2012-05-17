@@ -10,36 +10,20 @@
 	<name>MoodleXmlApiImpl</name>
 	<url>http://maven.apache.org</url>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
-	<repositories>
-		<repository>
-			<id>Cloudbees masterinformatiquetoulouse</id>
-			<url>https://repository-masterinformatiquetoulouse.forge.cloudbees.com/snapshot/</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+	<parent>
+		<groupId>m2glre.marsupilami.moodlexmlapi</groupId>
+		<artifactId>Marsupilami</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>m2glre.marsupilami.moodlexmlapi</groupId>
 			<artifactId>MoodleXmlApiCore</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
+<<<<<<< HEAD
 
 	<build>
 		<plugins>
@@ -66,4 +50,6 @@
 		</plugins>
 	</build>
 
+=======
+>>>>>>> 6317845429de77e0ad67b847fd9b1d405c90928d
 </project>

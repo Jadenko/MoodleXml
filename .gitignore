@@ -1,3 +1,9 @@
-target
+MoodleXmlApiImpl/target
+MoodleXmlApiCore/target
+*target
 *.class
-README
+.metadata
+*classes
+*META-INF
+.project
+.settings

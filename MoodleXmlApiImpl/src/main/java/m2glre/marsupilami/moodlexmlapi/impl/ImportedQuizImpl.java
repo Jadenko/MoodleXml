@@ -6,15 +6,19 @@ import m2glre.marsupilami.moodlexmlapi.core.data.ImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.Question;
 
 public class ImportedQuizImpl implements ImportedQuiz {
+	
+	List<Question> questionList;
+	
+	public ImportedQuizImpl() {
+		
+	}
 
 	public List<Question> getQuestionList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.questionList;
 	}
 
 	public int getProcessedQuestionCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.questionList.size();
 	}
 
 	public int getExtractedQuestionCount() {

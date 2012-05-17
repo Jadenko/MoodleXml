@@ -1,7 +1,7 @@
-*target
-*.class
+target
+.class
 .metadata
-*classes
-*META-INF
+classes
+META-INF
 .project
 .settings

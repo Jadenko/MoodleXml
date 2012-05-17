@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:quiz xmlns:ns2="jad.model">
+    <question/>
+    <question type="calculated">
+        <name>Aire du cercle (pas du carré)</name>
+        <questiontext format="moodle_auto_format">
+            <text>Calcul de l'aire du cercle ayant pour rayon {R}</text>
+        </questiontext>
+        <penalty>0.1</penalty>
+        <defaultGrade>1.0</defaultGrade>
+        <isHidden>true</isHidden>
+    </question>
+    <question type="multichoice">
+        <name>Demo question à choix multiples</name>
+        <penalty>0.1</penalty>
+    </question>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+    <question type="calculated"/>
+</ns2:quiz>

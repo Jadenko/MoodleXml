@@ -62,6 +62,7 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 

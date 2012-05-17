@@ -2,9 +2,14 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 public class QuestionError {
 	
+
 	private String code;
 	private String description;
-
+	
+	public QuestionError() {
+		super();
+	}
+	
 	/**
 	 * Create a question error object
 	 * @param code

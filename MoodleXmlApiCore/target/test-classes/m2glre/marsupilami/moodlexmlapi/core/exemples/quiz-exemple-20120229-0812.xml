@@ -6,7 +6,6 @@
     <question type="category">
         <category>
             <text>$course$/Défaut pour 1SA3GL1</text>
-
         </category>
     </question>
 
@@ -401,7 +400,7 @@
                     <multiplier>1</multiplier>
                     <unit_name>année</unit_name>
                   </unit>
-                </units>
+         </units>
     </question>
 
 

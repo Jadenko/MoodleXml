@@ -6,6 +6,16 @@ public class Answer {
 	String text;
 	String feedback;
 
+	public Answer() {
+
+	}
+
+	public Answer(int fraction, String text, String feedback) {
+		this.fraction = fraction;
+		this.text = text;
+		this.feedback = feedback;
+	}
+
 	public int getFraction() {
 		return fraction;
 	}

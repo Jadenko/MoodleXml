@@ -5,13 +5,16 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
+import m2glre.marsupilami.moodlexmlapi.core.data.CategoryQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionError;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 
-@XmlRootElement(name = "question")
+@XmlSeeAlso({ CategoryQuestion.class, GenericQuestion.class })
 public class QuestionImpl implements IQuestion {
 
 	@XmlAttribute
@@ -22,11 +25,12 @@ public class QuestionImpl implements IQuestion {
 	public String generalFeedBack;
 	public Float penalty;
 	public Float defaultGrade;
+	@XmlElement(name = "hidden")	
 	public Boolean isHidden;
-	public String imageUrl ;
+	public String imageUrl;
 	public String imageBase64;
 	public List<QuestionError> errors;
-	
+
 	public QuestionType getType() {
 		return type;
 	}

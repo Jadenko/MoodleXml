@@ -2,6 +2,8 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Interface representing a Moodle question
  * @author fsil

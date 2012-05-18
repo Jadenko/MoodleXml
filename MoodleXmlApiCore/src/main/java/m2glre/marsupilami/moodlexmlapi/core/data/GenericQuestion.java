@@ -5,13 +5,17 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+
+
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
 /**
  * @author fsil
  *
  */
-
+@XmlSeeAlso({MultipleChoiceQuestion.class})
 public class GenericQuestion extends QuestionImpl {
 	
 

@@ -42,17 +42,17 @@ public class Main {
 		//m.marshal(quiz, file);
 		//m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
 		//m.marshal(quiz, System.out);
-
-		Writer w = null;
-		try {
-			w = new FileWriter(QUIZ_XML);
-			m.marshal(quiz, w);
-		} finally {
-			try {
-				w.close();
-			} catch (Exception e) {
-			}
-		}
+//
+//		Writer w = null;
+//		try {
+//			w = new FileWriter(QUIZ_XML);
+//			m.marshal(quiz, w);
+//		} finally {
+//			try {
+//				w.close();
+//			} catch (Exception e) {
+//			}
+//		}
 
 	}
 }

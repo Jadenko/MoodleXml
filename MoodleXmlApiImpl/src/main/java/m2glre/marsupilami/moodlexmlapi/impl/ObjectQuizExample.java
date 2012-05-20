@@ -8,6 +8,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionTextFormat;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
+import m2glre.marsupilami.moodlexmlapi.core.data.ShortAnswerQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.TrueFalseQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Answer;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumbering;
@@ -112,15 +113,24 @@ public class ObjectQuizExample {
 		question9.setQuestionType(QuestionType.calculated);
 //		questionList.add(question9);
 
-		GenericQuestion question10 = new GenericQuestion();
-		question10.setQuestionType(QuestionType.calculated);
-//		questionList.add(question10);
+		ShortAnswerQuestion question10 = new ShortAnswerQuestion();
+		question10.setName("MVC");
+		question10.setUsecase(false);
+		List<Answer> listAnswers10 = new ArrayList<Answer>();  
+		Answer answer101 = new Answer(100,"Model View Controller","");
+		Answer answer102 = new Answer(100,"Modèle vue contrôleur","");
+		listAnswers10.add(answer101);
+		listAnswers10.add(answer102);
+		question10.setAnswer(listAnswers10);
+		questionList.add(question10);
 
 		GenericQuestion question11 = new GenericQuestion();
 		question11.setQuestionType(QuestionType.calculated);
 //		questionList.add(question11);
 
 		TrueFalseQuestion question12 = new TrueFalseQuestion();
+		question12.setName("Tomcat et JEE");
+		question12.setQuestionText(new QuestionText("Tomcat est un conteneur implémentant toutes les spécifications JEE.", QuestionTextFormat.moodle_auto_format));
 		List<Answer> listAnswers12 = new ArrayList<Answer>();  
 		Answer answer121 = new Answer(0,"true","Tomcat est un conteneur Web uniquement.");
 		Answer answer122 = new Answer(100,"false","Tomcat n'est pas un conteneur Web uniquement.");

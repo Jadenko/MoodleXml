@@ -235,7 +235,7 @@
     </question>
 
 
-    <!-- question: 37093  7-->
+    <!-- question: 37093  7 Done-->
     <question type="multichoice">
         <name>
             <text>Architecture à 3 niveaux ?</text>
@@ -501,7 +501,6 @@
         <defaultgrade>1</defaultgrade>
         <penalty>1</penalty>
         <hidden>0</hidden>
-        <shuffleanswers>0</shuffleanswers>
         <answer fraction="0">
             <text>true</text>
 

@@ -3,7 +3,6 @@ package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 
@@ -13,14 +12,13 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MultipleChoiceQuestion extends GenericQuestion {
 
-	@XmlElement(name = "single")
-	boolean single;
-	boolean shuffleanswers;
-	List<Answer> answer;
-	AnswerNumbering answernumbering;
-	String correctfeedback;
-	String partiallycorrectfeedback;
-	String incorrectfeedback;
+	private boolean single;
+	private boolean shuffleanswers;
+	private List<Answer> answer;
+	private AnswerNumbering answernumbering;
+	private String correctfeedback;
+	private String partiallycorrectfeedback;
+	private String incorrectfeedback;
 
 
 	

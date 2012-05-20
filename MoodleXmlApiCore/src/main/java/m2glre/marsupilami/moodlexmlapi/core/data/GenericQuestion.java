@@ -15,7 +15,9 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
  * @author fsil
  *
  */
-@XmlSeeAlso({MultipleChoiceQuestion.class})
+@XmlSeeAlso({MultipleChoiceQuestion.class,
+	         TrueFalseQuestion.class,
+	         ShortAnswerQuestion.class})
 public class GenericQuestion extends QuestionImpl {
 	
 

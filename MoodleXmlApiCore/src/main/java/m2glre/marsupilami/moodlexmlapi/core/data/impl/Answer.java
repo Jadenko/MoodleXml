@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class Answer {
 
 	@XmlAttribute
-	int fraction;
+	float fraction;
 	String text;
 	String feedback;
 
@@ -16,13 +16,13 @@ public class Answer {
 
 	}
 
-	public Answer(int fraction, String text, String feedback) {
+	public Answer(float fraction, String text, String feedback) {
 		this.fraction = fraction;
 		this.text = text;
 		this.feedback = feedback;
 	}
 
-	public int getFraction() {
+	public float getFraction() {
 		return fraction;
 	}
 

@@ -13,12 +13,14 @@ import javax.xml.bind.annotation.XmlElement;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
 /**
- * Class representing the dummy question of type category
+ * Class representing the dummy question of type category.
+ * 
  * @author fsil
- *
+ * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
 public class CategoryQuestion extends QuestionImpl {
+	
 	@XmlElement(name = "category")
 	private String category;
 	private String course;
@@ -31,7 +33,7 @@ public class CategoryQuestion extends QuestionImpl {
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param category  the category to set
 	 */
 	public void setCategory(String category) {
 		this.category = category;
@@ -45,7 +47,8 @@ public class CategoryQuestion extends QuestionImpl {
 	}
 
 	/**
-	 * @param course the course to set
+	 * @param course
+	 *            the course to set
 	 */
 	public void setCourse(String course) {
 		this.course = course;
@@ -54,7 +57,7 @@ public class CategoryQuestion extends QuestionImpl {
 	/**
 	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionType()
 	 */
-	@XmlAttribute(name="type")
+	@XmlAttribute(name = "type")
 	public QuestionType getType() {
 		return QuestionType.category;
 	}

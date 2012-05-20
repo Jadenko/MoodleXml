@@ -5,6 +5,9 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
@@ -14,7 +17,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
  * @author fsil
  *
  */
-final public class CategoryQuestion extends QuestionImpl {
+@XmlAccessorType(XmlAccessType.NONE)
+public class CategoryQuestion extends QuestionImpl {
 	@XmlElement(name = "category")
 	private String category;
 	private String course;
@@ -50,7 +54,8 @@ final public class CategoryQuestion extends QuestionImpl {
 	/**
 	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionType()
 	 */
-	public QuestionType getQuestionType() {
+	@XmlAttribute(name="type")
+	public QuestionType getType() {
 		return QuestionType.category;
 	}
 

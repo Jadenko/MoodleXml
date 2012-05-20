@@ -1,10 +1,26 @@
 package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Answer {
 
+	@XmlAttribute
 	int fraction;
 	String text;
 	String feedback;
+
+	public Answer() {
+
+	}
+
+	public Answer(int fraction, String text, String feedback) {
+		this.fraction = fraction;
+		this.text = text;
+		this.feedback = feedback;
+	}
 
 	public int getFraction() {
 		return fraction;

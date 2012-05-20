@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package m2glre.marsupilami.moodlexmlapi.presenter;
 
 import java.io.InputStream;
@@ -27,3 +28,30 @@ public class QuizImportExportServiceImpl implements QuizImportExportService{
 	
 
 }
+=======
+//package m2glre.marsupilami.moodlexmlapi.presenter;
+//
+//import java.io.InputStream;
+//import java.io.OutputStream;
+//
+//import m2glre.marsupilami.moodlexmlapi.core.InvalidQuizFormatException;
+//import m2glre.marsupilami.moodlexmlapi.core.InvalidStreamSizeException;
+//import m2glre.marsupilami.moodlexmlapi.core.QuizImportExportService;
+//import m2glre.marsupilami.moodlexmlapi.core.data.ImportedQuiz;
+//import m2glre.marsupilami.moodlexmlapi.core.data.Quiz;
+//
+//public class QuizImportExportServiceImpl implements QuizImportExportService{
+//
+//	public ImportedQuiz importQuiz(InputStream is)
+//			throws InvalidQuizFormatException, InvalidStreamSizeException {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	public OutputStream exportQuiz(Quiz quiz) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//}
+>>>>>>> ff1effac5298fc0919388350cf5af3eb37211378

@@ -4,18 +4,23 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 
-@XmlRootElement(name = "question")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class MultipleChoiceQuestion extends GenericQuestion {
 
 	@XmlElement(name = "single")
 	boolean single;
-	int shuffleanswers;
+	boolean shuffleanswers;
 	List<Answer> answer;
 	AnswerNumbering answernumbering;
+	String correctfeedback;
+	String partiallycorrectfeedback;
+	String incorrectfeedback;
 
 
 	
@@ -32,11 +37,11 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 		this.single = single;
 	}
 
-	public int getShuffleanswers() {
+	public boolean getShuffleanswers() {
 		return shuffleanswers;
 	}
 
-	public void setShuffleanswers(int shuffleanswers) {
+	public void setShuffleanswers(boolean shuffleanswers) {
 		this.shuffleanswers = shuffleanswers;
 	}
 
@@ -56,12 +61,29 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 		this.answernumbering = answernumbering;
 	}
 
+	public String getCorrectfeedback() {
+		return correctfeedback;
+	}
+
+	public void setCorrectfeedback(String correctfeedback) {
+		this.correctfeedback = correctfeedback;
+	}
+
+	public String getPartiallycorrectfeedback() {
+		return partiallycorrectfeedback;
+	}
+
+	public void setPartiallycorrectfeedback(String partiallycorrectfeedback) {
+		this.partiallycorrectfeedback = partiallycorrectfeedback;
+	}
+
+	public String getIncorrectfeedback() {
+		return incorrectfeedback;
+	}
+
+	public void setIncorrectfeedback(String incorrectfeedback) {
+		this.incorrectfeedback = incorrectfeedback;
+	}
+
 }
 
-
-enum AnswerNumbering {
-	none,
-	abc,
-	ABCD,
-	o123
-}

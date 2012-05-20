@@ -39,9 +39,9 @@ public class Main {
 		JAXBContext context = JAXBContext.newInstance(Quiz.class);
 		Marshaller m = context.createMarshaller();
 		m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-		m.marshal(quiz, file);
+		//m.marshal(quiz, file);
 		//m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
-		m.marshal(quiz, System.out);
+		//m.marshal(quiz, System.out);
 
 		Writer w = null;
 		try {

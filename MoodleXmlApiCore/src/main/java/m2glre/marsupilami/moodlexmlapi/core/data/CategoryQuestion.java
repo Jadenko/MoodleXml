@@ -5,13 +5,17 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
+
 /**
  * Class representing the dummy question of type category
  * @author fsil
  *
  */
-final public class CategoryQuestion implements Question {
-	
+final public class CategoryQuestion extends QuestionImpl {
+	@XmlElement(name = "category")
 	private String category;
 	private String course;
 
@@ -44,70 +48,70 @@ final public class CategoryQuestion implements Question {
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getQuestionType()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionType()
 	 */
 	public QuestionType getQuestionType() {
 		return QuestionType.category;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getName()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getName()
 	 */
 	public String getName() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getQuestionText()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionText()
 	 */
 	public QuestionText getQuestionText() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getGeneralFeedBack()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getGeneralFeedBack()
 	 */
 	public String getGeneralFeedBack() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getPenalty()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getPenalty()
 	 */
 	public Float getPenalty() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getDefaultGrade()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getDefaultGrade()
 	 */
 	public Float getDefaultGrade() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#isHidden()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#isHidden()
 	 */
 	public Boolean isHidden() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getImageUrl()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getImageUrl()
 	 */
 	public String getImageUrl() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getImageBase64()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getImageBase64()
 	 */
 	public String getImageBase64() {
 		return null;
 	}
 
 	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.Question#getErrors()
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getErrors()
 	 */
 	public List<QuestionError> getErrors() {
 		return null;

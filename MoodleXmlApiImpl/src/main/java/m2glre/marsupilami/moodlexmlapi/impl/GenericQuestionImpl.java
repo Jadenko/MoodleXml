@@ -9,7 +9,7 @@ public class GenericQuestionImpl extends GenericQuestion {
 	}
 
 	public Boolean isHidden() {
-		return getIsHidden();
+		return isHidden();
 	}
 
 	

@@ -38,6 +38,11 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -66,6 +71,7 @@
 					</reportPlugins>
 				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
 </project>

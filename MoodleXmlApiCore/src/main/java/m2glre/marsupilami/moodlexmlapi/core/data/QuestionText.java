@@ -1,22 +1,33 @@
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+
 /**
- * @author fsil
+ * @author Jad
  *
  */
 public class QuestionText {
 	
+	@XmlElement(name = "text")
 	private String text;
-	private QuestionTextFormat questionTextFormat;
+	@XmlAttribute
+	private QuestionTextFormat format;
+	
+	
+	public QuestionText() {
+		super();
+	}
+	
 	
 	/**
 	 * Construct a question text
 	 * @param text the text
-	 * @param questionTextFormat the text format
+	 * @param format the text format
 	 */
-	public QuestionText(String text, QuestionTextFormat questionTextFormat) {
+	public QuestionText(String text, QuestionTextFormat format) {
 		this.text = text;
-		this.questionTextFormat = questionTextFormat;
+		this.format = format;
 	}
 	/**
 	 * @return the text
@@ -25,10 +36,10 @@ public class QuestionText {
 		return text;
 	}
 	/**
-	 * @return the questionTextFormat
+	 * @return the format
 	 */
 	public QuestionTextFormat getQuestionTextFormat() {
-		return questionTextFormat;
+		return format;
 	}
 	
 

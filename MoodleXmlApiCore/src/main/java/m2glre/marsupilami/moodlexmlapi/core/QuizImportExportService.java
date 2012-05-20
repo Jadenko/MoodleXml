@@ -3,8 +3,8 @@ package m2glre.marsupilami.moodlexmlapi.core;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import m2glre.marsupilami.moodlexmlapi.core.data.ImportedQuiz;
-import m2glre.marsupilami.moodlexmlapi.core.data.Quiz;
+import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
+import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 
 
 /**
@@ -19,13 +19,13 @@ public interface QuizImportExportService {
 	 * @param is the input stream containing the quiz in Moodle XML format 
 	 * @return the imported quiz
 	 */
-	public ImportedQuiz importQuiz(InputStream is) throws InvalidQuizFormatException, InvalidStreamSizeException;
+	public IImportedQuiz importQuiz(InputStream is) throws InvalidQuizFormatException, InvalidStreamSizeException;
 	
 	/**
 	 * Export a quiz in the Moodle XML format
 	 * @param quiz the quiz to export
 	 * @return the output stream containing the quiz in Moodle XML format
 	 */
-	public OutputStream exportQuiz(Quiz quiz);
+	public OutputStream exportQuiz(IQuiz quiz);
 
 }

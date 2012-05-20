@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-target
-.class
-=======
 MoodleXmlApiImpl/target
 MoodleXmlApiCore/target
 *target
 *.class
->>>>>>> 59308da417f921b2354778a8f7cefa38a7302cd6
 .metadata
 classes
 META-INF

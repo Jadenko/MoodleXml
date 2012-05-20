@@ -98,9 +98,9 @@ public class ObjectQuizExample {
 		question8.setAnswernumbering(AnswerNumbering.abc);
 		List<Answer> listAnswers8 = new ArrayList<Answer>();  
 		Answer answer81 = new Answer(0,"Une architecture N-tiers est uniquement une architecture à base de Web Services","Une architecture distribuée peut reposer par exemple sur RMI");
-		Answer answer82 = new Answer(33.333f,"Une architecture client serveur est une architecture N-tiers","Nada.");
-		Answer answer83 = new Answer(33.333f,"Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques","Nada.");
-		Answer answer84 = new Answer(33.333f,"Une application web est une application reposant sur une architecture N Tiers","Nada.");
+		Answer answer82 = new Answer(33,"Une architecture client serveur est une architecture N-tiers","Nada.");
+		Answer answer83 = new Answer(33,"Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques","Nada.");
+		Answer answer84 = new Answer(33,"Une application web est une application reposant sur une architecture N Tiers","Nada.");
 		listAnswers8.add(answer81);
 		listAnswers8.add(answer82);
 		listAnswers8.add(answer83);

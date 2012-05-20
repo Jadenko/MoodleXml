@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package m2glre.marsupilami.moodlexmlapi.presenter;
 
 import java.io.InputStream;
@@ -28,7 +27,6 @@ public class QuizImportExportServiceImpl implements QuizImportExportService{
 	
 
 }
-=======
 //package m2glre.marsupilami.moodlexmlapi.presenter;
 //
 //import java.io.InputStream;
@@ -54,4 +52,3 @@ public class QuizImportExportServiceImpl implements QuizImportExportService{
 //	}
 //
 //}
->>>>>>> ff1effac5298fc0919388350cf5af3eb37211378

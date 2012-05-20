@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package m2glre.marsupilami.moodlexmlapi.impl;
 
 import java.util.List;
@@ -48,7 +47,6 @@ public class ImportedQuizImpl implements ImportedQuiz {
 	}
 
 }
-=======
 //package m2glre.marsupilami.moodlexmlapi.impl;
 //
 //import java.util.List;
@@ -94,4 +92,3 @@ public class ImportedQuizImpl implements ImportedQuiz {
 //	}
 //
 //}
->>>>>>> ff1effac5298fc0919388350cf5af3eb37211378

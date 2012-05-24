@@ -15,7 +15,7 @@ public class TrueFalseQuestion extends GenericQuestion {
 
 	public TrueFalseQuestion() {
 		super();
-		this.setQuestionType(QuestionType.truefalse);
+		this.setType(QuestionType.truefalse);
 	}
 
 	public List<Answer> getAnswer() {

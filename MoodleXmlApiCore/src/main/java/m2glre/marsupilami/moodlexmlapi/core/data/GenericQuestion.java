@@ -32,7 +32,7 @@ public class GenericQuestion extends QuestionImpl {
 	/**
 	 * @param questionType the questionType to set
 	 */
-	public void setQuestionType(QuestionType type) {
+	public void setType(QuestionType type) {
 		this.type = type;
 	}
 
@@ -41,8 +41,9 @@ public class GenericQuestion extends QuestionImpl {
 	 */
 	public void setName(String name) {
 		String nameR = "";
-		nameR = nameR.concat("<text>").concat(name).concat("</text>");
-		this.name = nameR;
+		String fl = Integer.toHexString((int)"<".toCharArray()[0]);
+		nameR = nameR.concat(fl+"text>").concat(name).concat("</text>");
+		this.name = name;
 	}
 
 	/**

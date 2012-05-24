@@ -1,23 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>m2glre.marsupilami.moodlexmlapi</groupId>
-  <artifactId>Marsupilami</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+	<groupId>m2glre.marsupilami.moodlexmlapi</groupId>
+	<artifactId>Marsupilami</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-  <name>Marsupilami</name>
-  <url>http://maven.apache.org</url>
-	
+	<name>Marsupilami</name>
+	<url>http://maven.apache.org</url>
+
 	<modules>
-		 <module>MoodleXmlApiCore</module>
+		<module>MoodleXmlApiCore</module>
 		<module>MoodleXmlApiImpl</module>
 	</modules>
-  <properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-<!-- -->
+	<!-- -->
 
 	<repositories>
 		<repository>
@@ -58,6 +58,10 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-checkstyle-plugin</artifactId>
 							<version>2.9.1</version>
+							<configuration>
+								<configLocation>mychecker.xml</configLocation>
+
+							</configuration>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>

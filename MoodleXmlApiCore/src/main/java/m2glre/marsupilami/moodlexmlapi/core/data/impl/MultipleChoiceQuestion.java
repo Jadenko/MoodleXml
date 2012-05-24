@@ -2,7 +2,6 @@ package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 
@@ -20,11 +19,9 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	private String partiallycorrectfeedback;
 	private String incorrectfeedback;
 
-
-	
 	public MultipleChoiceQuestion() {
 		super();
-		this.setQuestionType(QuestionType.multichoice);
+		this.setType(QuestionType.multichoice);
 	}
 
 	public boolean isSingle() {
@@ -84,4 +81,3 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	}
 
 }
-

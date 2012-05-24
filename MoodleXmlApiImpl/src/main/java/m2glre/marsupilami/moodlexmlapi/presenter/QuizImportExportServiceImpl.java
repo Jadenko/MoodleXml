@@ -1,5 +1,7 @@
 package m2glre.marsupilami.moodlexmlapi.presenter;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,38 +34,31 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 	}
 
 	public OutputStream exportQuiz(IQuiz quiz) {
-		final String QUIZ_XML = "./quiz-jaxb.xml";
+		//TODO priorité 3 - externaliser le path
+		final String PATH_FILE = "./quiz-jaxb.xml";
 
-
-		// create JAXB context and instantiate marshaller
 		JAXBContext context;
+		OutputStream os = null;
 		try {
-			context = JAXBContext.newInstance(Quiz.class, GenericQuestion.class);
+			context = JAXBContext.newInstance(Quiz.class);
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			// m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
+			os = new FileOutputStream(PATH_FILE);
+			m.marshal(quiz, os);
+			//ligne suivante à enlever
 			m.marshal(quiz, System.out);
-			Writer w = null;
-				try {
-					w = new FileWriter(QUIZ_XML);
-					m.marshal(quiz, w);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} finally {
-					try {
-						w.close();
-					} catch (Exception e) {
-					}
-				}
 
 		} catch (JAXBException e1) {
-			// TODO Auto-generated catch block
+			//TODO Priorité: 3 - externaliser les msgs
+			System.err.println("Marsupilami's Project: Erreur JAXB - Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
 			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.err.println("Marsupilami's Project:");
+			e.printStackTrace();
 		}
 
-	
-		return null;
+		return os;
 	}
 
 }

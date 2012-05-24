@@ -15,7 +15,6 @@ public class QuestionText {
 	private QuestionTextFormat format;
 
 	public QuestionText() {
-		super();
 	}
 
 	/**

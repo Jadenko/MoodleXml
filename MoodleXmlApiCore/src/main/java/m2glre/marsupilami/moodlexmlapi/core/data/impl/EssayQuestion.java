@@ -14,14 +14,14 @@ public class EssayQuestion extends GenericQuestion {
 
 	public EssayQuestion() {
 		super();
-		this.setQuestionType(QuestionType.essay);
+		this.setType(QuestionType.essay);
 	}
 
 	public EssayQuestion(boolean shuffleanswers, Answer answer) {
 		super();
 		this.shuffleanswers = shuffleanswers;
 		this.answer = answer;
-		this.setQuestionType(QuestionType.essay);
+		this.setType(QuestionType.essay);
 	}
 
 	public boolean isShuffleanswers() {

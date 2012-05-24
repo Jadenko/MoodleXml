@@ -1,10 +1,8 @@
 package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 
-import javax.xml.bind.annotation.XmlEnum;
-
 public enum AnswerNumbering {
 	none,
 	abc,
-	ABCD,
+	ABCD, // TODO faut changer o123 avec 123
 	o123
 }

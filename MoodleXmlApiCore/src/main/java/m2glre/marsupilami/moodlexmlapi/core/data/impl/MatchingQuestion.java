@@ -16,13 +16,13 @@ public class MatchingQuestion extends GenericQuestion {
 
 	public MatchingQuestion() {
 		super();
-		this.setQuestionType(QuestionType.matching);
+		this.setType(QuestionType.matching);
 	}
 
 	public MatchingQuestion(boolean shuffleanswers,
 			List<Subquestion> subquestion) {
 		super();
-		this.setQuestionType(QuestionType.matching);
+		this.setType(QuestionType.matching);
 		this.shuffleanswers = shuffleanswers;
 		this.subquestion = subquestion;
 	}

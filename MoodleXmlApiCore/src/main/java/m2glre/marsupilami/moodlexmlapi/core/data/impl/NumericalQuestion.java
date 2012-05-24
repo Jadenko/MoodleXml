@@ -15,7 +15,7 @@ public class NumericalQuestion extends GenericQuestion {
 
 	public NumericalQuestion() {
 		super();
-		this.setQuestionType(QuestionType.numerical);
+		this.setType(QuestionType.numerical);
 	}
 
 	private List<AnswerNumerical> answer;

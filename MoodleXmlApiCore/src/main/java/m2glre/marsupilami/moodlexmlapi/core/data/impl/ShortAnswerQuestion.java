@@ -16,7 +16,7 @@ public class ShortAnswerQuestion extends GenericQuestion {
 
 	public ShortAnswerQuestion() {
 		super();
-		this.setQuestionType(QuestionType.shortanswer);
+		this.setType(QuestionType.shortanswer);
 	}
 
 	public List<Answer> getAnswer() {

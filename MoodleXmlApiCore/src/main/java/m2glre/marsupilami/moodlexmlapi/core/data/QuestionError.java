@@ -1,17 +1,16 @@
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
 public class QuestionError {
-	
 
 	private String code;
 	private String description;
-	
+
 	public QuestionError() {
-		super();
 	}
-	
+
 	/**
 	 * Create a question error object
+	 * 
 	 * @param code
 	 * @param description
 	 */
@@ -19,18 +18,19 @@ public class QuestionError {
 		this.code = code;
 		this.description = description;
 	}
+
 	/**
 	 * @return the code
 	 */
 	public String getCode() {
 		return code;
 	}
+
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
-
 
 }

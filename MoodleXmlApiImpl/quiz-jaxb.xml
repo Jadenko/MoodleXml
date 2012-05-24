@@ -4,7 +4,7 @@
         <category>IVVQ/Défaut pour 1SA3GL1</category>
     </question>
     <question xsi:type="genericQuestion" type="calculated" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Aire du cercle (pas du carré)&lt;/text&gt;</name>
+        <name>&lt;text&gt;Aire du cercle (pas du carré)&lt;/text&gt;</name>
         <questiontext format="moodle_auto_format">
             <text>Calcul de l'aire du cercle ayant pour rayon {R}</text>
         </questiontext>
@@ -13,7 +13,7 @@
         <hidden>true</hidden>
     </question>
     <question xsi:type="essayQuestion" type="essay" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Question ouverte&lt;/text&gt;</name>
+        <name>&lt;text&gt;Question ouverte&lt;/text&gt;</name>
         <questiontext format="moodle_auto_format">
             <text>Ecrire un programme qui affiche Hello world</text>
         </questiontext>
@@ -24,7 +24,7 @@
         </answer>
     </question>
     <question xsi:type="matchingQuestion" type="matching" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Serveur d'application / éditeurs&lt;/text&gt;</name>
+        <name>&lt;text&gt;Serveur d'application / éditeurs&lt;/text&gt;</name>
         <shuffleanswers>true</shuffleanswers>
         <subquestion>
             <text>JBoss</text>
@@ -52,7 +52,7 @@
         </subquestion>
     </question>
     <question xsi:type="genericQuestion" type="cloze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Question "Cloze" (composite ?)&lt;/text&gt;</name>
+        <name>&lt;text&gt;Question "Cloze" (composite ?)&lt;/text&gt;</name>
         <questiontext>
             <text>Cette question comporte du texte danslequel on a directement
 		 intégré des réponses à choix multiples {1:MULTICHOICE:Mauva
@@ -77,7 +77,7 @@
         </questiontext>
     </question>
     <question xsi:type="multipleChoiceQuestion" type="multichoice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Architecture à 3 niveaux ?&lt;/text&gt;</name>
+        <name>&lt;text&gt;Architecture à 3 niveaux ?&lt;/text&gt;</name>
         <questiontext format="markdown">
             <text>Que désigne une architecture à 3 niveaux ?</text>
         </questiontext>
@@ -103,7 +103,7 @@
         <incorrectfeedback></incorrectfeedback>
     </question>
     <question xsi:type="multipleChoiceQuestion" type="multichoice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Architectures N tiers&lt;/text&gt;</name>
+        <name>&lt;text&gt;Architectures N tiers&lt;/text&gt;</name>
         <questiontext format="moodle_auto_format">
             <text>Cocher les assertions vraies.</text>
         </questiontext>
@@ -136,7 +136,7 @@
         <incorrectfeedback>KO</incorrectfeedback>
     </question>
     <question xsi:type="numericalQuestion" type="numerical" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;HTTP 1er protocole de l'Internet&lt;/text&gt;</name>
+        <name>&lt;text&gt;HTTP 1er protocole de l'Internet&lt;/text&gt;</name>
         <questiontext format="moodle_auto_format">
             <text>En quelle année HTTP devient le premier protocole de l'Internet ?</text>
         </questiontext>
@@ -157,7 +157,7 @@
         </units>
     </question>
     <question xsi:type="shortAnswerQuestion" type="shortanswer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;MVC&lt;/text&gt;</name>
+        <name>&lt;text&gt;MVC&lt;/text&gt;</name>
         <answer fraction="100.0">
             <text>Model View Controller</text>
             <feedback></feedback>
@@ -169,7 +169,7 @@
         <usecase>false</usecase>
     </question>
     <question xsi:type="trueFalseQuestion" type="truefalse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-        <name>'&amp;lt;'text&gt;Tomcat et JEE&lt;/text&gt;</name>
+        <name>&lt;text&gt;Tomcat et JEE&lt;/text&gt;</name>
         <questiontext format="moodle_auto_format">
             <text>Tomcat est un conteneur implémentant toutes les spécifications JEE.</text>
         </questiontext>

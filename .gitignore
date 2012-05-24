@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 target
+=======
+MoodleXmlApiImpl/target
+MoodleXmlApiCore/target
+*target
+*.class
+>>>>>>> 71a736a97ac51add70575b18ebc2db06f56cbb2b
 .metadata
 classes
 META-INF

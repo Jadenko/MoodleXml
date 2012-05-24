@@ -1,11 +1,12 @@
-package m2glre.marsupilami.moodlexmlapi.core.data;
+package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.Answer;
+import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ShortAnswerQuestion extends GenericQuestion {

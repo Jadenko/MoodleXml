@@ -22,6 +22,15 @@ public class Answer {
 		this.feedback = feedback;
 	}
 
+	public Answer(float fraction, String feedback) {
+		this.fraction = fraction;
+		this.feedback = feedback;
+	}
+
+	public Answer(String text) {
+		this.text = text;
+	}
+
 	public float getFraction() {
 		return fraction;
 	}

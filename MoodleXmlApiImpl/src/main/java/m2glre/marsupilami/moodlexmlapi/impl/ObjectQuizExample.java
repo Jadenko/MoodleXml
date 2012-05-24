@@ -8,13 +8,19 @@ import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionTextFormat;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
-import m2glre.marsupilami.moodlexmlapi.core.data.ShortAnswerQuestion;
-import m2glre.marsupilami.moodlexmlapi.core.data.TrueFalseQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Answer;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumbering;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumerical;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.EssayQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.MatchingQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.NumericalQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Quiz;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.Subquestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.Unit;
 
 public class ObjectQuizExample {
 
@@ -48,21 +54,55 @@ public class ObjectQuizExample {
 		//question3.setQuestionType(QuestionType.multiple...); J'aurai plus beosin de faire ça, je l'ai deja fais dans le constructeur
 //		questionList.add(question3);
 
-		GenericQuestion question4 = new GenericQuestion();
-		question4.setQuestionType(QuestionType.calculated);
-//		questionList.add(question4);
+		String CHAINE_VIDE = "";
+		EssayQuestion question4 = new EssayQuestion(true,new Answer(0,CHAINE_VIDE, ""));
+		question4.setName("Question ouverte");
+		question4.setQuestionText(new QuestionText(
+				"Ecrire un programme qui affiche Hello world",
+				QuestionTextFormat.moodle_auto_format));
+		questionList.add(question4);
+		
 
-		GenericQuestion question5 = new GenericQuestion();
-		question5.setQuestionType(QuestionType.calculated);
-//		questionList.add(question5);
+		MatchingQuestion question5 = new MatchingQuestion();
+		question5.setName("Serveur d'application / éditeurs");
+		question5.setShuffleanswers(true);
+		List<Subquestion> subquestions = new ArrayList<Subquestion>();
+		Subquestion subquestion1 = new Subquestion("JBoss", new Answer("Redhat"));
+		Subquestion subquestion2 = new Subquestion("Websphere", new Answer("IBM"));
+		Subquestion subquestion3 = new Subquestion("GlassFish", new Answer("Oracle"));
+		Subquestion subquestion4 = new Subquestion("Tomcat", new Answer("Fondation Apache"));
+		subquestions.add(subquestion1);
+		subquestions.add(subquestion2);
+		subquestions.add(subquestion3);
+		subquestions.add(subquestion4);
+		question5.setSubquestion(subquestions);
+		questionList.add(question5);
 
 		GenericQuestion question6 = new GenericQuestion();
-		question6.setQuestionType(QuestionType.calculated);
-//		questionList.add(question6);
+		question6.setQuestionType(QuestionType.cloze);
+		question6.setName("Question \"Cloze\" (composite ?)");
+		QuestionText questionText6 = new QuestionText("Cette question comporte du texte dans" +
+				"lequel on a directement intégré des réponses à choix multiples " +
+				"{1:MULTICHOICE:Mauvaise réponse#Feedback pour cette mauvaise réponse~Une " +
+				"autre mauvaise réponse#Feedback pour cette autre mauvaise réponse~=Bonne" +
+				"réponse#Feedback pour la bonne réponse~%50%Réponse qui vaut la" +
+				" moitié des points#Feedback pour la question qui vaut la moitié des points} ;" +
+				" vous devez maintenant répondre à une question courte{1:SHORTANSWER:" +
+				"Mauvaise réponse#Feedback pour cette mauvaise réponse~=Bonne réponse#Feedback" +
+				" pour la bonne réponse~%50%Réponse qui vaut la moitié des points#Feedback " +
+				"pour la question qui vaut la moitié des points}. Nous avons finalement une" +
+				" question qui demande une réponse numérique avec point décimal {2:NUMERICAL" +
+				"=23.8:0.1#Feedback pour la bonne réponse 23.8~%50%23.8:2#Feedback pour la" +
+				" réponse qui donne la moitié des points}. Remarquez que les adresses URL " +
+				"comme www.moodle.org et les binettes :-) sont correctement interprétées :" +
+				"a) Est-ce bien? {:MULTICHOICE:=Oui#Bonne réponse~Non#Votre opinion nous\n" +
+				" indiffère !}  b) Quelle note désirez-vous? {3:NUMERICAL:=3:2}");
+		question6.setQuestionText(questionText6);
+		questionList.add(question6);
 
 		MultipleChoiceQuestion question7 = new MultipleChoiceQuestion();
 		question7.setName("Architecture à 3 niveaux ?");
-		QuestionText questionText7 = new QuestionText("Que désigne une architecture à 3 niveaux ?",QuestionTextFormat.html);
+		QuestionText questionText7 = new QuestionText("Que désigne une architecture à 3 niveaux ?",QuestionTextFormat.markdown);
 		question7.setQuestionText(questionText7);
 		question7.setImageUrl("backupdata/446px-Uncle_Sam_pointing_finger_.jpg");
 		question7.setImageBase64("/9j/4AAQSkZJRgABAQEAqwCrAAD/2wBDAAYEBQYFBAY");
@@ -99,9 +139,9 @@ public class ObjectQuizExample {
 		question8.setAnswernumbering(AnswerNumbering.abc);
 		List<Answer> listAnswers8 = new ArrayList<Answer>();  
 		Answer answer81 = new Answer(0,"Une architecture N-tiers est uniquement une architecture à base de Web Services","Une architecture distribuée peut reposer par exemple sur RMI");
-		Answer answer82 = new Answer(33.333f,"Une architecture client serveur est une architecture N-tiers","Nada.");
-		Answer answer83 = new Answer(33.333f,"Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques","Nada.");
-		Answer answer84 = new Answer(33.333f,"Une application web est une application reposant sur une architecture N Tiers","Nada.");
+		Answer answer82 = new Answer(33,"Une architecture client serveur est une architecture N-tiers","Nada.");
+		Answer answer83 = new Answer(33,"Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques","Nada.");
+		Answer answer84 = new Answer(33,"Une application web est une application reposant sur une architecture N Tiers","Nada.");
 		listAnswers8.add(answer81);
 		listAnswers8.add(answer82);
 		listAnswers8.add(answer83);
@@ -109,9 +149,20 @@ public class ObjectQuizExample {
 		question8.setAnswer(listAnswers8);
 		questionList.add(question8);
 
-		GenericQuestion question9 = new GenericQuestion();
-		question9.setQuestionType(QuestionType.calculated);
-//		questionList.add(question9);
+		NumericalQuestion question9 = new NumericalQuestion();
+		question9.setName("HTTP 1er protocole de l'Internet");
+		question9.setQuestionText(new QuestionText("En quelle année HTTP devient le premier protocole de l'Internet ?", QuestionTextFormat.moodle_auto_format));
+		List<AnswerNumerical> listAnswers9 = new ArrayList<AnswerNumerical>();  
+		AnswerNumerical answer91 = new AnswerNumerical(100,"1996",0,"");
+		listAnswers9.add(answer91);
+		question9.setAnswer(listAnswers9);
+		List<Unit> listUnit9 = new ArrayList<Unit>();  
+		Unit unit91 = new Unit(1,"année");
+		Unit unit92 = new Unit(2,"annéee");
+		listUnit9.add(unit91);
+		listUnit9.add(unit92);
+		question9.setUnit(listUnit9);
+		questionList.add(question9);
 
 		ShortAnswerQuestion question10 = new ShortAnswerQuestion();
 		question10.setName("MVC");

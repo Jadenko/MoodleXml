@@ -2,7 +2,7 @@
 <quiz>
 
 
-    <!-- question: 0 1  -->
+    <!-- question: 0  -->
     <question type="category">
         <category>
             <text>$course$/Défaut pour 1SA3GL1</text>
@@ -10,7 +10,7 @@
     </question>
 
 
-    <!-- question: 37095 2  -->
+    <!-- question: 37095  -->
     <question type="calculated">
         <name>
             <text>Aire du cercle (pas du carré)</text>
@@ -112,7 +112,7 @@
     </question>
 
 
-    <!-- question: 37096 3 -->
+    <!-- question: 37096  -->
     <question type="description">
         <name>
             <text>Consigne dispositif électronique</text>
@@ -131,7 +131,7 @@
     </question>
 
 
-    <!-- question: 37097 4 -->
+    <!-- question: 37097  -->
     <question type="essay">
         <name>
             <text>Question ouverte</text>
@@ -155,7 +155,7 @@
     </question>
 
 
-    <!-- question: 37098  5-->
+    <!-- question: 37098  -->
     <question type="matching">
         <name>
             <text>Serveur d'application / éditeurs</text>
@@ -199,7 +199,7 @@
     </question>
 
 
-    <!-- question: 37099  6-->
+    <!-- question: 37099  -->
     <question type="cloze">
         <name>
             <text>Question &quot;Cloze&quot; (composite ?)</text>
@@ -235,7 +235,11 @@
     </question>
 
 
+<<<<<<< HEAD:MoodleXmlApiCore/target/test-classes/m2glre/marsupilami/moodlexmlapi/core/exemples/quiz-exemple-20120229-0812.xml
     <!-- question: 37093  7 Done-->
+=======
+    <!-- question: 37093  -->
+>>>>>>> b48f1451201000edd2e27d78a130f417dcd935f4:MoodleXmlApiImpl/src/main/resources/quiz-exemple.xml
     <question type="multichoice">
         <name>
             <text>Architecture à 3 niveaux ?</text>
@@ -290,7 +294,7 @@
     </question>
 
 
-    <!-- question: 37092 8 -->
+    <!-- question: 37092  -->
     <question type="multichoice">
         <name>
             <text>Architectures N tiers</text>
@@ -370,7 +374,7 @@
     </question>
 
 
-    <!-- question: 37106  9-->
+    <!-- question: 37106  -->
     <question type="numerical">
         <name>
             <text>HTTP 1er protocole de l'Internet</text>
@@ -400,11 +404,11 @@
                     <multiplier>1</multiplier>
                     <unit_name>année</unit_name>
                   </unit>
-         </units>
+                </units>
     </question>
 
 
-    <!-- question: 37107  10-->
+    <!-- question: 37107  -->
     <question type="shortanswer">
         <name>
             <text>MVC</text>
@@ -444,7 +448,7 @@
     </question>
 
 
-    <!-- question: 37105 11 -->
+    <!-- question: 37105  -->
     <question type="shortanswer">
         <name>
             <text>Premier langage Orienté Objet</text>
@@ -484,7 +488,7 @@
     </question>
 
 
-    <!-- question: 37094  12-->
+    <!-- question: 37094  -->
     <question type="truefalse">
         <name>
             <text>Tomcat et JEE</text>

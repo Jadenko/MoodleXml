@@ -8,8 +8,13 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
 
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.EssayQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.MatchingQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.NumericalQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 
 /**
  * @author fsil
@@ -17,10 +22,11 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
  */
 @XmlSeeAlso({MultipleChoiceQuestion.class,
 	         TrueFalseQuestion.class,
-	         ShortAnswerQuestion.class})
+	         ShortAnswerQuestion.class,
+	         NumericalQuestion.class,
+	         MatchingQuestion.class,
+	         EssayQuestion.class})
 public class GenericQuestion extends QuestionImpl {
-	
-
 	
 
 	/**
@@ -34,7 +40,9 @@ public class GenericQuestion extends QuestionImpl {
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		this.name = name;
+		String nameR = "";
+		nameR = nameR.concat("<text>").concat(name).concat("</text>");
+		this.name = nameR;
 	}
 
 	/**

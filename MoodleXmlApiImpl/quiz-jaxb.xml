@@ -3,8 +3,13 @@
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="categoryQuestion" type="category">
         <category>IVVQ/Défaut pour 1SA3GL1</category>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="genericQuestion" type="calculated">
         <name>Aire du cercle (pas du carré)</name>
+=======
+    <question xsi:type="genericQuestion" type="calculated" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Aire du cercle (pas du carré)&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="moodle_auto_format">
             <text>Calcul de l'aire du cercle ayant pour rayon {R}</text>
         </questiontext>
@@ -12,8 +17,13 @@
         <defaultGrade>1.0</defaultGrade>
         <hidden>true</hidden>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essayQuestion" type="essay">
         <name>Question ouverte</name>
+=======
+    <question xsi:type="essayQuestion" type="essay" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Question ouverte&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="moodle_auto_format">
             <text>Ecrire un programme qui affiche Hello world</text>
         </questiontext>
@@ -23,8 +33,13 @@
             <feedback></feedback>
         </answer>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="matchingQuestion" type="matching">
         <name>Serveur d'application / éditeurs</name>
+=======
+    <question xsi:type="matchingQuestion" type="matching" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Serveur d'application / éditeurs&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <shuffleanswers>true</shuffleanswers>
         <subquestion>
             <text>JBoss</text>
@@ -51,8 +66,13 @@
             </answer>
         </subquestion>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="genericQuestion" type="cloze">
         <name>Question &quot;Cloze&quot; (composite ?)</name>
+=======
+    <question xsi:type="genericQuestion" type="cloze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Question "Cloze" (composite ?)&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext>
             <text>Cette question comporte du texte danslequel on a directement
 		 intégré des réponses à choix multiples {1:MULTICHOICE:Mauva
@@ -76,8 +96,13 @@
 		-vous? {3:NUMERICAL:=3:2}</text>
         </questiontext>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="multipleChoiceQuestion" type="multichoice">
         <name>Architecture à 3 niveaux ?</name>
+=======
+    <question xsi:type="multipleChoiceQuestion" type="multichoice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Architecture à 3 niveaux ?&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="markdown">
             <text>Que désigne une architecture à 3 niveaux ?</text>
         </questiontext>
@@ -102,8 +127,13 @@
         <partiallycorrectfeedback></partiallycorrectfeedback>
         <incorrectfeedback></incorrectfeedback>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="multipleChoiceQuestion" type="multichoice">
         <name>Architectures N tiers</name>
+=======
+    <question xsi:type="multipleChoiceQuestion" type="multichoice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Architectures N tiers&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="moodle_auto_format">
             <text>Cocher les assertions vraies.</text>
         </questiontext>
@@ -135,8 +165,13 @@
         <partiallycorrectfeedback></partiallycorrectfeedback>
         <incorrectfeedback>KO</incorrectfeedback>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="numericalQuestion" type="numerical">
         <name>HTTP 1er protocole de l'Internet</name>
+=======
+    <question xsi:type="numericalQuestion" type="numerical" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;HTTP 1er protocole de l'Internet&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="moodle_auto_format">
             <text>En quelle année HTTP devient le premier protocole de l'Internet ?</text>
         </questiontext>
@@ -156,8 +191,13 @@
             </unit>
         </units>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="shortAnswerQuestion" type="shortanswer">
         <name>MVC</name>
+=======
+    <question xsi:type="shortAnswerQuestion" type="shortanswer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;MVC&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <answer fraction="100.0">
             <text>Model View Controller</text>
             <feedback></feedback>
@@ -168,8 +208,13 @@
         </answer>
         <usecase>false</usecase>
     </question>
+<<<<<<< HEAD
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trueFalseQuestion" type="truefalse">
         <name>Tomcat et JEE</name>
+=======
+    <question xsi:type="trueFalseQuestion" type="truefalse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <name>&lt;text&gt;Tomcat et JEE&lt;/text&gt;</name>
+>>>>>>> 4f8551d7837c004eebf529bb02c84cd4923d3dfb
         <questiontext format="moodle_auto_format">
             <text>Tomcat est un conteneur implémentant toutes les spécifications JEE.</text>
         </questiontext>

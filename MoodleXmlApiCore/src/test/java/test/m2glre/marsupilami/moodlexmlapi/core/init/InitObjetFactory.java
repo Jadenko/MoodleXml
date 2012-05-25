@@ -10,10 +10,15 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionTextFormat;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Answer;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumbering;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumerical;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.EssayQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MatchingQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.NumericalQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Subquestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.Unit;
 
 public class InitObjetFactory {
 
@@ -21,6 +26,9 @@ public class InitObjetFactory {
 	static TrueFalseQuestion trueFalseQuestion = new TrueFalseQuestion();
 	static MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
 	static MatchingQuestion matchingQuestion = new MatchingQuestion();
+	static ShortAnswerQuestion shortAnswerQuestion = new ShortAnswerQuestion();
+	static NumericalQuestion numericalQuestion = new NumericalQuestion();
+	static EssayQuestion essayQuestion = new EssayQuestion();
 
 	public static GenericQuestion initGenericQuestion() {
 		genericQuestionForTest.setType(QuestionType.calculated);
@@ -100,6 +108,51 @@ public class InitObjetFactory {
 		subquestions.add(subquestion2);
 
 		return subquestions;
+	}
+
+	public static ShortAnswerQuestion initShortAnswerQuestion() {
+
+		shortAnswerQuestion.setAnswer(initListAnswer());
+		shortAnswerQuestion.setUsecase(true);
+		return shortAnswerQuestion;
+	}
+
+	public static NumericalQuestion initNumericalQuestion() {
+		numericalQuestion.setAnswer(InitObjetFactory.initListAnswerNumerical());
+		numericalQuestion.setUnit(InitObjetFactory.initListUnit());
+		return numericalQuestion;
+	}
+
+	private static List<Unit> initListUnit() {
+		List<Unit> listUnit = new ArrayList<Unit>();
+		Unit unit1 = new Unit(1,"Unit 1");
+		Unit unit2 = new Unit();
+		unit2.setMultiplier(2);
+		unit2.setUnit_name("Unit 2");
+		listUnit.add(unit1);
+		listUnit.add(unit2);
+		
+		return listUnit;
+	}
+
+	private static List<AnswerNumerical> initListAnswerNumerical() {
+		List<AnswerNumerical> listNumericalAnswer = new ArrayList<AnswerNumerical>();
+		AnswerNumerical answer1 = new AnswerNumerical(100,"2012",0,"Great");
+		AnswerNumerical answer2 = new AnswerNumerical();
+		answer2.setTolerance(33);
+		answer2.setFeedback("Bad");
+		answer2.setTolerance(10);
+		answer2.setText("Very Bad");
+		listNumericalAnswer.add(answer1);
+		listNumericalAnswer.add(answer2);
+
+		return listNumericalAnswer;
+	}
+
+	public static EssayQuestion initEssayQuestion() {
+		essayQuestion.setShuffleanswers(true);
+		essayQuestion.setAnswer(new Answer("Answer"));
+		return essayQuestion;
 	}
 
 }

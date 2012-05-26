@@ -3,6 +3,8 @@ package test.m2glre.marsupilami.moodlexmlapi.core.init;
 import java.util.ArrayList;
 import java.util.List;
 
+import m2glre.marsupilami.moodlexmlapi.core.InvalidQuizFormatException;
+import m2glre.marsupilami.moodlexmlapi.core.data.CategoryQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionError;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
@@ -23,12 +25,14 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.Unit;
 public class InitObjetFactory {
 
 	static GenericQuestion genericQuestionForTest = new GenericQuestion();
+	static CategoryQuestion categoryQuestionForTest = new CategoryQuestion();
 	static TrueFalseQuestion trueFalseQuestion = new TrueFalseQuestion();
 	static MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion();
 	static MatchingQuestion matchingQuestion = new MatchingQuestion();
 	static ShortAnswerQuestion shortAnswerQuestion = new ShortAnswerQuestion();
 	static NumericalQuestion numericalQuestion = new NumericalQuestion();
 	static EssayQuestion essayQuestion = new EssayQuestion();
+	static InvalidQuizFormatException invalidQuizFormatException;
 
 	public static GenericQuestion initGenericQuestion() {
 		genericQuestionForTest.setType(QuestionType.calculated);
@@ -78,6 +82,8 @@ public class InitObjetFactory {
 	}
 
 	public static MultipleChoiceQuestion initMultipleChoiceQuestion() {
+		QuestionText questionText = new QuestionText();
+		questionText.setText("Le Texte de la Question");
 		multipleChoiceQuestion.setSingle(true);
 		multipleChoiceQuestion.setShuffleanswers(true);
 		multipleChoiceQuestion.setAnswer(initListAnswer());
@@ -153,6 +159,18 @@ public class InitObjetFactory {
 		essayQuestion.setShuffleanswers(true);
 		essayQuestion.setAnswer(new Answer("Answer"));
 		return essayQuestion;
+	}
+
+	public static CategoryQuestion initCategoryQuestion() {
+		categoryQuestionForTest.setCourse("IVVQ");
+		categoryQuestionForTest.setCategory("LaCategorie");
+		return categoryQuestionForTest;
+	}
+
+	public static InvalidQuizFormatException initInvalidQuizFormatException() {
+		Throwable throwable = new Throwable("Les Invalides");
+		invalidQuizFormatException = new InvalidQuizFormatException(throwable);
+		return invalidQuizFormatException;
 	}
 
 }

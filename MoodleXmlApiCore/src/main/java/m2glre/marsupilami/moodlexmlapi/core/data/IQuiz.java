@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 /**
  * Interface representing a Moodle quiz
- * @author Jad 
+ * @author Marsupilami's Group 
  *
  */
 public interface IQuiz {
@@ -17,6 +17,6 @@ public interface IQuiz {
 	/**
 	 * @return the question list
 	 */
-	//public List<QuestionImpl> getQuestionList();
+	public List<QuestionImpl> getQuestionList();
 
 }

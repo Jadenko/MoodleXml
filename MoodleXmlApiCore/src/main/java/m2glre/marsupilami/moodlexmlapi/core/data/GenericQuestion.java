@@ -41,8 +41,7 @@ public class GenericQuestion extends QuestionImpl {
 	 */
 	public void setName(String name) {
 		String nameR = "";
-		String fl = Integer.toHexString((int)"<".toCharArray()[0]);
-		nameR = nameR.concat(fl+"text>").concat(name).concat("</text>");
+		nameR = nameR.concat("<text>").concat(name).concat("</text>");
 		this.name = name;
 	}
 

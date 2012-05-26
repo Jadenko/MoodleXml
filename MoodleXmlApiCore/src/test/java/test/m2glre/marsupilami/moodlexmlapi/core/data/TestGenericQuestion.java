@@ -1,8 +1,9 @@
-package test.m2glre.marsupilami.moodlexmlapi.core;
+package test.m2glre.marsupilami.moodlexmlapi.core.data;
 
 import static org.junit.Assert.*;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,10 +13,14 @@ import test.m2glre.marsupilami.moodlexmlapi.core.init.InitObjetFactory;
 public class TestGenericQuestion {
 	
 	GenericQuestion genericQuestion = null;
-	
+	GenericQuestion genericQuestion2 = null;
 	@Before
 	public void setUp() throws Exception {
 		genericQuestion = InitObjetFactory.initGenericQuestion();
+		genericQuestion2 = new GenericQuestion();
+		genericQuestion2.setName("Question avec un Très Long Nom");
+		genericQuestion2.setQuestionText(new QuestionText("Très Long Texte: Cette question comporte du texte 1234567890" +
+				"123456"));
 	}
 
 
@@ -28,6 +33,9 @@ public class TestGenericQuestion {
 	@Test
 	public void testSetName() {
 		assertEquals("LeNom", genericQuestion.getName());
+		assertEquals(genericQuestion2.getQuestionText().getText(),
+				"Très Long Texte: Cette question comporte du texte 1234567890\n\t\t" +
+						"123456");
 	}
 
 	@Test

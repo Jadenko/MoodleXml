@@ -25,19 +25,6 @@ public class CategoryQuestion extends QuestionImpl {
 	private String category;
 	private String course;
 
-	/**
-	 * @return the category
-	 */
-	public String getCategory() {
-		return category;
-	}
-
-	/**
-	 * @param category  the category to set
-	 */
-	public void setCategory(String category) {
-		this.category = category;
-	}
 
 	/**
 	 * @return the course
@@ -47,19 +34,10 @@ public class CategoryQuestion extends QuestionImpl {
 	}
 
 	/**
-	 * @param course
-	 *            the course to set
+	 * @return the category
 	 */
-	public void setCourse(String course) {
-		this.course = course;
-	}
-
-	/**
-	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionType()
-	 */
-	@XmlAttribute(name = "type")
-	public QuestionType getType() {
-		return QuestionType.category;
+	public String getCategory() {
+		return category;
 	}
 
 	/**
@@ -68,13 +46,14 @@ public class CategoryQuestion extends QuestionImpl {
 	public String getName() {
 		return null;
 	}
-
+	
 	/**
 	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getQuestionText()
 	 */
 	public QuestionText getQuestionText() {
 		return null;
 	}
+
 
 	/**
 	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getGeneralFeedBack()
@@ -125,4 +104,28 @@ public class CategoryQuestion extends QuestionImpl {
 		return null;
 	}
 
+
+	/**
+	 * @param category  the category to set
+	 */
+	public void setCategory(String category) {
+		String rslt = "";
+		rslt = course+"/"+category;
+		this.category = rslt;
+	}
+
+	/**
+	 * @see m2glre.marsupilami.moodlexmlapi.core.data.IQuestion#getType()
+	 */
+	@XmlAttribute(name = "type")
+	public QuestionType getType() {
+		return QuestionType.category;
+	}
+	
+	/**
+	 * @param course the course to set
+	 */
+	public void setCourse(String course) {
+		this.course = course;
+	}
 }

@@ -1,8 +1,12 @@
 package m2glre.marsupilami.moodlexmlapi.core.data.impl;
-
+/**
+ * Moodle supported Answer numbering
+ * @author Marsupilami's Band
+ *
+ */
 public enum AnswerNumbering {
 	none,
 	abc,
-	ABCD, // TODO faut changer o123 avec 123
-	o123
+	ABCD, 
+	o123 // TODO Priorite 1 - faut changer o123 avec 123
 }

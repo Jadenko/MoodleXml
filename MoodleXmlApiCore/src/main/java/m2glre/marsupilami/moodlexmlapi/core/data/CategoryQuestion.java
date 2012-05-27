@@ -36,7 +36,9 @@ public class CategoryQuestion extends QuestionImpl {
 	 * @param category  the category to set
 	 */
 	public void setCategory(String category) {
-		this.category = category;
+		String rslt = "";
+		rslt = course+"/"+category;
+		this.category = rslt;
 	}
 
 	/**

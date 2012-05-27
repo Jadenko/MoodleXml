@@ -6,7 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
- * @author Jad
+ * Classe représentant une question
+ * @author Marsupilami's Band
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -33,6 +34,13 @@ public class QuestionText {
 		this.format = format;
 	}
 
+	/**
+	 * Utilisée spécialement pour les questions de type Cloze.
+	 * Contruction d'une question text en prenant en compte les textes qui exèdent les 60 caracteres.
+	 * Dans le fichier XML généré, y'a un saut à la ligne et une tabulation chaque 60 caractères.
+	 * Ce qui permet une meilleur visibilité du text sur le fichier XML.
+	 * @param text Le Long Text à insérer ou un court text.
+	 */
 	public QuestionText(String text) {
 		int beginIndex = 0;
 		int endIndex = 60;
@@ -60,6 +68,9 @@ public class QuestionText {
 		return text;
 	}
 
+	/**
+	 * @param text Le texte à insérer
+	 */
 	public void setText(String text) {
 		this.text = text;
 	}

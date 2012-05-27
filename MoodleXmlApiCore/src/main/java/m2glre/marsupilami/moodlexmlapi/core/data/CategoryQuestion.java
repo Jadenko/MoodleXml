@@ -15,7 +15,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 /**
  * Class representing the dummy question of type category.
  * 
- * @author fsil
+ * @author Marsupilami's Band
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)

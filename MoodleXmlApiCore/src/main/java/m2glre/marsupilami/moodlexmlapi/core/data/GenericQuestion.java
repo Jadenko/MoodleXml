@@ -17,8 +17,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 
 /**
- * @author fsil
- *
+ * Classe commune ayant les propriétés de bases qui correspondent au balises du format Moodle XML
+ * @author Marsupilami's Band
  */
 @XmlSeeAlso({MultipleChoiceQuestion.class,
 	         TrueFalseQuestion.class,

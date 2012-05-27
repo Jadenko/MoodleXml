@@ -1,5 +1,9 @@
 package m2glre.marsupilami.moodlexmlapi.core.data;
-
+/**
+ * Classe représentant une erreur  
+ * @author Marsupilami's Band
+ *
+ */
 public class QuestionError {
 
 	private String code;

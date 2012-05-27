@@ -8,51 +8,51 @@ import javax.xml.bind.annotation.XmlAttribute;
 public class Answer {
 
 	@XmlAttribute
-	float fraction;
-	String text;
-	String feedback;
+	float ffraction;
+	String stext;
+	String sfeedback;
 
 	public Answer() {
 
 	}
 
 	public Answer(float fraction, String text, String feedback) {
-		this.fraction = fraction;
-		this.text = text;
-		this.feedback = feedback;
+		this.ffraction = fraction;
+		this.stext = text;
+		this.sfeedback = feedback;
 	}
 
 	public Answer(float fraction, String feedback) {
-		this.fraction = fraction;
-		this.feedback = feedback;
+		this.ffraction = fraction;
+		this.sfeedback = feedback;
 	}
 
 	public Answer(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	public float getFraction() {
-		return fraction;
+		return ffraction;
 	}
 
 	public void setFraction(int fraction) {
-		this.fraction = fraction;
+		this.ffraction = fraction;
 	}
 
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	public String getFeedback() {
-		return feedback;
+		return sfeedback;
 	}
 
 	public void setFeedback(String feedback) {
-		this.feedback = feedback;
+		this.sfeedback = feedback;
 	}
 
 }

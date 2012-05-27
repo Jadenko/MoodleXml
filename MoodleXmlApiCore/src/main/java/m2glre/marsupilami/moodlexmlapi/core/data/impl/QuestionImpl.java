@@ -26,7 +26,7 @@ public class QuestionImpl implements IQuestion {
 	public String generalFeedBack;
 	public Float penalty;
 	public Float defaultGrade;
-	@XmlElement(name = "hidden")	
+	@XmlElement(name = "hidden")
 	public Boolean isHidden;
 	public String imageUrl;
 	public String imageBase64;

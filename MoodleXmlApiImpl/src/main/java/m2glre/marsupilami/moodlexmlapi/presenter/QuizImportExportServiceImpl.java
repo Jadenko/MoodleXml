@@ -51,7 +51,8 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 
 		} catch (JAXBException e1) {
 			//TODO Priorité: 3 - externaliser les msgs
-			System.err.println("Marsupilami's Project: Erreur JAXB - Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
+			System.err.println("Marsupilami's Project: Erreur JAXB - " +
+					"Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
 			e1.printStackTrace();
 		} catch (FileNotFoundException e) {
 			System.err.println("Marsupilami's Project:");

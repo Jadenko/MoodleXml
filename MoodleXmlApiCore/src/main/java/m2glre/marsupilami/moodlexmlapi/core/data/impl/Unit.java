@@ -6,33 +6,33 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Unit {
 
-	int multiplier;
-	String unit_name;
+	int imultiplier;
+	String sunitname;
 
 	public Unit() {
 		super();
 	}
 
-	public Unit(int multiplier, String unit_name) {
+	public Unit(int multiplier, String unitname) {
 		super();
-		this.multiplier = multiplier;
-		this.unit_name = unit_name;
+		this.imultiplier = multiplier;
+		this.sunitname = unitname;
 	}
 
 	public int getMultiplier() {
-		return multiplier;
+		return imultiplier;
 	}
 
 	public void setMultiplier(int multiplier) {
-		this.multiplier = multiplier;
+		this.imultiplier = multiplier;
 	}
 
-	public String getUnit_name() {
-		return unit_name;
+	public String getUnitname() {
+		return sunitname;
 	}
 
-	public void setUnit_name(String unit_name) {
-		this.unit_name = unit_name;
+	public void setUnit_name(String unitname) {
+		this.sunitname = unitname;
 	}
 
 }

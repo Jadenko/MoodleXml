@@ -1,10 +1,10 @@
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
 /**
- * Moodle supported question types 
- * @author fsil
- *
- */
+* Moodle supported question types
+* @author fsil
+*
+*/
 public enum QuestionType {
 	description,
 	essay,

@@ -11,8 +11,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MatchingQuestion extends GenericQuestion {
 
-	boolean shuffleanswers;
-	List<Subquestion> subquestion;
+	boolean bshuffleanswers;
+	List<Subquestion> lsubquestion;
 
 	public MatchingQuestion() {
 		super();
@@ -23,24 +23,24 @@ public class MatchingQuestion extends GenericQuestion {
 			List<Subquestion> subquestion) {
 		super();
 		this.setType(QuestionType.matching);
-		this.shuffleanswers = shuffleanswers;
-		this.subquestion = subquestion;
+		this.bshuffleanswers = shuffleanswers;
+		this.lsubquestion = subquestion;
 	}
 
 	public boolean isShuffleanswers() {
-		return shuffleanswers;
+		return bshuffleanswers;
 	}
 
 	public void setShuffleanswers(boolean shuffleanswers) {
-		this.shuffleanswers = shuffleanswers;
+		this.bshuffleanswers = shuffleanswers;
 	}
 
 	public List<Subquestion> getSubquestion() {
-		return subquestion;
+		return lsubquestion;
 	}
 
 	public void setSubquestion(List<Subquestion> subquestion) {
-		this.subquestion = subquestion;
+		this.lsubquestion = subquestion;
 	}
 
 }

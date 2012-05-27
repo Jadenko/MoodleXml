@@ -6,24 +6,24 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AnswerNumerical extends Answer {
 
-	int tolerance;
+	int itolerance;
 
 	public AnswerNumerical() {
 		super();
 	}
-	
+
 	public AnswerNumerical(float fraction, String text,int tolerance, String feedback) {
-		this.fraction = fraction;
-		this.text = text;
-		this.feedback = feedback;
-		this.tolerance = tolerance;
+		this.ffraction = fraction;
+		this.stext = text;
+		this.sfeedback = feedback;
+		this.itolerance = tolerance;
 	}
 
 	public int getTolerance() {
-		return tolerance;
+		return itolerance;
 	}
 
 	public void setTolerance(int tolerance) {
-		this.tolerance = tolerance;
+		this.itolerance = tolerance;
 	}
 }

@@ -11,8 +11,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ShortAnswerQuestion extends GenericQuestion {
 
-	private List<Answer> answer;
-	private boolean usecase;
+	private List<Answer> lanswer;
+	private boolean busecase;
 
 	public ShortAnswerQuestion() {
 		super();
@@ -20,19 +20,19 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	}
 
 	public List<Answer> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	public boolean isUsecase() {
-		return usecase;
+		return busecase;
 	}
 
 	public void setUsecase(boolean usecase) {
-		this.usecase = usecase;
+		this.busecase = usecase;
 	}
 
 }

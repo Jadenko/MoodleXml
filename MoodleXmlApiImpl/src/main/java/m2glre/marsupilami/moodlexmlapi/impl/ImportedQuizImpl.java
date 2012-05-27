@@ -6,11 +6,11 @@ import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
 
 public class ImportedQuizImpl implements IImportedQuiz {
-	
+
 	List<IQuestion> questionList;
-	
+
 	public ImportedQuizImpl() {
-		
+
 	}
 
 	public List<IQuestion> getQuestionList() {

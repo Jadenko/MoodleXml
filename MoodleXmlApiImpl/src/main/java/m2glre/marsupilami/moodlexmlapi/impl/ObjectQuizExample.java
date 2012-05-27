@@ -24,7 +24,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.Unit;
 
 public class ObjectQuizExample {
 
-	
+
 
 	// create quiz
 	public static Quiz createQuiz() {
@@ -51,7 +51,8 @@ public class ObjectQuizExample {
 		questionList.add(question2);
 
 		GenericQuestion question3 = new GenericQuestion();
-		//question3.setQuestionType(QuestionType.multiple...); J'aurai plus beosin de faire ça, je l'ai deja fais dans le constructeur
+		//question3.setQuestionType(QuestionType.multiple...);
+		//J'aurai plus beosin de faire ça, je l'ai deja fais dans le constructeur
 //		questionList.add(question3);
 
 		String CHAINE_VIDE = "";
@@ -61,7 +62,7 @@ public class ObjectQuizExample {
 				"Ecrire un programme qui affiche Hello world",
 				QuestionTextFormat.moodle_auto_format));
 		questionList.add(question4);
-		
+
 
 		MatchingQuestion question5 = new MatchingQuestion();
 		question5.setName("Serveur d'application / éditeurs");
@@ -102,7 +103,8 @@ public class ObjectQuizExample {
 
 		MultipleChoiceQuestion question7 = new MultipleChoiceQuestion();
 		question7.setName("Architecture à 3 niveaux ?");
-		QuestionText questionText7 = new QuestionText("Que désigne une architecture à 3 niveaux ?",QuestionTextFormat.markdown);
+		QuestionText questionText7 = new QuestionText("Que désigne une architecture à 3 niveaux ?",
+				QuestionTextFormat.markdown);
 		question7.setQuestionText(questionText7);
 		question7.setImageUrl("backupdata/446px-Uncle_Sam_pointing_finger_.jpg");
 		question7.setImageBase64("/9j/4AAQSkZJRgABAQEAqwCrAAD/2wBDAAYEBQYFBAY");
@@ -116,8 +118,9 @@ public class ObjectQuizExample {
 		question7.setPartiallycorrectfeedback("");
 		question7.setIncorrectfeedback("");
 		question7.setAnswernumbering(AnswerNumbering.none);
-		List<Answer> listAnswers = new ArrayList<Answer>();  
-		Answer answer1 = new Answer(-100,"Une architecture MVC","Une application non distribuée peut implémentée MVC.");
+		List<Answer> listAnswers = new ArrayList<Answer>();
+		Answer answer1 = new Answer(-100,"Une architecture MVC",
+		"Une application non distribuée peut implémentée MVC.");
 		Answer answer2 = new Answer(100,"Une architecture N tiers ou N vaut 3","Nada.");
 		listAnswers.add(answer1);
 		listAnswers.add(answer2);
@@ -126,9 +129,11 @@ public class ObjectQuizExample {
 
 		MultipleChoiceQuestion question8 = new MultipleChoiceQuestion();
 		question8.setName("Architectures N tiers");
-		question8.setQuestionText(new QuestionText("Cocher les assertions vraies.",QuestionTextFormat.moodle_auto_format));
+		question8.setQuestionText(new QuestionText("Cocher les assertions vraies.",
+		QuestionTextFormat.moodle_auto_format));
 		question8.setImageBase64(" /9j/4AAQSkZJRgABAQEAqwCrAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQOD");
-		question8.setGeneralFeedBack("Rappel N tiers : architectures multi-niveaux pouvant être distribuées sur plusieurs noeuds physique d'un réseau.");
+		question8.setGeneralFeedBack("Rappel N tiers :" +
+		" architectures multi-niveaux pouvant être distribuées sur plusieurs noeuds physique d'un réseau.");
 		question8.setDefaultGrade(1f);
 		question8.setPenalty(0.1f);
 		question8.setIsHidden(false);
@@ -137,11 +142,14 @@ public class ObjectQuizExample {
 		question8.setPartiallycorrectfeedback("");
 		question8.setIncorrectfeedback("KO");
 		question8.setAnswernumbering(AnswerNumbering.abc);
-		List<Answer> listAnswers8 = new ArrayList<Answer>();  
-		Answer answer81 = new Answer(0,"Une architecture N-tiers est uniquement une architecture à base de Web Services","Une architecture distribuée peut reposer par exemple sur RMI");
+		List<Answer> listAnswers8 = new ArrayList<Answer>();
+		Answer answer81 = new Answer(0,"Une architecture N-tiers est uniquement une architecture à base de " +
+		"Web Services","Une architecture distribuée peut reposer par exemple sur RMI");
 		Answer answer82 = new Answer(33,"Une architecture client serveur est une architecture N-tiers","Nada.");
-		Answer answer83 = new Answer(33,"Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques","Nada.");
-		Answer answer84 = new Answer(33,"Une application web est une application reposant sur une architecture N Tiers","Nada.");
+		Answer answer83 = new Answer(33,"Une architecture N-tiers correspond à une architecture " +
+		"d'application distribuée sur plusieurs noeuds physiques","Nada.");
+		Answer answer84 = new Answer(33,"Une application web est une application reposant sur une " +
+		"architecture N Tiers","Nada.");
 		listAnswers8.add(answer81);
 		listAnswers8.add(answer82);
 		listAnswers8.add(answer83);
@@ -151,12 +159,13 @@ public class ObjectQuizExample {
 
 		NumericalQuestion question9 = new NumericalQuestion();
 		question9.setName("HTTP 1er protocole de l'Internet");
-		question9.setQuestionText(new QuestionText("En quelle année HTTP devient le premier protocole de l'Internet ?", QuestionTextFormat.moodle_auto_format));
-		List<AnswerNumerical> listAnswers9 = new ArrayList<AnswerNumerical>();  
+		question9.setQuestionText(new QuestionText("En quelle année HTTP devient le premier protocole de" +
+				" l'Internet ?", QuestionTextFormat.moodle_auto_format));
+		List<AnswerNumerical> listAnswers9 = new ArrayList<AnswerNumerical>();
 		AnswerNumerical answer91 = new AnswerNumerical(100,"1996",0,"");
 		listAnswers9.add(answer91);
 		question9.setAnswer(listAnswers9);
-		List<Unit> listUnit9 = new ArrayList<Unit>();  
+		List<Unit> listUnit9 = new ArrayList<Unit>();
 		Unit unit91 = new Unit(1,"année");
 		Unit unit92 = new Unit(2,"annéee");
 		listUnit9.add(unit91);
@@ -167,7 +176,7 @@ public class ObjectQuizExample {
 		ShortAnswerQuestion question10 = new ShortAnswerQuestion();
 		question10.setName("MVC");
 		question10.setUsecase(false);
-		List<Answer> listAnswers10 = new ArrayList<Answer>();  
+		List<Answer> listAnswers10 = new ArrayList<Answer>();
 		Answer answer101 = new Answer(100,"Model View Controller","");
 		Answer answer102 = new Answer(100,"Modèle vue contrôleur","");
 		listAnswers10.add(answer101);
@@ -181,15 +190,16 @@ public class ObjectQuizExample {
 
 		TrueFalseQuestion question12 = new TrueFalseQuestion();
 		question12.setName("Tomcat et JEE");
-		question12.setQuestionText(new QuestionText("Tomcat est un conteneur implémentant toutes les spécifications JEE.", QuestionTextFormat.moodle_auto_format));
-		List<Answer> listAnswers12 = new ArrayList<Answer>();  
+		question12.setQuestionText(new QuestionText("Tomcat est un conteneur " +
+				"implémentant toutes les spécifications JEE.", QuestionTextFormat.moodle_auto_format));
+		List<Answer> listAnswers12 = new ArrayList<Answer>();
 		Answer answer121 = new Answer(0,"true","Tomcat est un conteneur Web uniquement.");
 		Answer answer122 = new Answer(100,"false","Tomcat n'est pas un conteneur Web uniquement.");
 		listAnswers12.add(answer121);
 		listAnswers12.add(answer122);
 		question12.setAnswer(listAnswers12);
 		questionList.add(question12);
-		
+
 
 		// create bookstore, assigning book
 		quiz.setQuestionList(questionList);

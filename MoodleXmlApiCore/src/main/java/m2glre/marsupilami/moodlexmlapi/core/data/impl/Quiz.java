@@ -16,17 +16,17 @@ import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 @XmlRootElement
 public class Quiz implements IQuiz {
    //XmlAccessType.FIELD pour ne pas avoir une confusion entre le get et la propriété elle meme
-	
-	
+
+
 	@XmlElement(name = "question")
-	public List<QuestionImpl> questionList;
-	
+	public List<QuestionImpl> lquestionList;
+
 	public void setQuestionList(List<QuestionImpl> questionList) {
-		this.questionList = questionList;
+		this.lquestionList = questionList;
 	}
 
 	public List<QuestionImpl> getQuestionList() {
-		return questionList;
+		return lquestionList;
 	}
 
 }

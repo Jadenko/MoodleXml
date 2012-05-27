@@ -18,24 +18,24 @@ public class NumericalQuestion extends GenericQuestion {
 		this.setType(QuestionType.numerical);
 	}
 
-	private List<AnswerNumerical> answer;
+	private List<AnswerNumerical> lanswer;
 	@XmlElementWrapper(name="units")
-	private List<Unit> unit;
+	private List<Unit> lunit;
 
 	public List<AnswerNumerical> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	public void setAnswer(List<AnswerNumerical> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	public List<Unit> getUnit() {
-		return unit;
+		return lunit;
 	}
 
 	public void setUnit(List<Unit> unit) {
-		this.unit = unit;
+		this.lunit = unit;
 	}
 
 }

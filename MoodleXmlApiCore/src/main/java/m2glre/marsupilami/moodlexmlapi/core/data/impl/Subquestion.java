@@ -6,8 +6,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Subquestion {
 
-	String text;
-	Answer answer;
+	String stext;
+	Answer oanswer;
 
 	public Subquestion() {
 		super();
@@ -15,24 +15,24 @@ public class Subquestion {
 
 	public Subquestion(String text, Answer answer) {
 		super();
-		this.text = text;
-		this.answer = answer;
+		this.stext = text;
+		this.oanswer = answer;
 	}
 
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	public Answer getAnswer() {
-		return answer;
+		return oanswer;
 	}
 
 	public void setAnswer(Answer answer) {
-		this.answer = answer;
+		this.oanswer = answer;
 	}
 
 }

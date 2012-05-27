@@ -4,30 +4,30 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 /**
- * @author Jad
- * 
- */
+* @author Jad
+*
+*/
 public class QuestionText {
 
 	@XmlElement(name = "text")
-	private String text;
+	private String stext;
 	@XmlAttribute
-	private QuestionTextFormat format;
+	private QuestionTextFormat oformat;
 
 	public QuestionText() {
 	}
 
-	/**
-	 * Construct a question text
-	 * 
-	 * @param text
-	 *            the text
-	 * @param format
-	 *            the text format
-	 */
+/**
+ * Construct a question text
+ *
+ * @param text
+ *            the text
+ * @param format
+ * the text format
+ */
 	public QuestionText(String text, QuestionTextFormat format) {
-		this.text = text;
-		this.format = format;
+		this.stext = text;
+		this.oformat = format;
 	}
 
 	public QuestionText(String text) {
@@ -46,21 +46,21 @@ public class QuestionText {
 			text = textResult;
 		}
 
-		this.text = text;
+		this.stext = text;
 	}
 
 	/**
 	 * @return the text
 	 */
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	/**
 	 * @return the format
 	 */
 	public QuestionTextFormat getQuestionTextFormat() {
-		return format;
+		return oformat;
 	}
 
 }

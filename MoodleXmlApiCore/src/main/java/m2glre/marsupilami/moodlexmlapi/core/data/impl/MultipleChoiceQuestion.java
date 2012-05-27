@@ -11,13 +11,13 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MultipleChoiceQuestion extends GenericQuestion {
 
-	private boolean single;
-	private boolean shuffleanswers;
-	private List<Answer> answer;
-	private AnswerNumbering answernumbering;
-	private String correctfeedback;
-	private String partiallycorrectfeedback;
-	private String incorrectfeedback;
+	private boolean bsingle;
+	private boolean bshuffleanswers;
+	private List<Answer> lanswer;
+	private AnswerNumbering oanswernumbering;
+	private String scorrectfeedback;
+	private String spartiallycorrectfeedback;
+	private String sincorrectfeedback;
 
 	public MultipleChoiceQuestion() {
 		super();
@@ -25,59 +25,59 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	}
 
 	public boolean isSingle() {
-		return single;
+		return bsingle;
 	}
 
 	public void setSingle(boolean single) {
-		this.single = single;
+		this.bsingle = single;
 	}
 
 	public boolean getShuffleanswers() {
-		return shuffleanswers;
+		return bshuffleanswers;
 	}
 
 	public void setShuffleanswers(boolean shuffleanswers) {
-		this.shuffleanswers = shuffleanswers;
+		this.bshuffleanswers = shuffleanswers;
 	}
 
 	public List<Answer> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	public AnswerNumbering getAnswernumbering() {
-		return answernumbering;
+		return oanswernumbering;
 	}
 
 	public void setAnswernumbering(AnswerNumbering answernumbering) {
-		this.answernumbering = answernumbering;
+		this.oanswernumbering = answernumbering;
 	}
 
 	public String getCorrectfeedback() {
-		return correctfeedback;
+		return scorrectfeedback;
 	}
 
 	public void setCorrectfeedback(String correctfeedback) {
-		this.correctfeedback = correctfeedback;
+		this.scorrectfeedback = correctfeedback;
 	}
 
 	public String getPartiallycorrectfeedback() {
-		return partiallycorrectfeedback;
+		return spartiallycorrectfeedback;
 	}
 
 	public void setPartiallycorrectfeedback(String partiallycorrectfeedback) {
-		this.partiallycorrectfeedback = partiallycorrectfeedback;
+		this.spartiallycorrectfeedback = partiallycorrectfeedback;
 	}
 
 	public String getIncorrectfeedback() {
-		return incorrectfeedback;
+		return sincorrectfeedback;
 	}
 
 	public void setIncorrectfeedback(String incorrectfeedback) {
-		this.incorrectfeedback = incorrectfeedback;
+		this.sincorrectfeedback = incorrectfeedback;
 	}
 
 }

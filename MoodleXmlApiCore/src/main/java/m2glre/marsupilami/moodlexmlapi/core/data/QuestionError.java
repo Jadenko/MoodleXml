@@ -2,35 +2,34 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
 
 public class QuestionError {
 
-	private String code;
-	private String description;
-
+	private String scode;
+	private String sdescription;
 	public QuestionError() {
 	}
 
-	/**
-	 * Create a question error object
-	 * 
-	 * @param code
-	 * @param description
-	 */
+/**
+ * Create a question error object
+ *
+ * @param code
+ * @param description
+ */
 	public QuestionError(String code, String description) {
-		this.code = code;
-		this.description = description;
+		this.scode = code;
+		this.sdescription = description;
 	}
 
 	/**
-	 * @return the code
-	 */
+	* @return the code
+	*/
 	public String getCode() {
-		return code;
+		return scode;
 	}
 
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return description;
+		return sdescription;
 	}
 
 }

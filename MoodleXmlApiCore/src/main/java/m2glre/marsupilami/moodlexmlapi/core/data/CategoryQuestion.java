@@ -1,6 +1,6 @@
 /**
-*
-*/
+ * 
+ */
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
@@ -13,37 +13,37 @@ import javax.xml.bind.annotation.XmlElement;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
 /**
-* Class representing the dummy question of type category.
-*
-* @author fsil
-*
-*/
+ * Class representing the dummy question of type category.
+ * 
+ * @author fsil
+ * 
+ */
 @XmlAccessorType(XmlAccessType.NONE)
 public class CategoryQuestion extends QuestionImpl {
-
+	
 	@XmlElement(name = "category")
-	private String scategory;
-	private String scourse;
+	private String category;
+	private String course;
 
 	/**
 	 * @return the category
 	 */
 	public String getCategory() {
-		return scategory;
+		return category;
 	}
 
 	/**
 	 * @param category  the category to set
 	 */
 	public void setCategory(String category) {
-		this.scategory = category;
+		this.category = category;
 	}
 
 	/**
 	 * @return the course
 	 */
 	public String getCourse() {
-		return scourse;
+		return course;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class CategoryQuestion extends QuestionImpl {
 	 *            the course to set
 	 */
 	public void setCourse(String course) {
-		this.scourse = course;
+		this.course = course;
 	}
 
 	/**

@@ -37,6 +37,8 @@ public class QuestionImpl implements IQuestion {
 	}
 
 	public String getName() {
+		name = name.replace("&lt;", "<");
+		name = name.replace("&gt;", ">");
 		return name;
 	}
 

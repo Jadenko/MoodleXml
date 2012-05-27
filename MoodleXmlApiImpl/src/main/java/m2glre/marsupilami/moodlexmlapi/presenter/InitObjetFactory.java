@@ -1,4 +1,4 @@
-package test.m2glre.marsupilami.moodlexmlapi.core.init;
+package m2glre.marsupilami.moodlexmlapi.presenter;
 
 import java.util.ArrayList;
 import java.util.List;

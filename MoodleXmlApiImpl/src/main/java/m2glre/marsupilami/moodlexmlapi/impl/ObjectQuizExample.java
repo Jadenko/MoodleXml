@@ -33,7 +33,7 @@ public class ObjectQuizExample {
 
 		CategoryQuestion question1 = new CategoryQuestion();
 		question1.setCourse("IVVQ");
-		question1.setCategory(question1.getCourse() + "/Défaut pour 1SA3GL1");
+		question1.setCategory("LaCategorie");
 		questionList.add(question1);
 
 		GenericQuestion question2 = new GenericQuestion();

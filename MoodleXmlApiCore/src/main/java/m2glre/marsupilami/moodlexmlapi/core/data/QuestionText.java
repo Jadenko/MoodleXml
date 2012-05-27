@@ -1,5 +1,7 @@
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
@@ -7,6 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 * @author Jad
 *
 */
+ 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class QuestionText {
 
 	@XmlElement(name = "text")
@@ -42,7 +46,8 @@ public class QuestionText {
 				beginIndex += 60;
 				endIndex += 60;
 			}
-			textResult = textResult.concat(text.substring(beginIndex, text.length()));
+				textResult = textResult.concat(text.substring(beginIndex, text.length()));
+			
 			text = textResult;
 		}
 
@@ -54,6 +59,10 @@ public class QuestionText {
 	 */
 	public String getText() {
 		return stext;
+	}
+
+	public void setText(String text) {
+		this.stext = stext;
 	}
 
 	/**

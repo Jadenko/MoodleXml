@@ -2,24 +2,21 @@ package m2glre.marsupilami.moodlexmlapi.presenter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
 import m2glre.marsupilami.moodlexmlapi.core.InvalidQuizFormatException;
 import m2glre.marsupilami.moodlexmlapi.core.InvalidStreamSizeException;
 import m2glre.marsupilami.moodlexmlapi.core.QuizImportExportService;
-import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Quiz;
-import m2glre.marsupilami.moodlexmlapi.impl.ObjectQuizExample;
 
 public class QuizImportExportServiceImpl implements QuizImportExportService {
 
@@ -30,7 +27,29 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 	public IImportedQuiz importQuiz(InputStream is)
 			throws InvalidQuizFormatException, InvalidStreamSizeException {
 		// TODO Auto-generated method stub
-		return null;
+		IImportedQuiz importedQuiz = null;
+		
+		JAXBContext context;
+		try {
+			context = JAXBContext.newInstance(Quiz.class);
+		
+		Unmarshaller um = context.createUnmarshaller();
+		Quiz quizImported = (Quiz) um.unmarshal(new FileReader("./quiz-jaxb.xml"));
+
+			for (int i = 0; i < quizImported.getQuestionList().toArray().length; i++) {
+				System.out.println("Question " + (i + 1) + ": "
+						+ quizImported.getQuestionList().get(i).getName() + " from "
+						+ quizImported.getQuestionList().get(i).getImageUrl());
+			}
+		} catch (JAXBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return importedQuiz;
 	}
 
 	public OutputStream exportQuiz(IQuiz quiz) {

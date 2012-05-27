@@ -4,16 +4,18 @@ import java.util.List;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
 public class ImportedQuizImpl implements IImportedQuiz {
 
-	List<IQuestion> questionList;
+	List<QuestionImpl> questionList;
 
+	
 	public ImportedQuizImpl() {
 
 	}
 
-	public List<IQuestion> getQuestionList() {
+	public List<QuestionImpl> getQuestionList() {
 		return this.questionList;
 	}
 

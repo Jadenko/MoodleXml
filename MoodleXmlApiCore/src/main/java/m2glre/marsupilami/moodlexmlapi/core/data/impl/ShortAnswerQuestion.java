@@ -21,11 +21,12 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	/**
 	 * The List Of Answers of the question
 	 */
-	private List<Answer> answer;
+	private List<Answer> lanswer;
 	/**
 	 * The "usecase" tag toggles case-sensitivity with the values 1/0 or true/false.
 	 */
-	private boolean usecase;
+	private boolean busecase;
+
 
 	/**
 	 * Construct a new short answer question
@@ -40,7 +41,7 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	 * @return the list of answers
 	 */
 	public List<Answer> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	/**
@@ -48,7 +49,7 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	 * @param answer the list of answers
 	 */
 	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	 * @return check the use case tag
 	 */
 	public boolean isUsecase() {
-		return usecase;
+		return busecase;
 	}
 
 	/**
@@ -64,7 +65,7 @@ public class ShortAnswerQuestion extends GenericQuestion {
 	 * @param usecase the use case tag
 	 */
 	public void setUsecase(boolean usecase) {
-		this.usecase = usecase;
+		this.busecase = usecase;
 	}
 
 }

@@ -14,8 +14,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EssayQuestion extends GenericQuestion {
 
-	boolean shuffleanswers;
-	Answer answer;
+	boolean bshuffleanswers;
+	Answer oanswer;
 
 	public EssayQuestion() {
 		super();
@@ -29,8 +29,8 @@ public class EssayQuestion extends GenericQuestion {
 	 */
 	public EssayQuestion(boolean shuffleanswers, Answer answer) {
 		super();
-		this.shuffleanswers = shuffleanswers;
-		this.answer = answer;
+		this.bshuffleanswers = shuffleanswers;
+		this.oanswer = answer;
 		this.setType(QuestionType.essay);
 	}
 
@@ -39,7 +39,7 @@ public class EssayQuestion extends GenericQuestion {
 	 * @return the shuffle answers tag
 	 */
 	public boolean isShuffleanswers() {
-		return shuffleanswers;
+		return bshuffleanswers;
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class EssayQuestion extends GenericQuestion {
 	 * @param shuffleanswers the shuffle answers tag
 	 */
 	public void setShuffleanswers(boolean shuffleanswers) {
-		this.shuffleanswers = shuffleanswers;
+		this.bshuffleanswers = shuffleanswers;
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class EssayQuestion extends GenericQuestion {
 	 * @return the answer 
 	 */
 	public Answer getAnswer() {
-		return answer;
+		return oanswer;
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class EssayQuestion extends GenericQuestion {
 	 * @param answer the answer
 	 */
 	public void setAnswer(Answer answer) {
-		this.answer = answer;
+		this.oanswer = answer;
 	}
 
 }

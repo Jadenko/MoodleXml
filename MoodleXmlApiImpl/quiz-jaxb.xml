@@ -1,185 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <quiz>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="categoryQuestion" type="category">
-        <category>IVVQ/LaCategorie</category>
-    </question>
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="genericQuestion" type="calculated">
-        <name>Aire du cercle (pas du carré)</name>
+        <name>LeNom</name>
         <questiontext format="moodle_auto_format">
-            <text>Calcul de l'aire du cercle ayant pour rayon {R}</text>
+            <text>Le Texte de la Question</text>
         </questiontext>
-        <penalty>0.1</penalty>
+        <generalFeedBack>Le General Feedback</generalFeedBack>
+        <penalty>1.0</penalty>
         <defaultGrade>1.0</defaultGrade>
         <hidden>true</hidden>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essayQuestion" type="essay">
-        <name>Question ouverte</name>
-        <questiontext format="moodle_auto_format">
-            <text>Ecrire un programme qui affiche Hello world</text>
-        </questiontext>
-        <shuffleanswers>true</shuffleanswers>
-        <answer fraction="0.0">
-            <text></text>
-            <feedback></feedback>
-        </answer>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="matchingQuestion" type="matching">
-        <name>Serveur d'application / éditeurs</name>
-        <shuffleanswers>true</shuffleanswers>
-        <subquestion>
-            <text>JBoss</text>
-            <answer fraction="0.0">
-                <text>Redhat</text>
-            </answer>
-        </subquestion>
-        <subquestion>
-            <text>Websphere</text>
-            <answer fraction="0.0">
-                <text>IBM</text>
-            </answer>
-        </subquestion>
-        <subquestion>
-            <text>GlassFish</text>
-            <answer fraction="0.0">
-                <text>Oracle</text>
-            </answer>
-        </subquestion>
-        <subquestion>
-            <text>Tomcat</text>
-            <answer fraction="0.0">
-                <text>Fondation Apache</text>
-            </answer>
-        </subquestion>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="genericQuestion" type="cloze">
-        <name>Question &quot;Cloze&quot; (composite ?)</name>
-        <questiontext>
-            <text>Cette question comporte du texte danslequel on a directement
-		 intégré des réponses à choix multiples {1:MULTICHOICE:Mauva
-		ise réponse#Feedback pour cette mauvaise réponse~Une autre m
-		auvaise réponse#Feedback pour cette autre mauvaise réponse~=
-		Bonneréponse#Feedback pour la bonne réponse~%50%Réponse qui 
-		vaut la moitié des points#Feedback pour la question qui vaut
-		 la moitié des points} ; vous devez maintenant répondre à un
-		e question courte{1:SHORTANSWER:Mauvaise réponse#Feedback po
-		ur cette mauvaise réponse~=Bonne réponse#Feedback pour la bo
-		nne réponse~%50%Réponse qui vaut la moitié des points#Feedba
-		ck pour la question qui vaut la moitié des points}. Nous avo
-		ns finalement une question qui demande une réponse numérique
-		 avec point décimal {2:NUMERICAL=23.8:0.1#Feedback pour la b
-		onne réponse 23.8~%50%23.8:2#Feedback pour la réponse qui do
-		nne la moitié des points}. Remarquez que les adresses URL co
-		mme www.moodle.org et les binettes :-) sont correctement int
-		erprétées :a) Est-ce bien? {:MULTICHOICE:=Oui#Bonne réponse~
-		Non#Votre opinion nous
- indiffère !}  b) Quelle note désirez
-		-vous? {3:NUMERICAL:=3:2}</text>
-        </questiontext>
+        <imageUrl>Image URL</imageUrl>
+        <imageBase64>Image Base 64</imageBase64>
+        <errors/>
+        <errors/>
     </question>
     <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="multipleChoiceQuestion" type="multichoice">
-        <name>Architecture à 3 niveaux ?</name>
-        <questiontext format="markdown">
-            <text>Que désigne une architecture à 3 niveaux ?</text>
-        </questiontext>
-        <generalFeedBack></generalFeedBack>
-        <penalty>0.1</penalty>
-        <defaultGrade>1.0</defaultGrade>
-        <hidden>false</hidden>
-        <imageUrl>backupdata/446px-Uncle_Sam_pointing_finger_.jpg</imageUrl>
-        <imageBase64>/9j/4AAQSkZJRgABAQEAqwCrAAD/2wBDAAYEBQYFBAY</imageBase64>
         <single>true</single>
         <shuffleanswers>true</shuffleanswers>
-        <answer fraction="-100.0">
-            <text>Une architecture MVC</text>
-            <feedback>Une application non distribuée peut implémentée MVC.</feedback>
+        <answer fraction="1.0">
+            <text>Text pour Answer</text>
+            <feedback>Feedback pour Answer</feedback>
         </answer>
-        <answer fraction="100.0">
-            <text>Une architecture N tiers ou N vaut 3</text>
-            <feedback>Nada.</feedback>
+        <answer fraction="2.0">
+            <text>Text pour Answer</text>
+            <feedback>Feedback pour Answer</feedback>
+        </answer>
+        <answer fraction="3.0">
+            <feedback>Text pour Answer</feedback>
+        </answer>
+        <answer fraction="0.0">
+            <text>Un Long Texte</text>
         </answer>
         <answernumbering>none</answernumbering>
-        <correctfeedback></correctfeedback>
-        <partiallycorrectfeedback></partiallycorrectfeedback>
-        <incorrectfeedback></incorrectfeedback>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="multipleChoiceQuestion" type="multichoice">
-        <name>Architectures N tiers</name>
-        <questiontext format="moodle_auto_format">
-            <text>Cocher les assertions vraies.</text>
-        </questiontext>
-        <generalFeedBack>Rappel N tiers : architectures multi-niveaux pouvant être distribuées sur plusieurs noeuds physique d'un réseau.</generalFeedBack>
-        <penalty>0.1</penalty>
-        <defaultGrade>1.0</defaultGrade>
-        <hidden>false</hidden>
-        <imageBase64> /9j/4AAQSkZJRgABAQEAqwCrAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQOD</imageBase64>
-        <single>false</single>
-        <shuffleanswers>true</shuffleanswers>
-        <answer fraction="0.0">
-            <text>Une architecture N-tiers est uniquement une architecture à base de Web Services</text>
-            <feedback>Une architecture distribuée peut reposer par exemple sur RMI</feedback>
-        </answer>
-        <answer fraction="33.0">
-            <text>Une architecture client serveur est une architecture N-tiers</text>
-            <feedback>Nada.</feedback>
-        </answer>
-        <answer fraction="33.0">
-            <text>Une architecture N-tiers correspond à une architecture d'application distribuée sur plusieurs noeuds physiques</text>
-            <feedback>Nada.</feedback>
-        </answer>
-        <answer fraction="33.0">
-            <text>Une application web est une application reposant sur une architecture N Tiers</text>
-            <feedback>Nada.</feedback>
-        </answer>
-        <answernumbering>abc</answernumbering>
-        <correctfeedback>OK</correctfeedback>
-        <partiallycorrectfeedback></partiallycorrectfeedback>
-        <incorrectfeedback>KO</incorrectfeedback>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="numericalQuestion" type="numerical">
-        <name>HTTP 1er protocole de l'Internet</name>
-        <questiontext format="moodle_auto_format">
-            <text>En quelle année HTTP devient le premier protocole de l'Internet ?</text>
-        </questiontext>
-        <answer fraction="100.0">
-            <text>1996</text>
-            <feedback></feedback>
-            <tolerance>0</tolerance>
-        </answer>
-        <units>
-            <unit>
-                <multiplier>1</multiplier>
-                <unit_name>année</unit_name>
-            </unit>
-            <unit>
-                <multiplier>2</multiplier>
-                <unit_name>annéee</unit_name>
-            </unit>
-        </units>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="shortAnswerQuestion" type="shortanswer">
-        <name>MVC</name>
-        <answer fraction="100.0">
-            <text>Model View Controller</text>
-            <feedback></feedback>
-        </answer>
-        <answer fraction="100.0">
-            <text>Modèle vue contrôleur</text>
-            <feedback></feedback>
-        </answer>
-        <usecase>false</usecase>
-    </question>
-    <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="trueFalseQuestion" type="truefalse">
-        <name>Tomcat et JEE</name>
-        <questiontext format="moodle_auto_format">
-            <text>Tomcat est un conteneur implémentant toutes les spécifications JEE.</text>
-        </questiontext>
-        <answer fraction="0.0">
-            <text>true</text>
-            <feedback>Tomcat est un conteneur Web uniquement.</feedback>
-        </answer>
-        <answer fraction="100.0">
-            <text>false</text>
-            <feedback>Tomcat n'est pas un conteneur Web uniquement.</feedback>
-        </answer>
+        <correctfeedback>Correctfeedback</correctfeedback>
+        <partiallycorrectfeedback>Partiallycorrectfeedback</partiallycorrectfeedback>
+        <incorrectfeedback>IncorrectFeedback</incorrectfeedback>
     </question>
 </quiz>

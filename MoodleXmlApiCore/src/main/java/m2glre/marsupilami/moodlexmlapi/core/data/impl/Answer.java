@@ -15,15 +15,16 @@ public class Answer {
 	 * identifies which option is correct (100) and which is false (0)
 	 */
 	@XmlAttribute
-	float fraction;
+	float ffraction;
 	/**
 	 * The text of the answer
 	 */
-	String text;
+	String stext;
 	/**
 	 * The feedback of the question
 	 */
-	String feedback;
+	String sfeedback;
+
 
 	public Answer() {
 
@@ -36,9 +37,9 @@ public class Answer {
 	 * @param feedback the feedback
 	 */
 	public Answer(float fraction, String text, String feedback) {
-		this.fraction = fraction;
-		this.text = text;
-		this.feedback = feedback;
+		this.ffraction = fraction;
+		this.stext = text;
+		this.sfeedback = feedback;
 	}
 
 	/**
@@ -47,8 +48,8 @@ public class Answer {
 	 * @param feedback the feedback
 	 */
 	public Answer(float fraction, String feedback) {
-		this.fraction = fraction;
-		this.feedback = feedback;
+		this.ffraction = fraction;
+		this.sfeedback = feedback;
 	}
 
 	/**
@@ -56,7 +57,7 @@ public class Answer {
 	 * @param text the text
 	 */
 	public Answer(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	/**
@@ -64,14 +65,14 @@ public class Answer {
 	 * @return the fraction
 	 */
 	public float getFraction() {
-		return fraction;
+		return ffraction;
 	}
 
 	/**
 	 * @param fraction setting the fraction of the answer
 	 */
 	public void setFraction(int fraction) {
-		this.fraction = fraction;
+		this.ffraction = fraction;
 	}
 
 	/**
@@ -79,7 +80,7 @@ public class Answer {
 	 * @return getting the text of the answer
 	 */
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	/**
@@ -87,21 +88,21 @@ public class Answer {
 	 * @param text Setting the text of the answer
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	/**
  	 * @return getting the feedback of the answer
 	 */
 	public String getFeedback() {
-		return feedback;
+		return sfeedback;
 	}
 
 	/**
   	 * @param getting the feedback of the answer
 	 */
 	public void setFeedback(String feedback) {
-		this.feedback = feedback;
+		this.sfeedback = feedback;
 	}
 
 }

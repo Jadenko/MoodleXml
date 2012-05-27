@@ -1,6 +1,6 @@
 /**
- * 
- */
+*
+*/
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
@@ -27,7 +27,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 	         MatchingQuestion.class,
 	         EssayQuestion.class})
 public class GenericQuestion extends QuestionImpl {
-	
+
 
 	/**
 	 * @param questionType the questionType to set
@@ -101,6 +101,6 @@ public class GenericQuestion extends QuestionImpl {
 		this.errors = errors;
 	}
 
-	
+
 
 }

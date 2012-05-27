@@ -30,7 +30,7 @@ public class TestNumericalQuestion {
 
 	@Test
 	public void testGetUnit() {
-		assertEquals("Unit 1", numericalQuestion.getUnit().get(0).getUnit_name());
+		assertEquals("Unit 1", numericalQuestion.getUnit().get(0).getUnitname());
 		assertEquals(1, numericalQuestion.getUnit().get(0).getMultiplier());
 	}
 

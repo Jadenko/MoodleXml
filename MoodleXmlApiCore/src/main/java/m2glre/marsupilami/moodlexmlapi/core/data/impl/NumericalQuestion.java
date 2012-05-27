@@ -28,19 +28,19 @@ public class NumericalQuestion extends GenericQuestion {
 	/**
 	 * @see AnswerNumerical
 	 */
-	private List<AnswerNumerical> answer;
+	private List<AnswerNumerical> lanswer;
 	/**
 	 * @see Unit
 	 */
 	@XmlElementWrapper(name="units")
-	private List<Unit> unit;
+	private List<Unit> lunit;
 
 	/**
 	 * 
 	 * @return the list of numerical answers
 	 */
 	public List<AnswerNumerical> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class NumericalQuestion extends GenericQuestion {
 	 * @param answer the list of numerical answers
 	 */
 	public void setAnswer(List<AnswerNumerical> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class NumericalQuestion extends GenericQuestion {
 	 * @return the list of units
 	 */
 	public List<Unit> getUnit() {
-		return unit;
+		return lunit;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class NumericalQuestion extends GenericQuestion {
 	 * @param unit the list of units
 	 */
 	public void setUnit(List<Unit> unit) {
-		this.unit = unit;
+		this.lunit = unit;
 	}
 
 }

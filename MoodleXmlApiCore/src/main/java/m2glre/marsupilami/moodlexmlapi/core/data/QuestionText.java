@@ -14,24 +14,24 @@ import javax.xml.bind.annotation.XmlElement;
 public class QuestionText {
 
 	@XmlElement(name = "text")
-	private String text;
+	private String stext;
 	@XmlAttribute
-	private QuestionTextFormat format;
+	private QuestionTextFormat oformat;
 
 	public QuestionText() {
 	}
 
-	/**
-	 * Construct a question text
-	 * 
-	 * @param text
-	 *            the text
-	 * @param format
-	 *            the text format
-	 */
+/**
+ * Construct a question text
+ *
+ * @param text
+ *            the text
+ * @param format
+ * the text format
+ */
 	public QuestionText(String text, QuestionTextFormat format) {
-		this.text = text;
-		this.format = format;
+		this.stext = text;
+		this.oformat = format;
 	}
 
 	/**
@@ -58,28 +58,28 @@ public class QuestionText {
 			text = textResult;
 		}
 
-		this.text = text;
+		this.stext = text;
 	}
 
 	/**
 	 * @return the text
 	 */
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	/**
 	 * @param text Le texte à insérer
 	 */
-	public void setText(String text) {
-		this.text = text;
+	public void setText(String stext) {
+		this.stext = stext;
 	}
 
 	/**
 	 * @return the format
 	 */
 	public QuestionTextFormat getQuestionTextFormat() {
-		return format;
+		return oformat;
 	}
 
 }

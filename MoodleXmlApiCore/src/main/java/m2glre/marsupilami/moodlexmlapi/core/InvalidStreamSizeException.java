@@ -11,27 +11,27 @@ public class InvalidStreamSizeException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long maxSize ;
-	private Long streamSize ;
-	
+	private Long lmaxSize ;
+	private Long lstreamSize ;
+
 	/**
 	 * @return the maxSize
 	 */
 	public Long getMaxSize() {
-		return maxSize;
+		return lmaxSize;
 	}
 
 	/**
 	 * @return the streamSize
 	 */
 	public Long getStreamSize() {
-		return streamSize;
+		return lstreamSize;
 	}
 
 	public InvalidStreamSizeException(Long maxSize, Long streamSize) {
 		super("invalidStreamSizeException");
-		this.maxSize = maxSize ;
-		this.streamSize = streamSize ;
+		this.lmaxSize = maxSize ;
+		this.lstreamSize = streamSize ;
 	}
 
 

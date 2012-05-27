@@ -16,12 +16,10 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionError;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Quiz;
 import m2glre.marsupilami.moodlexmlapi.presenter.QuizImportExportServiceImpl;
 
-
-
 /**
- * Hello world!
- * 
- */
+* Hello world!
+*
+*/
 public class Main {
 
 //	private static final String QUIZ_XML = "./quiz-jaxb.xml";
@@ -31,9 +29,9 @@ public class Main {
 				"the question type is not supported");
 		//System.out.println(questionError.getDescription());
 
-		
+
 		//j ai rajouté ça fabien (Jad)
-		
+
 		Quiz quiz = ObjectQuizExample.createQuiz();
 
 		QuizImportExportServiceImpl quizImportExportServiceImpl = new QuizImportExportServiceImpl();

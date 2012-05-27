@@ -20,13 +20,14 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	/**
 	 *  single is used to distinguish single response (radio button) and multiple response (checkbox) variants.
 	 */
-	private boolean single;
-	private boolean shuffleanswers;
-	private List<Answer> answer;
-	private AnswerNumbering answernumbering;
-	private String correctfeedback;
-	private String partiallycorrectfeedback;
-	private String incorrectfeedback;
+	private boolean bsingle;
+	private boolean bshuffleanswers;
+	private List<Answer> lanswer;
+	private AnswerNumbering oanswernumbering;
+	private String scorrectfeedback;
+	private String spartiallycorrectfeedback;
+	private String sincorrectfeedback;
+
 
 	/**
 	 * Construct a new multiple choice question 
@@ -41,7 +42,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return is the single tag set to true or false
 	 */
 	public boolean isSingle() {
-		return single;
+		return bsingle;
 	}
 
 	/**
@@ -49,7 +50,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param setting the single tag
 	 */
 	public void setSingle(boolean single) {
-		this.single = single;
+		this.bsingle = single;
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return getting the shuffle answers tag
 	 */
 	public boolean getShuffleanswers() {
-		return shuffleanswers;
+		return bshuffleanswers;
 	}
 
 	/**
@@ -65,7 +66,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param shuffleanswers setting the shuffle answers tag
 	 */
 	public void setShuffleanswers(boolean shuffleanswers) {
-		this.shuffleanswers = shuffleanswers;
+		this.bshuffleanswers = shuffleanswers;
 	}
 
 	/**
@@ -73,7 +74,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return getting the list of answer
 	 */
 	public List<Answer> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
 	/**
@@ -81,7 +82,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param answer the list of answer 
 	 */
 	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
 	/**
@@ -90,7 +91,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @see AnswerNumerical
 	 */
 	public AnswerNumbering getAnswernumbering() {
-		return answernumbering;
+		return oanswernumbering;
 	}
 
 	/**
@@ -98,7 +99,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param answernumbering setting the answer numbering
 	 */
 	public void setAnswernumbering(AnswerNumbering answernumbering) {
-		this.answernumbering = answernumbering;
+		this.oanswernumbering = answernumbering;
 	}
 
 	/**
@@ -106,7 +107,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the correct feedback
 	 */
 	public String getCorrectfeedback() {
-		return correctfeedback;
+		return scorrectfeedback;
 	}
 
 	/**
@@ -114,7 +115,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param correctfeedback the correct feedback
 	 */
 	public void setCorrectfeedback(String correctfeedback) {
-		this.correctfeedback = correctfeedback;
+		this.scorrectfeedback = correctfeedback;
 	}
 
 	/**
@@ -122,7 +123,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the partially correct feedback
 	 */
 	public String getPartiallycorrectfeedback() {
-		return partiallycorrectfeedback;
+		return spartiallycorrectfeedback;
 	}
 
 	/**
@@ -130,7 +131,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param partiallycorrectfeedback the partially correct feedback
 	 */
 	public void setPartiallycorrectfeedback(String partiallycorrectfeedback) {
-		this.partiallycorrectfeedback = partiallycorrectfeedback;
+		this.spartiallycorrectfeedback = partiallycorrectfeedback;
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the incorrect feedback
 	 */
 	public String getIncorrectfeedback() {
-		return incorrectfeedback;
+		return sincorrectfeedback;
 	}
 
 	/**
@@ -146,7 +147,7 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @param incorrectfeedback the incorrect feedback
 	 */
 	public void setIncorrectfeedback(String incorrectfeedback) {
-		this.incorrectfeedback = incorrectfeedback;
+		this.sincorrectfeedback = incorrectfeedback;
 	}
 
 }

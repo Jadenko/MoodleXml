@@ -53,7 +53,7 @@ public class QuestionImpl implements IQuestion {
 	/**
 	 * The hidden tag
 	 */
-	@XmlElement(name = "hidden")	
+	@XmlElement(name = "hidden")
 	public Boolean isHidden;
 	/**
 	 * The image URL

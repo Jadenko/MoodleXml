@@ -11,8 +11,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Subquestion {
 
-	String text;
-	Answer answer;
+	String stext;
+	Answer oanswer;
 
 	/**
 	 * Default constructor with no fields
@@ -28,8 +28,8 @@ public class Subquestion {
 	 */
 	public Subquestion(String text, Answer answer) {
 		super();
-		this.text = text;
-		this.answer = answer;
+		this.stext = text;
+		this.oanswer = answer;
 	}
 
 	/**
@@ -37,7 +37,7 @@ public class Subquestion {
 	 * @return the text
 	 */
 	public String getText() {
-		return text;
+		return stext;
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class Subquestion {
 	 * @param text the text
 	 */
 	public void setText(String text) {
-		this.text = text;
+		this.stext = text;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class Subquestion {
 	 * @return the answer
 	 */
 	public Answer getAnswer() {
-		return answer;
+		return oanswer;
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class Subquestion {
 	 * @param answer the answer
 	 */
 	public void setAnswer(Answer answer) {
-		this.answer = answer;
+		this.oanswer = answer;
 	}
 
 }

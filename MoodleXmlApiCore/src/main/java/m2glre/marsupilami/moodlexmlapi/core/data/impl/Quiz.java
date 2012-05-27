@@ -25,21 +25,21 @@ public class Quiz implements IQuiz {
 	 * The list of question representing a quiz (One CategoryQuestion and many GenericQuestion)
 	 */
 	@XmlElement(name = "question")
-	public List<QuestionImpl> questionList;
+	public List<QuestionImpl> lquestionList;
 
 	/**
 	 * 
 	 * @param questionList the list of questions to set
 	 */
 	public void setQuestionList(List<QuestionImpl> questionList) {
-		this.questionList = questionList;
+		this.lquestionList = questionList;
 	}
 
 	/**
 	 * @return the list of questions
 	 */
 	public List<QuestionImpl> getQuestionList() {
-		return questionList;
+		return lquestionList;
 	}
 
 }

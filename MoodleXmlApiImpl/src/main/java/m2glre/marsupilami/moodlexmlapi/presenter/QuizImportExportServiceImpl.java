@@ -428,12 +428,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								if (questionChildNodesList.item(j)
 										.getNodeName()
 										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-									numericalQuestion
-											.setShuffleanswers(Integer
-													.getInteger(questionChildNodesList
-															.item(j)
-															.getNodeValue()) == 1 ? true
-													: false);
+//									numericalQuestion
+//											.setShuffleanswers(Integer
+//													.getInteger(questionChildNodesList
+//															.item(j)
+//															.getNodeValue()) == 1 ? true
+//													: false);
 								} else if (questionChildNodesList.item(j)
 										.getNodeName().equalsIgnoreCase(ANSWER)) {
 									answerNumerical = new AnswerNumerical();
@@ -494,12 +494,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										if (questionChildNodesList.item(j)
 												.getNodeName()
 												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-											shortAnswerQuestion
-													.setShuffleanswers(Integer
-															.getInteger(questionChildNodesList
-																	.item(j)
-																	.getNodeValue()) == 1 ? true
-															: false);
+//											shortAnswerQuestion
+//													.setShuffleanswers(Integer
+//															.getInteger(questionChildNodesList
+//																	.item(j)
+//																	.getNodeValue()) == 1 ? true
+//															: false);
 										} else if (questionChildNodesList.item(j)
 												.getNodeName()
 												.equalsIgnoreCase(USECASE) && questionChildNodesList.item(j).getNodeValue()!=null) {
@@ -627,12 +627,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 												.getNodeName()
 												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j)
 												.getNodeValue()!=null) {
-											calculatedQuestion
-													.setShuffleanswers(Integer
-															.getInteger(questionChildNodesList
-																	.item(j)
-																	.getNodeValue()) == 1 ? true
-															: false);
+//											calculatedQuestion
+//													.setShuffleanswers(Integer
+//															.getInteger(questionChildNodesList
+//																	.item(j)
+//																	.getNodeValue()) == 1 ? true
+//															: false);
 										} else if (questionChildNodesList.item(j)
 												.getNodeName().equalsIgnoreCase(ANSWER)) {
 											answerCalculated = new AnswerCalculated();

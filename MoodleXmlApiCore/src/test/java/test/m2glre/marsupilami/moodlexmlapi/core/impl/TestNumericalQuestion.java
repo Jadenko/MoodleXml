@@ -25,7 +25,7 @@ public class TestNumericalQuestion {
 	@Test
 	public void testGetAnswer() {
 		assertEquals("Very Bad", numericalQuestion.getAnswer().get(1).getText());
-		assertEquals(0, numericalQuestion.getAnswer().get(0).getTolerance());
+		assertEquals(0, numericalQuestion.getAnswer().get(0).getTolerance(),0);
 	}
 
 	@Test

@@ -40,8 +40,8 @@ public class GenericQuestion extends QuestionImpl {
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
-		String nameR = "";
-		nameR = nameR.concat("<text>").concat(name).concat("</text>");
+		//String nameR = "";
+		//nameR = nameR.concat("<text>").concat(name).concat("</text>");
 		this.name = name;
 	}
 

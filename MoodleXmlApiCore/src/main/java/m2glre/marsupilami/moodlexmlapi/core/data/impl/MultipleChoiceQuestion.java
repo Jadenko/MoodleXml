@@ -20,13 +20,13 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	/**
 	 *  single is used to distinguish single response (radio button) and multiple response (checkbox) variants.
 	 */
-	private boolean bsingle;
-	private boolean bshuffleanswers;
-	private List<Answer> lanswer;
-	private AnswerNumbering oanswernumbering;
-	private String scorrectfeedback;
-	private String spartiallycorrectfeedback;
-	private String sincorrectfeedback;
+	private boolean single;
+	private boolean shuffleanswers;
+	private List<Answer> answer;
+	private AnswerNumbering answernumbering;
+	private String correctfeedback;
+	private String partiallycorrectfeedback;
+	private String incorrectfeedback;
 
 
 	/**
@@ -42,15 +42,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return is the single tag set to true or false
 	 */
 	public boolean isSingle() {
-		return bsingle;
+		return single;
 	}
 
 	/**
 	 * 
 	 * @param setting the single tag
 	 */
-	public void setSingle(boolean single) {
-		this.bsingle = single;
+	public void setSingle(boolean _single) {
+		this.single = _single;
 	}
 
 	/**
@@ -58,15 +58,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return getting the shuffle answers tag
 	 */
 	public boolean getShuffleanswers() {
-		return bshuffleanswers;
+		return shuffleanswers;
 	}
 
 	/**
 	 * 
 	 * @param shuffleanswers setting the shuffle answers tag
 	 */
-	public void setShuffleanswers(boolean shuffleanswers) {
-		this.bshuffleanswers = shuffleanswers;
+	public void setShuffleanswers(boolean _shuffleanswers) {
+		this.shuffleanswers = _shuffleanswers;
 	}
 
 	/**
@@ -74,15 +74,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return getting the list of answer
 	 */
 	public List<Answer> getAnswer() {
-		return lanswer;
+		return answer;
 	}
 
 	/**
 	 * 
 	 * @param answer the list of answer 
 	 */
-	public void setAnswer(List<Answer> answer) {
-		this.lanswer = answer;
+	public void setAnswer(List<Answer> _answer) {
+		this.answer = _answer;
 	}
 
 	/**
@@ -91,15 +91,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @see AnswerNumerical
 	 */
 	public AnswerNumbering getAnswernumbering() {
-		return oanswernumbering;
+		return answernumbering;
 	}
 
 	/**
 	 * 
 	 * @param answernumbering setting the answer numbering
 	 */
-	public void setAnswernumbering(AnswerNumbering answernumbering) {
-		this.oanswernumbering = answernumbering;
+	public void setAnswernumbering(AnswerNumbering _answernumbering) {
+		this.answernumbering = _answernumbering;
 	}
 
 	/**
@@ -107,15 +107,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the correct feedback
 	 */
 	public String getCorrectfeedback() {
-		return scorrectfeedback;
+		return correctfeedback;
 	}
 
 	/**
 	 * 
 	 * @param correctfeedback the correct feedback
 	 */
-	public void setCorrectfeedback(String correctfeedback) {
-		this.scorrectfeedback = correctfeedback;
+	public void setCorrectfeedback(String _correctfeedback) {
+		this.correctfeedback = _correctfeedback;
 	}
 
 	/**
@@ -123,15 +123,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the partially correct feedback
 	 */
 	public String getPartiallycorrectfeedback() {
-		return spartiallycorrectfeedback;
+		return partiallycorrectfeedback;
 	}
 
 	/**
 	 * 
 	 * @param partiallycorrectfeedback the partially correct feedback
 	 */
-	public void setPartiallycorrectfeedback(String partiallycorrectfeedback) {
-		this.spartiallycorrectfeedback = partiallycorrectfeedback;
+	public void setPartiallycorrectfeedback(String _partiallycorrectfeedback) {
+		this.partiallycorrectfeedback = _partiallycorrectfeedback;
 	}
 
 	/**
@@ -139,15 +139,15 @@ public class MultipleChoiceQuestion extends GenericQuestion {
 	 * @return the incorrect feedback
 	 */
 	public String getIncorrectfeedback() {
-		return sincorrectfeedback;
+		return incorrectfeedback;
 	}
 
 	/**
 	 * 
 	 * @param incorrectfeedback the incorrect feedback
 	 */
-	public void setIncorrectfeedback(String incorrectfeedback) {
-		this.sincorrectfeedback = incorrectfeedback;
+	public void setIncorrectfeedback(String _incorrectfeedback) {
+		this.incorrectfeedback = _incorrectfeedback;
 	}
 
 }

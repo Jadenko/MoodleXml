@@ -16,7 +16,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class TrueFalseQuestion extends GenericQuestion {
 
-	private List<Answer> lanswer;
+	private List<Answer> answer;
 
 	/**
 	 * Construct a new true/false question
@@ -31,15 +31,15 @@ public class TrueFalseQuestion extends GenericQuestion {
 	 * @return the list of answers
 	 */
 	public List<Answer> getAnswer() {
-		return lanswer;
+		return answer;
 	}
 
 	/**
 	 * 
 	 * @param answer the list of answers
 	 */
-	public void setAnswer(List<Answer> answer) {
-		this.lanswer = answer;
+	public void setAnswer(List<Answer> _answer) {
+		this.answer = _answer;
 	}
 
 }

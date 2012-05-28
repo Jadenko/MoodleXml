@@ -15,15 +15,15 @@ public class Answer {
 	 * identifies which option is correct (100) and which is false (0)
 	 */
 	@XmlAttribute
-	float ffraction;
+	float fraction;
 	/**
 	 * The text of the answer
 	 */
-	String stext;
+	String text;
 	/**
 	 * The feedback of the question
 	 */
-	String sfeedback;
+	String feedback;
 
 
 	public Answer() {
@@ -32,47 +32,47 @@ public class Answer {
 
 	/**
 	 * Construct a  new answer with all the attributes 
-	 * @param fraction the fraction
+	 * @param _fraction the _fraction
 	 * @param text the text
 	 * @param feedback the feedback
 	 */
-	public Answer(float fraction, String text, String feedback) {
-		this.ffraction = fraction;
-		this.stext = text;
-		this.sfeedback = feedback;
+	public Answer(float _fraction, String _text, String _feedback) {
+		this.fraction = _fraction;
+		this.text = _text;
+		this.feedback = _feedback;
 	}
 
 	/**
-	 * Construct a  new answer with a fraction attribute and feedback. 
-	 * @param fraction identifies which option is correct (100) and which is false (0)
+	 * Construct a  new answer with a _fraction attribute and feedback. 
+	 * @param _fraction identifies which option is correct (100) and which is false (0)
 	 * @param feedback the feedback
 	 */
-	public Answer(float fraction, String feedback) {
-		this.ffraction = fraction;
-		this.sfeedback = feedback;
+	public Answer(float _fraction, String _feedback) {
+		this.fraction = _fraction;
+		this.feedback = _feedback;
 	}
 
 	/**
 	 * Construct a  new answer with only text attribute. 
 	 * @param text the text
 	 */
-	public Answer(String text) {
-		this.stext = text;
+	public Answer(String _text) {
+		this.text = _text;
 	}
 
 	/**
 	 * 
-	 * @return the fraction
+	 * @return the _fraction
 	 */
 	public float getFraction() {
-		return ffraction;
+		return fraction;
 	}
 
 	/**
-	 * @param fraction setting the fraction of the answer
+	 * @param _fraction setting the _fraction of the answer
 	 */
-	public void setFraction(int fraction) {
-		this.ffraction = fraction;
+	public void setFraction(float _fraction) {
+		this.fraction = _fraction;
 	}
 
 	/**
@@ -80,29 +80,29 @@ public class Answer {
 	 * @return getting the text of the answer
 	 */
 	public String getText() {
-		return stext;
+		return text;
 	}
 
 	/**
 	 * 
 	 * @param text Setting the text of the answer
 	 */
-	public void setText(String text) {
-		this.stext = text;
+	public void setText(String _text) {
+		this.text = _text;
 	}
 
 	/**
  	 * @return getting the feedback of the answer
 	 */
 	public String getFeedback() {
-		return sfeedback;
+		return feedback;
 	}
 
 	/**
   	 * @param getting the feedback of the answer
 	 */
-	public void setFeedback(String feedback) {
-		this.sfeedback = feedback;
+	public void setFeedback(String _feedback) {
+		this.feedback = _feedback;
 	}
 
 }

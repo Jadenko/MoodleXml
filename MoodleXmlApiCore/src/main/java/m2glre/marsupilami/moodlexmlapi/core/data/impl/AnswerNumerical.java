@@ -13,7 +13,7 @@ public class AnswerNumerical extends Answer {
 	/**
 	 * how accurate must the number be?
 	 */
-	int itolerance;
+	float tolerance;
 
 
 	public AnswerNumerical() {
@@ -27,24 +27,24 @@ public class AnswerNumerical extends Answer {
 	 * @param text the text
 	 * @param feedback the feedback
 	 */
-	public AnswerNumerical(float fraction, String text,int tolerance, String feedback) {
-		this.ffraction = fraction;
-		this.stext = text;
-		this.sfeedback = feedback;
-		this.itolerance = tolerance;
+	public AnswerNumerical(float _fraction, String _text,int _tolerance, String _feedback) {
+		this.fraction = _fraction;
+		this.text = _text;
+		this.feedback = _feedback;
+		this.tolerance = _tolerance;
 	}
 
 	/**
 	 * @return getting the tolerance of the numerical answer
 	 */
-	public int getTolerance() {
-		return itolerance;
+	public float getTolerance() {
+		return tolerance;
 	}
 
 	/**
 	 * @param tolerance setting the tolerance of the numerical answer
 	 */
-	public void setTolerance(int tolerance) {
-		this.itolerance = tolerance;
+	public void setTolerance(float _tolerance) {
+		this.tolerance = _tolerance;
 	}
 }

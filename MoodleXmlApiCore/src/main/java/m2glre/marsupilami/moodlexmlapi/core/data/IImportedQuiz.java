@@ -4,11 +4,7 @@ import java.util.List;
 
 /**
  * Interface representing an imported Moodle quiz
-<<<<<<< HEAD
  * @author Marsupilami's Band 
-=======
- * @author fsil
->>>>>>> 8bc97020ba06fb604803d75fd32230f9aa8cc71e
  *
  */
 public interface IImportedQuiz extends IQuiz {

@@ -40,7 +40,7 @@ public class Main {
 
 		Quiz quiz = ObjectQuizExample.createQuiz();
 		QuizImportExportServiceImpl quizImportExportServiceImpl = new QuizImportExportServiceImpl();
-		//OutputStream outputStream = quizImportExportServiceImpl.exportQuiz(quiz);
+		OutputStream outputStream = quizImportExportServiceImpl.exportQuiz(quiz);
 		
 
 		//InputStream inputStream = new ByteArrayInputStream(((ByteArrayOutputStream) outputStream).toByteArray());

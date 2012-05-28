@@ -37,7 +37,7 @@ public class ObjectQuizExample {
 		questionList.add(question1);
 
 		GenericQuestion question2 = new GenericQuestion();
-		question2.setQuestionType(QuestionType.calculated);
+		question2.setType(QuestionType.calculated);
 		question2.setName("Aire du cercle (pas du carré)");
 		QuestionText questionText2 = new QuestionText(
 				"Calcul de l'aire du cercle ayant pour rayon {R}",
@@ -80,7 +80,7 @@ public class ObjectQuizExample {
 		questionList.add(question5);
 
 		GenericQuestion question6 = new GenericQuestion();
-		question6.setQuestionType(QuestionType.cloze);
+		question6.setType(QuestionType.cloze);
 		question6.setName("Question \"Cloze\" (composite ?)");
 		QuestionText questionText6 = new QuestionText("Cette question comporte du texte dans" +
 				"lequel on a directement intégré des réponses à choix multiples " +
@@ -185,7 +185,7 @@ public class ObjectQuizExample {
 		questionList.add(question10);
 
 		GenericQuestion question11 = new GenericQuestion();
-		question11.setQuestionType(QuestionType.calculated);
+		question11.setType(QuestionType.calculated);
 //		questionList.add(question11);
 
 		TrueFalseQuestion question12 = new TrueFalseQuestion();

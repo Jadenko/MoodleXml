@@ -71,7 +71,7 @@ public class Answer {
 	/**
 	 * @param fraction setting the fraction of the answer
 	 */
-	public void setFraction(int fraction) {
+	public void setFraction(float fraction) {
 		this.ffraction = fraction;
 	}
 

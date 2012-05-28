@@ -2,7 +2,6 @@ package m2glre.marsupilami.moodlexmlapi.presenter;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -12,7 +11,6 @@ import java.util.List;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -28,15 +26,10 @@ import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionError;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionTextFormat;
+import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Answer;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerCalculated;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumbering;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.AnswerNumerical;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.CalculatedQuestion;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.CalculatedQuestionDataSetDefinition;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.CalculatedQuestionDataSetItem;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.ClozeQuestion;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.DescriptionQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.EssayQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MatchingQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
@@ -72,7 +65,6 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 	private static String NAME = "name";
 	private static String QUESTION_TEXT = "questiontext";
 	private static String FORMAT = "format";
-	private static String IMAGE = "image";
 	private static String IMAGE_URL = "image";
 	private static String IMAGE_BASE_64 = "image_base64";
 	private static String GENERAL_FEEDBACK = "generalfeedback";
@@ -88,28 +80,11 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 	private static String FEEDBACK = "feedback";
 	private static String FRACTION = "fraction";
 	private static String TOLERANCE = "tolerance";
-	private static String TOLERANCE_TYPE = "tolerancetype";
-	private static String CORRECT_ANSWER_FORMAT = "correctanswerformat";
-	private static String CORRECT_ANSWER_LENGTH = "correctanswerlength";
 	private static String UNITS = "units";
 	private static String UNIT = "unit";
 	private static String UNIT_MULTIPLIER = "multiplier";
 	private static String UNIT_NAME = "unit_name";
-	private static String DATASET_DEFINITIONS = "dataset_definitions";
-	private static String DATASET_DEFINITION = "dataset_definition";
-	private static String STATUS = "status";
-	private static String DISTRIBUTION = "distribution";
-	private static String MINIMUM = "minimum";
-	private static String MAXIMUM = "maximum";
-	private static String DECIMALS = "decimals";
-	private static String ITEM_COUNT = "itemcount";
-	private static String NUMBER_OF_ITEM = "number_of_items";
-	private static String DATASET_ITEMS = "dataset_items";
-	private static String DATASET_ITEM = "dataset_item";
-	private static String NUMBER = "number";
-	private static String VALUE = "value";
 	private static String USECASE = "usecase";
-	
 
 	public QuizImportExportServiceImpl() {
 		super();
@@ -127,34 +102,25 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 
 		CategoryQuestion categoryQuestion;
 		GenericQuestion genericQuestion;
-		DescriptionQuestion descriptionQuestion;
-		ClozeQuestion clozeQuestion;
 		EssayQuestion essayQuestion;
 		MatchingQuestion matchingQuestion;
 		MultipleChoiceQuestion multipleChoiceQuestion;
 		NumericalQuestion numericalQuestion;
 		ShortAnswerQuestion shortAnswerQuestion;
 		TrueFalseQuestion trueFalseQuestion;
-		CalculatedQuestion calculatedQuestion;
 
 		QuestionText questionText = null;
 		QuestionTextFormat DEFAULT_QUESTION_TEXT_FORMAT = QuestionTextFormat.plain_text;
 		Answer answer;
 		AnswerNumerical answerNumerical;
-		AnswerCalculated answerCalculated;
 		Unit unit;
-		CalculatedQuestionDataSetDefinition calculatedQuestionDataSetDefinition;
-		CalculatedQuestionDataSetItem calculatedQuestionDataSetItem;
 		Subquestion subquestion;
-		
 
 		try {
-			DocumentBuilderFactory builderFactory =
-			        DocumentBuilderFactory.newInstance();
+			DocumentBuilderFactory builderFactory = DocumentBuilderFactory
+					.newInstance();
 			DocumentBuilder builder = builderFactory.newDocumentBuilder();
 			Document document = builder.parse(is);
-			//parser.parse(is);
-		//	Document document = parser.getDocument();
 			Element quiz = document.getDocumentElement();
 			NodeList questionsList = quiz.getElementsByTagName(QUESTION);
 			NodeList questionChildNodesList;
@@ -162,23 +128,20 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 			NodeList subquestionChildNodesList;
 			NodeList unitsChildNodesList;
 			NodeList unitChildNodesList;
-			NodeList dataSetDefinitionsChildNodesList;
-			NodeList dataSetDefinitionChildNodesList;
-			NodeList dataSetItemsChildNodesList;
-			NodeList dataSetItemChildNodesList;
 			String questionName = null;
 			String questionType = null;
 			String generalFeedBack = null;
 			float penalty = 0;
-			float defaultGrade = 0 ;
+			float defaultGrade = 0;
 			boolean isHidden = false;
 			String imageUrl = null;
 			String imageBase64 = null;
 			List<QuestionError> errors;
 			QuestionError questionError;
-			
+
 			for (int i = 0; i < questionsList.getLength(); i++) {
 				genericQuestion = new GenericQuestion();
+				errors = new ArrayList<QuestionError>();
 				questionChildNodesList = questionsList.item(i).getChildNodes();
 				errors = new ArrayList<QuestionError>();
 				if (questionsList.item(i).getAttributes().getNamedItem(TYPE) != null) {
@@ -195,13 +158,17 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 												j).getTextContent());
 							}
 						}
+						importedQuiz.getExtractedQuestionList().add(
+								categoryQuestion);
 						importedQuiz.getQuestionList().add(categoryQuestion);
-					} else {
+					} else if (questionType.equalsIgnoreCase(ESSAY)) {
+
+						essayQuestion = new EssayQuestion();
 						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
 							if (questionChildNodesList.item(j).getNodeName()
 									.equalsIgnoreCase(NAME)) {
-								questionName = questionChildNodesList
-										.item(j).getTextContent();
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
 							} else if (questionChildNodesList.item(j)
 									.getNodeName()
 									.equalsIgnoreCase(QUESTION_TEXT)) {
@@ -225,550 +192,865 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								}
 							} else if (questionChildNodesList.item(j)
 									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
-								imageUrl = questionChildNodesList
-												.item(j).getNodeValue();
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
 							} else if (questionChildNodesList.item(j)
-									.getNodeName().equalsIgnoreCase(IMAGE_BASE_64)) {
-								imageBase64 = questionChildNodesList
-												.item(j).getNodeValue();
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
 							} else if (questionChildNodesList.item(j)
 									.getNodeName()
 									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
 								generalFeedBack = questionChildNodesList
-												.item(j).getTextContent();
+										.item(j).getTextContent();
 							} else if (questionChildNodesList.item(j)
 									.getNodeName()
-									.equalsIgnoreCase(DEFAULT_GRAD) && questionChildNodesList.item(j).getNodeValue()!=null) {
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
 								defaultGrade = Float
 										.valueOf(questionChildNodesList.item(j)
 												.getNodeValue());
 							} else if (questionChildNodesList.item(j)
-									.getNodeName().equalsIgnoreCase(PENALTY) && questionChildNodesList.item(j).getNodeValue()!=null) {
-								penalty = Float
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(SHUFFLE_ANSWERS)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								essayQuestion
+										.setShuffleanswers(Integer
+												.getInteger(questionChildNodesList
+														.item(j).getNodeValue()) == 1 ? true
+												: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(ANSWER)) {
+								answer = new Answer();
+								answer.setText(questionChildNodesList.item(j)
+										.getTextContent());
+								answerChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (answerChildNodesList != null) {
+									if (questionChildNodesList.item(j)
+											.getAttributes() != null
+											&& questionChildNodesList.item(j)
+													.getAttributes()
+													.getNamedItem(FRACTION) != null) {
+										answer.setFraction(Float
+												.valueOf(questionChildNodesList
+														.item(j)
+														.getAttributes()
+														.getNamedItem(FRACTION)
+														.getNodeValue()));
+									}
+									for (int k = 0; k < answerChildNodesList
+											.getLength(); k++) {
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(FEEDBACK)) {
+											answer.setFeedback(answerChildNodesList
+													.item(k).getTextContent());
+										}
+									}
+								}
+								essayQuestion.setAnswer(answer);
+							}
+						}
+						essayQuestion.setName(questionName);
+						essayQuestion.setQuestionText(questionText);
+						essayQuestion.setGeneralFeedBack(generalFeedBack);
+						essayQuestion.setPenalty(penalty);
+						essayQuestion.setDefaultGrade(defaultGrade);
+						essayQuestion.setIsHidden(isHidden);
+						essayQuestion.setImageUrl(imageUrl);
+						essayQuestion.setImageBase64(imageBase64);
+						essayQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(essayQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								essayQuestion);
+					} else if (questionType.equalsIgnoreCase(MATCHING)) {
+
+						matchingQuestion = new MatchingQuestion();
+						matchingQuestion
+								.setSubquestion(new ArrayList<Subquestion>());
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
 										.valueOf(questionChildNodesList.item(j)
 												.getNodeValue());
 							} else if (questionChildNodesList.item(j)
-									.getNodeName().equalsIgnoreCase(HIDDEN) && questionChildNodesList.item(j).getNodeValue()!=null) {
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(SHUFFLE_ANSWERS)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								matchingQuestion
+										.setShuffleanswers(Integer
+												.getInteger(questionChildNodesList
+														.item(j).getNodeValue()) == 1 ? true
+												: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(SUB_QUESTION)) {
+								subquestion = new Subquestion();
+								subquestion.setText(questionChildNodesList
+										.item(j).getTextContent());
+								subquestionChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (subquestionChildNodesList != null) {
+									for (int k = 0; k < subquestionChildNodesList
+											.getLength(); k++) {
+										if (subquestionChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(ANSWER)) {
+											answer = new Answer();
+											answer.setText(subquestionChildNodesList
+													.item(k).getTextContent());
+											subquestion.setAnswer(answer);
+										}
+									}
+								}
+								matchingQuestion.getSubquestion().add(
+										subquestion);
+							}
+						}
+						matchingQuestion.setName(questionName);
+						matchingQuestion.setQuestionText(questionText);
+						matchingQuestion.setGeneralFeedBack(generalFeedBack);
+						matchingQuestion.setPenalty(penalty);
+						matchingQuestion.setDefaultGrade(defaultGrade);
+						matchingQuestion.setIsHidden(isHidden);
+						matchingQuestion.setImageUrl(imageUrl);
+						matchingQuestion.setImageBase64(imageBase64);
+						matchingQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(matchingQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								matchingQuestion);
+					} else if (questionType.equalsIgnoreCase(MULTI_CHOICE)) {
+
+						multipleChoiceQuestion = new MultipleChoiceQuestion();
+						multipleChoiceQuestion
+								.setAnswer(new ArrayList<Answer>());
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
+										.valueOf(questionChildNodesList.item(j)
+												.getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(SHUFFLE_ANSWERS)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								multipleChoiceQuestion
+										.setShuffleanswers(Integer
+												.getInteger(questionChildNodesList
+														.item(j).getNodeValue()) == 1 ? true
+												: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(CORRECT_FEEDBACK)) {
+								multipleChoiceQuestion
+										.setCorrectfeedback(questionChildNodesList
+												.item(j).getTextContent());
+							} else if (questionChildNodesList
+									.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(
+											PARTIALLY_CORRECT_FEEDBACK)) {
+								multipleChoiceQuestion
+										.setPartiallycorrectfeedback(questionChildNodesList
+												.item(j).getTextContent());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(INCORRECT_FEEDBACK)) {
+								multipleChoiceQuestion
+										.setIncorrectfeedback(questionChildNodesList
+												.item(j).getTextContent());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(ANSWER_NUMBERING)) {
+								if (questionChildNodesList.item(j)
+										.getNodeValue() != null) {
+									multipleChoiceQuestion
+											.setAnswernumbering(AnswerNumbering
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getTextContent()));
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(ANSWER)) {
+								answer = new Answer();
+								answer.setText(questionChildNodesList.item(j)
+										.getTextContent());
+								answerChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (answerChildNodesList != null) {
+									if (questionChildNodesList.item(j)
+											.getAttributes() != null
+											&& questionChildNodesList.item(j)
+													.getAttributes()
+													.getNamedItem(FRACTION) != null) {
+										answer.setFraction(Float
+												.valueOf(questionChildNodesList
+														.item(j)
+														.getAttributes()
+														.getNamedItem(FRACTION)
+														.getNodeValue()));
+									}
+									for (int k = 0; k < answerChildNodesList
+											.getLength(); k++) {
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(FEEDBACK)) {
+											answer.setFeedback(answerChildNodesList
+													.item(k).getTextContent());
+										}
+									}
+								}
+								multipleChoiceQuestion.getAnswer().add(answer);
+							}
+						}
+
+						multipleChoiceQuestion.setName(questionName);
+						multipleChoiceQuestion.setQuestionText(questionText);
+						multipleChoiceQuestion
+								.setGeneralFeedBack(generalFeedBack);
+						multipleChoiceQuestion.setPenalty(penalty);
+						multipleChoiceQuestion.setDefaultGrade(defaultGrade);
+						multipleChoiceQuestion.setIsHidden(isHidden);
+						multipleChoiceQuestion.setImageUrl(imageUrl);
+						multipleChoiceQuestion.setImageBase64(imageBase64);
+						multipleChoiceQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(
+								multipleChoiceQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								multipleChoiceQuestion);
+					} else if (questionType.equalsIgnoreCase(NUMERICAL)) {
+						numericalQuestion = new NumericalQuestion();
+						numericalQuestion.setUnit(new ArrayList<Unit>());
+						numericalQuestion
+								.setAnswer(new ArrayList<AnswerNumerical>());
+
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
+										.valueOf(questionChildNodesList.item(j)
+												.getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(ANSWER)) {
+								answerNumerical = new AnswerNumerical();
+								answerNumerical.setText(questionChildNodesList
+										.item(j).getTextContent());
+								answerChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (answerChildNodesList != null) {
+									if (questionChildNodesList.item(j)
+											.getAttributes() != null
+											&& questionChildNodesList.item(j)
+													.getAttributes()
+													.getNamedItem(FRACTION) != null) {
+										answerNumerical.setFraction(Float
+												.valueOf(questionChildNodesList
+														.item(j)
+														.getAttributes()
+														.getNamedItem(FRACTION)
+														.getNodeValue()));
+									}
+									for (int k = 0; k < answerChildNodesList
+											.getLength(); k++) {
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(FEEDBACK)) {
+											answerNumerical
+													.setFeedback(answerChildNodesList
+															.item(k)
+															.getTextContent());
+										}
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(TOLERANCE)
+												&& answerChildNodesList.item(k)
+														.getNodeValue() != null) {
+											answerNumerical
+													.setTolerance(Float
+															.valueOf(answerChildNodesList
+																	.item(k)
+																	.getNodeValue()));
+										}
+									}
+								}
+								numericalQuestion.getAnswer().add(
+										answerNumerical);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(UNITS)) {
+								unitsChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								for (int k = 0; k < unitsChildNodesList
+										.getLength(); k++) {
+									if (unitsChildNodesList.item(k)
+											.getNodeName()
+											.equalsIgnoreCase(UNIT)) {
+										unit = new Unit();
+										unitChildNodesList = unitsChildNodesList
+												.item(k).getChildNodes();
+										for (int l = 0; l < unitChildNodesList
+												.getLength(); l++) {
+											if (unitChildNodesList
+													.item(l)
+													.getNodeName()
+													.equalsIgnoreCase(
+															UNIT_MULTIPLIER)
+													&& unitChildNodesList.item(
+															l).getNodeValue() != null) {
+												unit.setMultiplier(Integer
+														.valueOf(unitChildNodesList
+																.item(l)
+																.getNodeValue()));
+											} else if (unitChildNodesList
+													.item(l)
+													.getNodeName()
+													.equalsIgnoreCase(UNIT_NAME)
+													&& unitChildNodesList.item(
+															l).getNodeValue() != null) {
+												unit.setUnit_name(unitChildNodesList
+														.item(l).getNodeValue());
+											}
+										}
+										numericalQuestion.getUnit().add(unit);
+									}
+								}
+							}
+						}
+
+						numericalQuestion.setName(questionName);
+						numericalQuestion.setQuestionText(questionText);
+						numericalQuestion.setGeneralFeedBack(generalFeedBack);
+						numericalQuestion.setPenalty(penalty);
+						numericalQuestion.setDefaultGrade(defaultGrade);
+						numericalQuestion.setIsHidden(isHidden);
+						numericalQuestion.setImageUrl(imageUrl);
+						numericalQuestion.setImageBase64(imageBase64);
+
+						numericalQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(numericalQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								numericalQuestion);
+					} else if (questionType.equalsIgnoreCase(SHORT_ANSWER)) {
+
+						shortAnswerQuestion = new ShortAnswerQuestion();
+						shortAnswerQuestion.setAnswer(new ArrayList<Answer>());
+
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
+										.valueOf(questionChildNodesList.item(j)
+												.getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(USECASE)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								shortAnswerQuestion
+										.setUsecase(Integer
+												.getInteger(questionChildNodesList
+														.item(j).getNodeValue()) == 1 ? true
+												: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(ANSWER)) {
+								answer = new Answer();
+								answer.setText(questionChildNodesList.item(j)
+										.getTextContent());
+								answerChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (answerChildNodesList != null) {
+									if (questionChildNodesList.item(j)
+											.getAttributes() != null
+											&& questionChildNodesList.item(j)
+													.getAttributes()
+													.getNamedItem(FRACTION) != null) {
+										answer.setFraction(Float
+												.valueOf(questionChildNodesList
+														.item(j)
+														.getAttributes()
+														.getNamedItem(FRACTION)
+														.getNodeValue()));
+									}
+									for (int k = 0; k < answerChildNodesList
+											.getLength(); k++) {
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(FEEDBACK)) {
+											answer.setFeedback(answerChildNodesList
+													.item(k).getTextContent());
+										}
+									}
+								}
+								shortAnswerQuestion.getAnswer().add(answer);
+							}
+						}
+
+						shortAnswerQuestion.setName(questionName);
+						shortAnswerQuestion.setQuestionText(questionText);
+						shortAnswerQuestion.setGeneralFeedBack(generalFeedBack);
+						shortAnswerQuestion.setPenalty(penalty);
+						shortAnswerQuestion.setDefaultGrade(defaultGrade);
+						shortAnswerQuestion.setIsHidden(isHidden);
+						shortAnswerQuestion.setImageUrl(imageUrl);
+						shortAnswerQuestion.setImageBase64(imageBase64);
+
+						shortAnswerQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(shortAnswerQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								shortAnswerQuestion);
+					} else if (questionType.equalsIgnoreCase(TRUE_FALSE)) {
+
+						trueFalseQuestion = new TrueFalseQuestion();
+						trueFalseQuestion.setAnswer(new ArrayList<Answer>());
+
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
+										.valueOf(questionChildNodesList.item(j)
+												.getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								isHidden = (Integer
+										.getInteger(questionChildNodesList
+												.item(j).getNodeValue()) == 1 ? true
+										: false);
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(ANSWER)) {
+								answer = new Answer();
+								answer.setText(questionChildNodesList.item(j)
+										.getTextContent());
+								answerChildNodesList = questionChildNodesList
+										.item(j).getChildNodes();
+								if (answerChildNodesList != null) {
+									if (questionChildNodesList.item(j)
+											.getAttributes() != null
+											&& questionChildNodesList.item(j)
+													.getAttributes()
+													.getNamedItem(FRACTION) != null) {
+										answer.setFraction(Float
+												.valueOf(questionChildNodesList
+														.item(j)
+														.getAttributes()
+														.getNamedItem(FRACTION)
+														.getNodeValue()));
+									}
+									for (int k = 0; k < answerChildNodesList
+											.getLength(); k++) {
+										if (answerChildNodesList.item(k)
+												.getNodeName()
+												.equalsIgnoreCase(FEEDBACK)) {
+											answer.setFeedback(answerChildNodesList
+													.item(k).getTextContent());
+										}
+									}
+								}
+								trueFalseQuestion.getAnswer().add(answer);
+							}
+						}
+
+						trueFalseQuestion.setName(questionName);
+						trueFalseQuestion.setQuestionText(questionText);
+						trueFalseQuestion.setGeneralFeedBack(generalFeedBack);
+						trueFalseQuestion.setPenalty(penalty);
+						trueFalseQuestion.setDefaultGrade(defaultGrade);
+						trueFalseQuestion.setIsHidden(isHidden);
+						trueFalseQuestion.setImageUrl(imageUrl);
+						trueFalseQuestion.setImageBase64(imageBase64);
+
+						trueFalseQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(trueFalseQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								trueFalseQuestion);
+					} else if (questionType.equalsIgnoreCase(CLOZE)
+							|| questionType.equalsIgnoreCase(DESCRIPTION)
+							|| questionType.equalsIgnoreCase(CALCULATED)) {
+
+						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
+							if (questionChildNodesList.item(j).getNodeName()
+									.equalsIgnoreCase(NAME)) {
+								questionName = questionChildNodesList.item(j)
+										.getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(QUESTION_TEXT)) {
+								if (questionChildNodesList.item(j)
+										.getAttributes().getNamedItem(FORMAT) != null) {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											QuestionTextFormat
+													.valueOf(questionChildNodesList
+															.item(j)
+															.getAttributes()
+															.getNamedItem(
+																	FORMAT)
+															.getNodeValue()));
+								} else {
+									questionText = new QuestionText(
+											questionChildNodesList.item(j)
+													.getTextContent(),
+											DEFAULT_QUESTION_TEXT_FORMAT);
+								}
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(IMAGE_URL)) {
+								imageUrl = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(IMAGE_BASE_64)) {
+								imageBase64 = questionChildNodesList.item(j)
+										.getNodeValue();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(GENERAL_FEEDBACK)) {
+								generalFeedBack = questionChildNodesList
+										.item(j).getTextContent();
+							} else if (questionChildNodesList.item(j)
+									.getNodeName()
+									.equalsIgnoreCase(DEFAULT_GRAD)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								defaultGrade = Float
+										.valueOf(questionChildNodesList.item(j)
+												.getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(PENALTY)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
+								penalty = Float.valueOf(questionChildNodesList
+										.item(j).getNodeValue());
+							} else if (questionChildNodesList.item(j)
+									.getNodeName().equalsIgnoreCase(HIDDEN)
+									&& questionChildNodesList.item(j)
+											.getNodeValue() != null) {
 								isHidden = (Integer
 										.getInteger(questionChildNodesList
 												.item(j).getNodeValue()) == 1 ? true
 										: false);
 							}
-							
-							//question type
-							
-							else if (questionType.equalsIgnoreCase(ESSAY)) {
-								essayQuestion = new EssayQuestion();
-								essayQuestion.setName(questionName);
-								essayQuestion.setQuestionText(questionText);
-								essayQuestion.setGeneralFeedBack(generalFeedBack);
-								essayQuestion.setPenalty(penalty);
-								essayQuestion.setDefaultGrade(defaultGrade);
-								essayQuestion.setIsHidden(isHidden);
-								essayQuestion.setImageUrl(imageUrl);
-								essayQuestion.setImageBase64(imageBase64);
-								if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-									essayQuestion
-											.setShuffleanswers(Integer
-													.getInteger(questionChildNodesList
-															.item(j)
-															.getNodeValue()) == 1 ? true
-													: false);
-								} else if (questionChildNodesList.item(j)
-										.getNodeName().equalsIgnoreCase(ANSWER)) {
-									answer = new Answer();
-									answer.setText(questionChildNodesList.item(j).getTextContent());
-									answerChildNodesList = questionChildNodesList
-											.item(j).getChildNodes();
-									if (answerChildNodesList != null) {
-										if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-											answer.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-										}
-										for (int k = 0; k < answerChildNodesList
-												.getLength(); k++) {
-											if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-												answer.setFeedback(answerChildNodesList.item(k).getTextContent());
-											}
-										}
-									}
-									essayQuestion.setAnswer(answer);
-								}
-								essayQuestion.setErrors(errors);
-								importedQuiz.getQuestionList().add(essayQuestion);
-								importedQuiz.getNonExtractedQuestionList().add(essayQuestion);
-							} else if (questionType.equalsIgnoreCase(MATCHING)) {
-								
-								matchingQuestion = new MatchingQuestion();
-								matchingQuestion.setName(questionName);
-								matchingQuestion.setQuestionText(questionText);
-								matchingQuestion.setGeneralFeedBack(generalFeedBack);
-								matchingQuestion.setPenalty(penalty);
-								matchingQuestion.setDefaultGrade(defaultGrade);
-								matchingQuestion.setIsHidden(isHidden);
-								matchingQuestion.setImageUrl(imageUrl);
-								matchingQuestion.setImageBase64(imageBase64);
-								matchingQuestion.setSubquestion(new ArrayList<Subquestion>());
-								if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-									matchingQuestion
-											.setShuffleanswers(Integer
-													.getInteger(questionChildNodesList
-															.item(j)
-															.getNodeValue()) == 1 ? true
-													: false);
-								} else if (questionChildNodesList.item(j)
-										.getNodeName().equalsIgnoreCase(SUB_QUESTION)) {
-									 subquestion = new Subquestion();
-									subquestion.setText(questionChildNodesList.item(j).getTextContent());
-									subquestionChildNodesList = questionChildNodesList
-											.item(j).getChildNodes();
-									if (subquestionChildNodesList != null) {
-										for (int k = 0; k < subquestionChildNodesList
-												.getLength(); k++) {
-											if (subquestionChildNodesList.item(k).getNodeName().equalsIgnoreCase(ANSWER)) {
-												answer = new Answer();
-												answer.setText(subquestionChildNodesList.item(k).getTextContent());
-												subquestion.setAnswer(answer);
-											}
-										}
-									}
-									matchingQuestion.getSubquestion().add(subquestion);
-								}
-								matchingQuestion.setErrors(errors);
-								importedQuiz.getQuestionList().add(matchingQuestion);
-								importedQuiz.getExtractedQuestionList().add(matchingQuestion);
-							}else if (questionType.equalsIgnoreCase(MULTI_CHOICE)) {
+						}
 
-								multipleChoiceQuestion = new MultipleChoiceQuestion();
-								multipleChoiceQuestion.setName(questionName);
-								multipleChoiceQuestion.setQuestionText(questionText);
-								multipleChoiceQuestion.setGeneralFeedBack(generalFeedBack);
-								multipleChoiceQuestion.setPenalty(penalty);
-								multipleChoiceQuestion.setDefaultGrade(defaultGrade);
-								multipleChoiceQuestion.setIsHidden(isHidden);
-								multipleChoiceQuestion.setImageUrl(imageUrl);
-								multipleChoiceQuestion.setImageBase64(imageBase64);
-								multipleChoiceQuestion.setAnswer(new ArrayList<Answer>());
-								if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-									multipleChoiceQuestion
-											.setShuffleanswers(Integer
-													.getInteger(questionChildNodesList
-															.item(j)
-															.getNodeValue()) == 1 ? true
-													: false);
-								} else if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(CORRECT_FEEDBACK)) {
-									multipleChoiceQuestion
-											.setCorrectfeedback(questionChildNodesList
-															.item(j)
-															.getTextContent());
-								} else if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(PARTIALLY_CORRECT_FEEDBACK)) {
-									multipleChoiceQuestion
-											.setPartiallycorrectfeedback(questionChildNodesList
-															.item(j)
-															.getTextContent());
-								} else if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(INCORRECT_FEEDBACK)) {
-									multipleChoiceQuestion
-											.setIncorrectfeedback(questionChildNodesList
-															.item(j)
-															.getTextContent());
-								}  else if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(ANSWER_NUMBERING)) {
-									if (questionChildNodesList.item(j).getNodeValue()!=null) {
-										multipleChoiceQuestion
-											.setAnswernumbering(AnswerNumbering.valueOf(questionChildNodesList
-															.item(j)
-															.getTextContent()));
-									}
-								} else if (questionChildNodesList.item(j)
-										.getNodeName().equalsIgnoreCase(ANSWER)) {
-									answer = new Answer();
-									answer.setText(questionChildNodesList.item(j).getTextContent());
-									answerChildNodesList = questionChildNodesList
-											.item(j).getChildNodes();
-									if (answerChildNodesList != null) {
-										if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-											answer.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-										}
-										for (int k = 0; k < answerChildNodesList
-												.getLength(); k++) {
-											if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-												answer.setFeedback(answerChildNodesList.item(k).getTextContent());
-											}
-										}
-									}
-									multipleChoiceQuestion.getAnswer().add(answer);
-								}
-								multipleChoiceQuestion.setErrors(errors);
-								importedQuiz.getQuestionList().add(multipleChoiceQuestion);
-								importedQuiz.getExtractedQuestionList().add(multipleChoiceQuestion);
-							} else if (questionType.equalsIgnoreCase(NUMERICAL)) {
-								numericalQuestion = new NumericalQuestion();
-								numericalQuestion.setName(questionName);
-								numericalQuestion.setQuestionText(questionText);
-								numericalQuestion.setGeneralFeedBack(generalFeedBack);
-								numericalQuestion.setPenalty(penalty);
-								numericalQuestion.setDefaultGrade(defaultGrade);
-								numericalQuestion.setIsHidden(isHidden);
-								numericalQuestion.setImageUrl(imageUrl);
-								numericalQuestion.setImageBase64(imageBase64);
-								numericalQuestion.setUnit(new ArrayList<Unit>());
-								numericalQuestion.setAnswer(new ArrayList<AnswerNumerical>());
-								if (questionChildNodesList.item(j)
-										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-//									numericalQuestion
-//											.setShuffleanswers(Integer
-//													.getInteger(questionChildNodesList
-//															.item(j)
-//															.getNodeValue()) == 1 ? true
-//													: false);
-								} else if (questionChildNodesList.item(j)
-										.getNodeName().equalsIgnoreCase(ANSWER)) {
-									answerNumerical = new AnswerNumerical();
-									answerNumerical.setText(questionChildNodesList.item(j).getTextContent());
-									answerChildNodesList = questionChildNodesList
-											.item(j).getChildNodes();
-									if (answerChildNodesList != null) {
-										if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-											answerNumerical.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-										}
-										for (int k = 0; k < answerChildNodesList
-												.getLength(); k++) {
-											if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-												answerNumerical.setFeedback(answerChildNodesList.item(k).getTextContent());
-											}
-											if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(TOLERANCE) && answerChildNodesList.item(k).getNodeValue()!=null) {
-												answerNumerical.setTolerance(Float.valueOf(answerChildNodesList.item(k).getNodeValue()));
-											}
-										}
-									}
-									numericalQuestion.getAnswer().add(answerNumerical);
-								}
-								 else if (questionChildNodesList.item(j)
-											.getNodeName().equalsIgnoreCase(UNITS)) {
-									 unitsChildNodesList = questionChildNodesList.item(j).getChildNodes();
-											for (int k = 0; k < unitsChildNodesList
-													.getLength(); k++) {
-												if(unitsChildNodesList.item(k).getNodeName().equalsIgnoreCase(UNIT)){
-												unit = new Unit();
-												unitChildNodesList = unitsChildNodesList.item(k).getChildNodes();
-												for (int l = 0; l < unitChildNodesList.getLength(); l++) {
-													if (unitChildNodesList.item(l).getNodeName().equalsIgnoreCase(UNIT_MULTIPLIER) && unitChildNodesList.item(l).getNodeValue()!=null) {
-														unit.setMultiplier(Integer.valueOf(unitChildNodesList.item(l).getNodeValue()));
-													}
-													else if (unitChildNodesList.item(l).getNodeName().equalsIgnoreCase(UNIT_NAME) && unitChildNodesList.item(l).getNodeValue()!=null) {
-														unit.setUnit_name(unitChildNodesList.item(l).getNodeValue());
-													}
-												}
-												numericalQuestion.getUnit().add(unit);
-											}
-											}
-										}
-								numericalQuestion.setErrors(errors);
-								importedQuiz.getQuestionList().add(numericalQuestion);
-								importedQuiz.getExtractedQuestionList().add(numericalQuestion);
-									} else if (questionType.equalsIgnoreCase(SHORT_ANSWER)) {
+						genericQuestion.setType(QuestionType
+								.valueOf(questionType));
+						genericQuestion.setName(questionName);
+						genericQuestion.setQuestionText(questionText);
+						genericQuestion.setGeneralFeedBack(generalFeedBack);
+						genericQuestion.setPenalty(penalty);
+						genericQuestion.setDefaultGrade(defaultGrade);
+						genericQuestion.setIsHidden(isHidden);
+						genericQuestion.setImageUrl(imageUrl);
+						genericQuestion.setImageBase64(imageBase64);
+						genericQuestion.setErrors(errors);
+						importedQuiz.getQuestionList().add(genericQuestion);
+						importedQuiz.getExtractedQuestionList().add(
+								genericQuestion);
+					} else {
+						questionError = new QuestionError("0001",
+								"Unknown question type");
+						errors.add(questionError);
+						genericQuestion.setErrors(errors);
+						importedQuiz.getNonExtractedQuestionList().add(
+								genericQuestion);
+					}
 
-										shortAnswerQuestion = new ShortAnswerQuestion();
-										shortAnswerQuestion.setName(questionName);
-										shortAnswerQuestion.setQuestionText(questionText);
-										shortAnswerQuestion.setGeneralFeedBack(generalFeedBack);
-										shortAnswerQuestion.setPenalty(penalty);
-										shortAnswerQuestion.setDefaultGrade(defaultGrade);
-										shortAnswerQuestion.setIsHidden(isHidden);
-										shortAnswerQuestion.setImageUrl(imageUrl);
-										shortAnswerQuestion.setImageBase64(imageBase64);
-										shortAnswerQuestion.setAnswer(new ArrayList<Answer>());
-										if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-//											shortAnswerQuestion
-//													.setShuffleanswers(Integer
-//															.getInteger(questionChildNodesList
-//																	.item(j)
-//																	.getNodeValue()) == 1 ? true
-//															: false);
-										} else if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(USECASE) && questionChildNodesList.item(j).getNodeValue()!=null) {
-											shortAnswerQuestion.setUsecase(Integer
-													.getInteger(questionChildNodesList
-															.item(j)
-															.getNodeValue()) == 1 ? true
-													: false);
-										} else if (questionChildNodesList.item(j)
-												.getNodeName().equalsIgnoreCase(ANSWER)) {
-											answer = new Answer();
-											answer.setText(questionChildNodesList.item(j).getTextContent());
-											answerChildNodesList = questionChildNodesList
-													.item(j).getChildNodes();
-											if (answerChildNodesList != null) {
-												if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-													answer.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-												}
-												for (int k = 0; k < answerChildNodesList
-														.getLength(); k++) {
-													if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-														answer.setFeedback(answerChildNodesList.item(k).getTextContent());
-													}
-												}
-											}
-											shortAnswerQuestion.getAnswer().add(answer);
-										}
-										shortAnswerQuestion.setErrors(errors);
-										importedQuiz.getQuestionList().add(shortAnswerQuestion);
-										importedQuiz.getExtractedQuestionList().add(shortAnswerQuestion);
-									}  else if (questionType.equalsIgnoreCase(TRUE_FALSE)) {
+				}
+				importedQuiz.getProcessedQuestionList().add(genericQuestion);
+			}
 
-										trueFalseQuestion = new TrueFalseQuestion();
-										trueFalseQuestion.setName(questionName);
-										trueFalseQuestion.setQuestionText(questionText);
-										trueFalseQuestion.setGeneralFeedBack(generalFeedBack);
-										trueFalseQuestion.setPenalty(penalty);
-										trueFalseQuestion.setDefaultGrade(defaultGrade);
-										trueFalseQuestion.setIsHidden(isHidden);
-										trueFalseQuestion.setImageUrl(imageUrl);
-										trueFalseQuestion.setImageBase64(imageBase64);
-										trueFalseQuestion.setAnswer(new ArrayList<Answer>());
-										if (questionChildNodesList.item(j)
-												.getNodeName().equalsIgnoreCase(ANSWER)) {
-											answer = new Answer();
-											answer.setText(questionChildNodesList.item(j).getTextContent());
-											answerChildNodesList = questionChildNodesList
-													.item(j).getChildNodes();
-											if (answerChildNodesList != null) {
-												if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-													answer.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-												}
-												for (int k = 0; k < answerChildNodesList
-														.getLength(); k++) {
-													if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-														answer.setFeedback(answerChildNodesList.item(k).getTextContent());
-													}
-												}
-											}
-											trueFalseQuestion.getAnswer().add(answer);
-										}
-										trueFalseQuestion.setErrors(errors);
-										importedQuiz.getQuestionList().add(trueFalseQuestion);
-										importedQuiz.getExtractedQuestionList().add(trueFalseQuestion);
-									} else if (questionType.equalsIgnoreCase(CLOZE)) {
-										clozeQuestion = new ClozeQuestion();
-										clozeQuestion.setName(questionName);
-										clozeQuestion.setQuestionText(questionText);
-										clozeQuestion.setGeneralFeedBack(generalFeedBack);
-										if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-											clozeQuestion
-													.setShuffleanswers(Integer
-															.getInteger(questionChildNodesList
-																	.item(j)
-																	.getNodeValue()) == 1 ? true
-															: false);
-										}
-										clozeQuestion.setErrors(errors);
-										importedQuiz.getQuestionList().add(clozeQuestion);
-										importedQuiz.getExtractedQuestionList().add(clozeQuestion);
-									}  else if (questionType.equalsIgnoreCase(DESCRIPTION)) {
-										descriptionQuestion = new DescriptionQuestion();
-										descriptionQuestion.setName(questionName);
-										descriptionQuestion.setQuestionText(questionText);
-										descriptionQuestion.setGeneralFeedBack(generalFeedBack);
-										descriptionQuestion.setPenalty(penalty);
-										descriptionQuestion.setDefaultGrade(defaultGrade);
-										descriptionQuestion.setIsHidden(isHidden);
-										if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(IMAGE) ) {
-											descriptionQuestion
-													.setImage(questionChildNodesList
-																	.item(j)
-																	.getNodeValue());
-										} else if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
-											descriptionQuestion
-													.setShuffleanswers(Integer
-															.getInteger(questionChildNodesList
-																	.item(j)
-																	.getNodeValue()) == 1 ? true
-															: false);
-										} 
-										
-										descriptionQuestion.setErrors(errors);
-										importedQuiz.getQuestionList().add(descriptionQuestion);
-										importedQuiz.getExtractedQuestionList().add(descriptionQuestion);
-									}  else if (questionType.equalsIgnoreCase(CALCULATED)) {
-										
-										calculatedQuestion = new CalculatedQuestion();
-										calculatedQuestion.setName(questionName);
-										calculatedQuestion.setQuestionText(questionText);
-										calculatedQuestion.setGeneralFeedBack(generalFeedBack);
-										calculatedQuestion.setPenalty(penalty);
-										calculatedQuestion.setDefaultGrade(defaultGrade);
-										calculatedQuestion.setIsHidden(isHidden);
-										calculatedQuestion.setUnit(new ArrayList<Unit>());
-										calculatedQuestion.setAnswerCalculatedList(new ArrayList<AnswerCalculated>());
-										calculatedQuestion.setCalculatedQuestionDataSetDefinitionList(new ArrayList<CalculatedQuestionDataSetDefinition>());
-										if (questionChildNodesList.item(j)
-												.getNodeName()
-												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j)
-												.getNodeValue()!=null) {
-//											calculatedQuestion
-//													.setShuffleanswers(Integer
-//															.getInteger(questionChildNodesList
-//																	.item(j)
-//																	.getNodeValue()) == 1 ? true
-//															: false);
-										} else if (questionChildNodesList.item(j)
-												.getNodeName().equalsIgnoreCase(ANSWER)) {
-											answerCalculated = new AnswerCalculated();
-											answerCalculated.setText(questionChildNodesList.item(j).getTextContent());
-											answerChildNodesList = questionChildNodesList
-													.item(j).getChildNodes();
-											if (answerChildNodesList != null) {
-												if(questionChildNodesList.item(j).getAttributes()!=null && questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION)!=null){
-													answerCalculated.setFraction(Float.valueOf(questionChildNodesList.item(j).getAttributes().getNamedItem(FRACTION).getNodeValue()));
-												}
-												for (int k = 0; k < answerChildNodesList
-														.getLength(); k++) {
-													if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-														answerCalculated.setFeedback(answerChildNodesList.item(k).getTextContent());
-													} else if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(TOLERANCE) && answerChildNodesList.item(k).getNodeValue()!=null) {
-														answerCalculated.setTolerance(Float.valueOf(answerChildNodesList.item(k).getNodeValue()));
-													} else if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(TOLERANCE_TYPE) && answerChildNodesList.item(k).getNodeValue()!=null) {
-														answerCalculated.setTolerancetype(Integer.valueOf(answerChildNodesList.item(k).getNodeValue()));
-													} else if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(CORRECT_ANSWER_FORMAT) && answerChildNodesList.item(k).getNodeValue()!=null) {
-														answerCalculated.setCorrectanswerformat(Integer.valueOf(answerChildNodesList.item(k).getNodeValue()));
-													} else if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(CORRECT_ANSWER_LENGTH) && answerChildNodesList.item(k).getNodeValue()!=null) {
-														answerCalculated.setCorrectanswerlength(Integer.valueOf(answerChildNodesList.item(k).getNodeValue()));
-													} else if (answerChildNodesList.item(k).getNodeName().equalsIgnoreCase(FEEDBACK)) {
-														answerCalculated.setFeedback(answerChildNodesList.item(k).getTextContent());
-													}
-												}
-											}
-											calculatedQuestion.getAnswerCalculatedList().add(answerCalculated);
-										} else if (questionChildNodesList.item(j)
-													.getNodeName().equalsIgnoreCase(UNITS)) {
-											 unitsChildNodesList = questionChildNodesList.item(j).getChildNodes();
-													for (int k = 0; k < unitsChildNodesList
-															.getLength(); k++) {
-														if(unitsChildNodesList.item(k).getNodeName().equalsIgnoreCase(UNIT)){
-														unit = new Unit();
-														unitChildNodesList = unitsChildNodesList.item(k).getChildNodes();
-														for (int l = 0; l < unitChildNodesList.getLength(); l++) {
-															if (unitChildNodesList.item(l).getNodeName().equalsIgnoreCase(UNIT_MULTIPLIER) && unitChildNodesList.item(l).getNodeValue()!=null) {
-																unit.setMultiplier(Integer.valueOf(unitChildNodesList.item(l).getNodeValue()));
-															}
-															else if (unitChildNodesList.item(l).getNodeName().equalsIgnoreCase(UNIT_NAME) && unitChildNodesList.item(l).getNodeValue()!=null) {
-																unit.setUnit_name(unitChildNodesList.item(l).getNodeValue());
-															}
-														}
-														calculatedQuestion.getUnit().add(unit);
-													}
-													}
-												} else if (questionChildNodesList.item(j)
-														.getNodeName().equalsIgnoreCase(DATASET_DEFINITIONS)) {
-													calculatedQuestion.setCalculatedQuestionDataSetDefinitionList(new ArrayList<CalculatedQuestionDataSetDefinition>());
-													 dataSetDefinitionsChildNodesList = questionChildNodesList.item(j).getChildNodes();
-													if(dataSetDefinitionsChildNodesList!=null) {		
-													 for (int k = 0; k < dataSetDefinitionsChildNodesList
-																	.getLength(); k++) {
-																if(dataSetDefinitionsChildNodesList.item(k).getNodeName().equalsIgnoreCase(DATASET_DEFINITION)){
-																calculatedQuestionDataSetDefinition = new CalculatedQuestionDataSetDefinition();
-																dataSetDefinitionChildNodesList = dataSetDefinitionsChildNodesList.item(k).getChildNodes();
-																if(dataSetDefinitionChildNodesList!=null) {
-																for (int l = 0; l < dataSetDefinitionChildNodesList.getLength(); l++) {
-																	if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(STATUS)) {
-																		calculatedQuestionDataSetDefinition.setStatus(dataSetDefinitionChildNodesList.item(l).getTextContent());
-																	}
-																	else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(NAME)) {
-																		calculatedQuestionDataSetDefinition.setName(dataSetDefinitionChildNodesList.item(l).getTextContent());
-																	}
-																	else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(TYPE)) {
-																		calculatedQuestionDataSetDefinition.setType(dataSetDefinitionChildNodesList.item(l).getNodeValue());
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(DISTRIBUTION)) {
-																		calculatedQuestionDataSetDefinition.setDistribution(dataSetDefinitionChildNodesList.item(l).getTextContent());
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(MINIMUM) && dataSetDefinitionChildNodesList.item(l).getTextContent()!=null) {
-																		calculatedQuestionDataSetDefinition.setMin(Float.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(MAXIMUM) && dataSetDefinitionChildNodesList.item(l).getTextContent()!=null) {
-																		calculatedQuestionDataSetDefinition.setMax(Float.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(DECIMALS) && dataSetDefinitionChildNodesList.item(l).getTextContent()!=null) {
-																		calculatedQuestionDataSetDefinition.setDecimals(Float.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(ITEM_COUNT) && dataSetDefinitionChildNodesList.item(l).getNodeValue()!=null) {
-																		calculatedQuestionDataSetDefinition.setItemcount(Integer.valueOf(dataSetDefinitionChildNodesList.item(l).getNodeValue()));
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(DATASET_ITEMS)) {
-																		calculatedQuestionDataSetDefinition.setCalculatedQuestionDataSetItemList(new ArrayList<CalculatedQuestionDataSetItem>());
-																		dataSetItemsChildNodesList = dataSetDefinitionChildNodesList.item(l).getChildNodes();
-																		if (dataSetItemsChildNodesList != null ) {
-																			for (int m = 0; m < dataSetItemsChildNodesList.getLength(); m++) {
-																				if(dataSetItemsChildNodesList.item(m).getNodeName().equalsIgnoreCase(DATASET_ITEM)){
-																					calculatedQuestionDataSetItem = new CalculatedQuestionDataSetItem();
-																				dataSetItemChildNodesList = dataSetItemsChildNodesList.item(m).getChildNodes();
-																				if(dataSetItemChildNodesList!=null){
-																					for (int n = 0; n < dataSetItemChildNodesList.getLength(); n++) {
-																						if (dataSetItemChildNodesList.item(n).getNodeName().equalsIgnoreCase(NUMBER) && dataSetItemChildNodesList.item(n).getNodeValue() != null) {
-																							calculatedQuestionDataSetItem.setNumber(Integer.getInteger(dataSetItemChildNodesList.item(n).getNodeValue()));
-																						} else if (dataSetItemChildNodesList.item(n).getNodeName().equalsIgnoreCase(VALUE) && dataSetItemChildNodesList.item(n).getNodeValue() != null) {
-																							calculatedQuestionDataSetItem.setValue(Float.valueOf(dataSetItemChildNodesList.item(n).getNodeValue()));
-																						}
-																					}
-																				}
-																				calculatedQuestionDataSetDefinition.getCalculatedQuestionDataSetItemList().add(calculatedQuestionDataSetItem);
-																			}
-																			}
-																		}
-																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(NUMBER_OF_ITEM) && dataSetDefinitionChildNodesList.item(l).getNodeValue()!=null) {
-																		calculatedQuestionDataSetDefinition.setNumberOfItems(Integer.valueOf(dataSetDefinitionChildNodesList.item(l).getNodeValue()));
-																	}
-																}
-																
-																}
-																calculatedQuestion.getCalculatedQuestionDataSetDefinitionList().add(calculatedQuestionDataSetDefinition);
-															}
-															}
-													 
-												}
-														}
-										calculatedQuestion.setErrors(errors);
-										importedQuiz.getQuestionList().add(calculatedQuestion);
-										importedQuiz.getExtractedQuestionList().add(calculatedQuestion);
-									}  else {
-										importedQuiz.getExtractedQuestionList().add(genericQuestion);
-									}
-									
-
-									}
-							}
-
-							}
-							importedQuiz.getProcessedQuestionList().add(genericQuestion);
-							}
-//							System.out.println("processed = "+importedQuiz.getProcessedQuestionCount());
-//							System.out.println("extracted = "+importedQuiz.getExtractedQuestionCount());
-//							System.out.println("nonExcracted = "+importedQuiz.getNonExtractedQuestionCount());
-//			 for (int i = 0; i < importedQuiz.getQuestionList().size(); i++) {
-//			 if (importedQuiz.getQuestionList().get(i) instanceof
-// GenericQuestion) {
-//					System.out.println(((GenericQuestion) importedQuiz
-//							.getQuestionList().get(i)).getName());
-//					System.out.println(((GenericQuestion) importedQuiz
-//							.getQuestionList().get(i)).getImageUrl());
-//				}
-//			 }
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -781,9 +1063,8 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 	}
 
 	public OutputStream exportQuiz(IQuiz quiz) {
-		//TODO priorité 3 - externaliser le path
+		// TODO priorité 3 - externaliser le path
 		final String PATH_FILE = "./quiz-jaxb.xml";
-
 
 		// create JAXB context and instantiate marshaller
 
@@ -797,13 +1078,14 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 			// m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
 			os = new FileOutputStream(PATH_FILE);
 			m.marshal(quiz, os);
-			//ligne suivante à enlever
+			// ligne suivante à enlever
 			m.marshal(quiz, System.out);
 
 		} catch (JAXBException e1) {
-			//TODO Priorité: 3 - externaliser les msgs
-			System.err.println("Marsupilami's Project: Erreur JAXB - " +
-					"Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
+			// TODO Priorité: 3 - externaliser les msgs
+			System.err
+					.println("Marsupilami's Project: Erreur JAXB - "
+							+ "Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
 			e1.printStackTrace();
 		} catch (FileNotFoundException e) {
 			System.err.println("Marsupilami's Project:");

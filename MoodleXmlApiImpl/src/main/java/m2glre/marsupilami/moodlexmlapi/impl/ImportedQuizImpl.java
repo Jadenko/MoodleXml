@@ -7,10 +7,25 @@ import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
 public class ImportedQuizImpl implements IImportedQuiz {
-
-	List<QuestionImpl> questionList;
-
 	
+	private List<IQuestion> processedQuestionList;
+	private List<IQuestion> extractedQuestionList;
+	private List<IQuestion> nonExtractedQuestionList;
+
+	public void setProcessedQuestionList(List<IQuestion> processedQuestionList) {
+		this.processedQuestionList = processedQuestionList;
+	}
+
+	public void setExtractedQuestionList(List<IQuestion> extractedQuestionList) {
+		this.extractedQuestionList = extractedQuestionList;
+	}
+
+	public void setNonExtractedQuestionList(List<IQuestion> nonExtractedQuestionList) {
+		this.nonExtractedQuestionList = nonExtractedQuestionList;
+	}
+
+	private List<QuestionImpl> questionList;
+
 	public ImportedQuizImpl() {
 
 	}
@@ -18,34 +33,33 @@ public class ImportedQuizImpl implements IImportedQuiz {
 	public List<QuestionImpl> getQuestionList() {
 		return this.questionList;
 	}
+	
+	public void setQuestionList(List<QuestionImpl> questionList) {
+		this.questionList = questionList;
+	}
 
 	public int getProcessedQuestionCount() {
-		return this.questionList.size();
+		return this.processedQuestionList.size();
 	}
 
 	public int getExtractedQuestionCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.extractedQuestionList.size();
 	}
 
 	public int getNonExtractedQuestionCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nonExtractedQuestionList.size();
 	}
 
 	public List<IQuestion> getProcessedQuestionList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.processedQuestionList;
 	}
 
 	public List<IQuestion> getExtractedQuestionList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.extractedQuestionList;
 	}
 
 	public List<IQuestion> getNonExtractedQuestionList() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nonExtractedQuestionList;
 	}
 
 }

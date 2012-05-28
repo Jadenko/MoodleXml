@@ -79,8 +79,8 @@ public class QuestionImpl implements IQuestion {
 	 * @return the name of the question
 	 */
 	public String getName() {
-		name = name.replace("&lt;", "<");
-		name = name.replace("&gt;", ">");
+		//name = name.replace("&lt;", "<");
+		//name = name.replace("&gt;", ">");
 		return name;
 	}
 

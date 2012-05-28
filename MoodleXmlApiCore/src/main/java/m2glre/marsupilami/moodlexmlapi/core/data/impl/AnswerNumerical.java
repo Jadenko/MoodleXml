@@ -13,7 +13,7 @@ public class AnswerNumerical extends Answer {
 	/**
 	 * how accurate must the number be?
 	 */
-	int itolerance;
+	float itolerance;
 
 
 	public AnswerNumerical() {
@@ -37,14 +37,14 @@ public class AnswerNumerical extends Answer {
 	/**
 	 * @return getting the tolerance of the numerical answer
 	 */
-	public int getTolerance() {
+	public float getTolerance() {
 		return itolerance;
 	}
 
 	/**
 	 * @param tolerance setting the tolerance of the numerical answer
 	 */
-	public void setTolerance(int tolerance) {
+	public void setTolerance(float tolerance) {
 		this.itolerance = tolerance;
 	}
 }

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
+<<<<<<< HEAD
+  <fileset name="all" enabled="true" check-config-name="Sun Checks" local="false">
+=======
   <local-check-config name="MyCheckstyle.xml" location="internal_config__1337850870882.xml" type="internal" description=""/>
   <local-check-config name="mychecker" location="C:\Users\Jad\IVVQ Workspace\Marsupilami\mychecker.xml" type="external" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
   <local-check-config name="checkersafaa.xml" location="internal_config__1337853651706.xml" type="internal" description=""/>
   <fileset name="all" enabled="true" check-config-name="checkersafaa.xml" local="true">
+>>>>>>> 078d1a95369e0966e549bd73457668cb497b5c0f
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

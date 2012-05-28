@@ -54,6 +54,7 @@ public class ExportImportTest {
 		IImportedQuiz importQuiz = null;
 
 		assertNotNull(export);
+		
 		// InputStream input = new ByteArrayInputStream(
 		// ((ByteArrayOutputStream) export).toByteArray());
 
@@ -74,10 +75,13 @@ public class ExportImportTest {
 			e.printStackTrace();
 		}
 
+		int count = importQuiz.getQuestionList().size();
+		int processedQuestionsCount = importQuiz.getExtractedQuestionCount() + importQuiz.getNonExtractedQuestionCount();
 		assertNotNull(importQuiz);
-		assertEquals(importQuiz.getQuestionList(), listQuestions);
-		assertEquals(importQuiz.getQuestionList().size(), 2);
-		//assertEquals(importQuiz.getExtractedQuestionCount(), 2);
+		assertEquals(count, 2);
+		assertEquals(importQuiz.getExtractedQuestionCount(), 2);
+		assertEquals(importQuiz.getNonExtractedQuestionCount(), count - importQuiz.getExtractedQuestionCount());
+		assertEquals(importQuiz.getProcessedQuestionCount(), processedQuestionsCount);
 	}
 
 }

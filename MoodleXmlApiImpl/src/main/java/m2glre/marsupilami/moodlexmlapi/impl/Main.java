@@ -40,19 +40,18 @@ public class Main {
 
 		Quiz quiz = ObjectQuizExample.createQuiz();
 		QuizImportExportServiceImpl quizImportExportServiceImpl = new QuizImportExportServiceImpl();
-		OutputStream outputStream = quizImportExportServiceImpl.exportQuiz(quiz);
+		//OutputStream outputStream = quizImportExportServiceImpl.exportQuiz(quiz);
 		
 
 		//InputStream inputStream = new ByteArrayInputStream(((ByteArrayOutputStream) outputStream).toByteArray());
 		
 //		try {
-//			//if(Main.class.getResource("MoodleXmlApiImpl/src/main/resources/quiz-exemple.xml")!=null) {
-//			InputStream is = new FileInputStream(Main.class.getResource("/"+inputFileName).getPath());
-//			@SuppressWarnings("unused")
-//			IImportedQuiz importedQuiz = quizImportExportServiceImpl.importQuiz(is);
-////			} else {
-////				System.out.println("file not found");
-////			}
+			//if(Main.class.getResource("MoodleXmlApiImpl/src/main/resources/quiz-exemple.xml")!=null) {
+			//InputStream is = new FileInputStream(Main.class.getResource("/"+inputFileName).getPath());
+			//IImportedQuiz importedQuiz = quizImportExportServiceImpl.importQuiz(is);
+//			} else {
+//				System.out.println("file not found");
+//			}
 //		} catch (InvalidQuizFormatException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();

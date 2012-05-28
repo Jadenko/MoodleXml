@@ -1,16 +1,19 @@
 package m2glre.marsupilami.moodlexmlapi.presenter;
 
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import m2glre.marsupilami.moodlexmlapi.core.InvalidQuizFormatException;
 import m2glre.marsupilami.moodlexmlapi.core.InvalidStreamSizeException;
@@ -18,6 +21,7 @@ import m2glre.marsupilami.moodlexmlapi.core.QuizImportExportService;
 import m2glre.marsupilami.moodlexmlapi.core.data.CategoryQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
+import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionError;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionText;
@@ -43,7 +47,6 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Unit;
 import m2glre.marsupilami.moodlexmlapi.impl.ImportedQuizImpl;
 
-import org.apache.xerces.parsers.DOMParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -116,6 +119,9 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 		ImportedQuizImpl importedQuiz = new ImportedQuizImpl();
 
 		importedQuiz.setQuestionList(new ArrayList<QuestionImpl>());
+		importedQuiz.setExtractedQuestionList(new ArrayList<IQuestion>());
+		importedQuiz.setNonExtractedQuestionList(new ArrayList<IQuestion>());
+		importedQuiz.setProcessedQuestionList(new ArrayList<IQuestion>());
 
 		CategoryQuestion categoryQuestion;
 		GenericQuestion genericQuestion;
@@ -141,10 +147,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 		
 
 		try {
-
-			DOMParser parser = new DOMParser();
-			parser.parse(is.toString());
-			Document document = parser.getDocument();
+			DocumentBuilderFactory builderFactory =
+			        DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = builderFactory.newDocumentBuilder();
+			Document document = builder.parse(is);
+			//parser.parse(is);
+		//	Document document = parser.getDocument();
 			Element quiz = document.getDocumentElement();
 			NodeList questionsList = quiz.getElementsByTagName(QUESTION);
 			NodeList questionChildNodesList;
@@ -166,7 +174,9 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 			String imageBase64 = null;
 			List<QuestionError> errors;
 			QuestionError questionError;
+			
 			for (int i = 0; i < questionsList.getLength(); i++) {
+				genericQuestion = new GenericQuestion();
 				questionChildNodesList = questionsList.item(i).getChildNodes();
 				errors = new ArrayList<QuestionError>();
 				if (questionsList.item(i).getAttributes().getNamedItem(TYPE) != null) {
@@ -185,7 +195,6 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 						}
 						importedQuiz.getQuestionList().add(categoryQuestion);
 					} else {
-						
 						for (int j = 0; j < questionChildNodesList.getLength(); j++) {
 							if (questionChildNodesList.item(j).getNodeName()
 									.equalsIgnoreCase(NAME)) {
@@ -237,16 +246,16 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										.valueOf(questionChildNodesList.item(j)
 												.getNodeValue());
 							} else if (questionChildNodesList.item(j)
-									.getNodeName().equalsIgnoreCase(HIDDEN)) {
+									.getNodeName().equalsIgnoreCase(HIDDEN) && questionChildNodesList.item(j).getNodeValue()!=null) {
 								isHidden = (Integer
 										.getInteger(questionChildNodesList
-												.item(j).getTextContent()) == 1 ? true
+												.item(j).getNodeValue()) == 1 ? true
 										: false);
 							}
 							
 							//question type
 							
-							if (questionType.equalsIgnoreCase(ESSAY)) {
+							else if (questionType.equalsIgnoreCase(ESSAY)) {
 								essayQuestion = new EssayQuestion();
 								essayQuestion.setName(questionName);
 								essayQuestion.setQuestionText(questionText);
@@ -258,12 +267,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								essayQuestion.setImageBase64(imageBase64);
 								if (questionChildNodesList.item(j)
 										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS)) {
+										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
 									essayQuestion
 											.setShuffleanswers(Integer
 													.getInteger(questionChildNodesList
 															.item(j)
-															.getTextContent()) == 1 ? true
+															.getNodeValue()) == 1 ? true
 													: false);
 								} else if (questionChildNodesList.item(j)
 										.getNodeName().equalsIgnoreCase(ANSWER)) {
@@ -286,6 +295,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								}
 								essayQuestion.setErrors(errors);
 								importedQuiz.getQuestionList().add(essayQuestion);
+								importedQuiz.getNonExtractedQuestionList().add(essayQuestion);
 							} else if (questionType.equalsIgnoreCase(MATCHING)) {
 								
 								matchingQuestion = new MatchingQuestion();
@@ -300,12 +310,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								matchingQuestion.setSubquestion(new ArrayList<Subquestion>());
 								if (questionChildNodesList.item(j)
 										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS)) {
+										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
 									matchingQuestion
 											.setShuffleanswers(Integer
 													.getInteger(questionChildNodesList
 															.item(j)
-															.getTextContent()) == 1 ? true
+															.getNodeValue()) == 1 ? true
 													: false);
 								} else if (questionChildNodesList.item(j)
 										.getNodeName().equalsIgnoreCase(SUB_QUESTION)) {
@@ -327,6 +337,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								}
 								matchingQuestion.setErrors(errors);
 								importedQuiz.getQuestionList().add(matchingQuestion);
+								importedQuiz.getExtractedQuestionList().add(matchingQuestion);
 							}else if (questionType.equalsIgnoreCase(MULTI_CHOICE)) {
 
 								multipleChoiceQuestion = new MultipleChoiceQuestion();
@@ -341,12 +352,12 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								multipleChoiceQuestion.setAnswer(new ArrayList<Answer>());
 								if (questionChildNodesList.item(j)
 										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS)) {
+										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
 									multipleChoiceQuestion
 											.setShuffleanswers(Integer
 													.getInteger(questionChildNodesList
 															.item(j)
-															.getTextContent()) == 1 ? true
+															.getNodeValue()) == 1 ? true
 													: false);
 								} else if (questionChildNodesList.item(j)
 										.getNodeName()
@@ -399,6 +410,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								}
 								multipleChoiceQuestion.setErrors(errors);
 								importedQuiz.getQuestionList().add(multipleChoiceQuestion);
+								importedQuiz.getExtractedQuestionList().add(multipleChoiceQuestion);
 							} else if (questionType.equalsIgnoreCase(NUMERICAL)) {
 								numericalQuestion = new NumericalQuestion();
 								numericalQuestion.setName(questionName);
@@ -410,14 +422,15 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 								numericalQuestion.setImageUrl(imageUrl);
 								numericalQuestion.setImageBase64(imageBase64);
 								numericalQuestion.setUnit(new ArrayList<Unit>());
+								numericalQuestion.setAnswer(new ArrayList<AnswerNumerical>());
 								if (questionChildNodesList.item(j)
 										.getNodeName()
-										.equalsIgnoreCase(SHUFFLE_ANSWERS)) {
+										.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j).getNodeValue()!=null) {
 									numericalQuestion
 											.setShuffleanswers(Integer
 													.getInteger(questionChildNodesList
 															.item(j)
-															.getTextContent()) == 1 ? true
+															.getNodeValue()) == 1 ? true
 													: false);
 								} else if (questionChildNodesList.item(j)
 										.getNodeName().equalsIgnoreCase(ANSWER)) {
@@ -463,6 +476,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										}
 								numericalQuestion.setErrors(errors);
 								importedQuiz.getQuestionList().add(numericalQuestion);
+								importedQuiz.getExtractedQuestionList().add(numericalQuestion);
 									} else if (questionType.equalsIgnoreCase(SHORT_ANSWER)) {
 
 										shortAnswerQuestion = new ShortAnswerQuestion();
@@ -486,7 +500,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 															: false);
 										} else if (questionChildNodesList.item(j)
 												.getNodeName()
-												.equalsIgnoreCase(USECASE)) {
+												.equalsIgnoreCase(USECASE) && questionChildNodesList.item(j).getNodeValue()!=null) {
 											shortAnswerQuestion.setUsecase(Integer
 													.getInteger(questionChildNodesList
 															.item(j)
@@ -513,6 +527,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										}
 										shortAnswerQuestion.setErrors(errors);
 										importedQuiz.getQuestionList().add(shortAnswerQuestion);
+										importedQuiz.getExtractedQuestionList().add(shortAnswerQuestion);
 									}  else if (questionType.equalsIgnoreCase(TRUE_FALSE)) {
 
 										trueFalseQuestion = new TrueFalseQuestion();
@@ -546,7 +561,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										}
 										trueFalseQuestion.setErrors(errors);
 										importedQuiz.getQuestionList().add(trueFalseQuestion);
-									
+										importedQuiz.getExtractedQuestionList().add(trueFalseQuestion);
 									} else if (questionType.equalsIgnoreCase(CLOZE)) {
 										clozeQuestion = new ClozeQuestion();
 										clozeQuestion.setName(questionName);
@@ -564,7 +579,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										}
 										clozeQuestion.setErrors(errors);
 										importedQuiz.getQuestionList().add(clozeQuestion);
-										
+										importedQuiz.getExtractedQuestionList().add(clozeQuestion);
 									}  else if (questionType.equalsIgnoreCase(DESCRIPTION)) {
 										descriptionQuestion = new DescriptionQuestion();
 										descriptionQuestion.setName(questionName);
@@ -593,7 +608,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										
 										descriptionQuestion.setErrors(errors);
 										importedQuiz.getQuestionList().add(descriptionQuestion);
-										
+										importedQuiz.getExtractedQuestionList().add(descriptionQuestion);
 									}  else if (questionType.equalsIgnoreCase(CALCULATED)) {
 										
 										calculatedQuestion = new CalculatedQuestion();
@@ -604,16 +619,17 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 										calculatedQuestion.setDefaultGrade(defaultGrade);
 										calculatedQuestion.setIsHidden(isHidden);
 										calculatedQuestion.setUnit(new ArrayList<Unit>());
-										calculatedQuestion.setAnswer(new ArrayList<AnswerNumerical>());
+										calculatedQuestion.setAnswerCalculatedList(new ArrayList<AnswerCalculated>());
 										calculatedQuestion.setCalculatedQuestionDataSetDefinitionList(new ArrayList<CalculatedQuestionDataSetDefinition>());
 										if (questionChildNodesList.item(j)
 												.getNodeName()
-												.equalsIgnoreCase(SHUFFLE_ANSWERS)) {
+												.equalsIgnoreCase(SHUFFLE_ANSWERS) && questionChildNodesList.item(j)
+												.getNodeValue()!=null) {
 											calculatedQuestion
 													.setShuffleanswers(Integer
 															.getInteger(questionChildNodesList
 																	.item(j)
-																	.getTextContent()) == 1 ? true
+																	.getNodeValue()) == 1 ? true
 															: false);
 										} else if (questionChildNodesList.item(j)
 												.getNodeName().equalsIgnoreCase(ANSWER)) {
@@ -689,7 +705,7 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(MAXIMUM) && dataSetDefinitionChildNodesList.item(l).getTextContent()!=null) {
 																		calculatedQuestionDataSetDefinition.setMax(Float.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
 																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(DECIMALS) && dataSetDefinitionChildNodesList.item(l).getTextContent()!=null) {
-																		calculatedQuestionDataSetDefinition.setDecimals(Integer.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
+																		calculatedQuestionDataSetDefinition.setDecimals(Float.valueOf(dataSetDefinitionChildNodesList.item(l).getTextContent()));
 																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(ITEM_COUNT) && dataSetDefinitionChildNodesList.item(l).getNodeValue()!=null) {
 																		calculatedQuestionDataSetDefinition.setItemcount(Integer.valueOf(dataSetDefinitionChildNodesList.item(l).getNodeValue()));
 																	} else if (dataSetDefinitionChildNodesList.item(l).getNodeName().equalsIgnoreCase(DATASET_ITEMS)) {
@@ -727,9 +743,9 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 														}
 										calculatedQuestion.setErrors(errors);
 										importedQuiz.getQuestionList().add(calculatedQuestion);
-										
+										importedQuiz.getExtractedQuestionList().add(calculatedQuestion);
 									}  else {
-										
+										importedQuiz.getExtractedQuestionList().add(genericQuestion);
 									}
 									
 
@@ -737,60 +753,62 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 							}
 
 							}
-
+							importedQuiz.getProcessedQuestionList().add(genericQuestion);
 							}
-							
+							System.out.println("processed = "+importedQuiz.getProcessedQuestionCount());
+							System.out.println("extracted = "+importedQuiz.getExtractedQuestionCount());
+							System.out.println("nonExcracted = "+importedQuiz.getNonExtractedQuestionCount());
 			 for (int i = 0; i < importedQuiz.getQuestionList().size(); i++) {
 			 if (importedQuiz.getQuestionList().get(i) instanceof
-			 GenericQuestion) {
-			 System.out
-			 .println(((GenericQuestion) importedQuiz.getQuestionList()
-			 .get(i)).getName());
-			 System.out
-			 .println(((GenericQuestion) importedQuiz.getQuestionList()
-			 .get(i)).getImageUrl());
-			 }
+ GenericQuestion) {
+					System.out.println(((GenericQuestion) importedQuiz
+							.getQuestionList().get(i)).getName());
+					System.out.println(((GenericQuestion) importedQuiz
+							.getQuestionList().get(i)).getImageUrl());
+				}
 			 }
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return importedQuiz;
 	}
 
 	public OutputStream exportQuiz(IQuiz quiz) {
-		final String QUIZ_XML = "./quiz-jaxb.xml";
+		//TODO priorité 3 - externaliser le path
+		final String PATH_FILE = "./quiz-jaxb.xml";
+
 
 		// create JAXB context and instantiate marshaller
+
 		JAXBContext context;
+		OutputStream os = null;
 		try {
-			context = JAXBContext
-					.newInstance(Quiz.class, GenericQuestion.class);
+
+			context = JAXBContext.newInstance(Quiz.class);
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-//			 m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
-//			 m.marshal(quiz, System.out);
-			Writer w = null;
-			try {
-				w = new FileWriter(QUIZ_XML);
-				m.marshal(quiz, w);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} finally {
-				try {
-					w.close();
-				} catch (Exception e) {
-				}
-			}
+			// m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
+			os = new FileOutputStream(PATH_FILE);
+			m.marshal(quiz, os);
+			//ligne suivante à enlever
+			m.marshal(quiz, System.out);
 
 		} catch (JAXBException e1) {
-			// TODO Auto-generated catch block
+			//TODO Priorité: 3 - externaliser les msgs
+			System.err.println("Marsupilami's Project: Erreur JAXB - " +
+					"Survenue lors de la sérialisation (Objet Java -> Moodle Xml)");
 			e1.printStackTrace();
+		} catch (FileNotFoundException e) {
+			System.err.println("Marsupilami's Project:");
+			e.printStackTrace();
 		}
 
-		return null;
+		return os;
 	}
 
 }

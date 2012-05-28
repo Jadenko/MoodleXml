@@ -4,38 +4,67 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 
+/**
+ * Class representing a new Numerical question. 
+ * @author Marsupilami's Band
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class NumericalQuestion extends GenericQuestion {
 
+	/**
+	 * The default constructor of a new numerical question.
+	 */
 	public NumericalQuestion() {
 		super();
-		this.setQuestionType(QuestionType.numerical);
+		this.setType(QuestionType.numerical);
 	}
 
-	private List<AnswerNumerical> answer;
+	/**
+	 * @see AnswerNumerical
+	 */
+	private List<AnswerNumerical> lanswer;
+	/**
+	 * @see Unit
+	 */
 	@XmlElementWrapper(name="units")
-	private List<Unit> unit;
+	private List<Unit> lunit;
 
+	/**
+	 * 
+	 * @return the list of numerical answers
+	 */
 	public List<AnswerNumerical> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
+	/**
+	 * 
+	 * @param answer the list of numerical answers
+	 */
 	public void setAnswer(List<AnswerNumerical> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
+	/**
+	 * 
+	 * @return the list of units
+	 */
 	public List<Unit> getUnit() {
-		return unit;
+		return lunit;
 	}
 
+	/**
+	 * 
+	 * @param unit the list of units
+	 */
 	public void setUnit(List<Unit> unit) {
-		this.unit = unit;
+		this.lunit = unit;
 	}
 
 }

@@ -1,6 +1,6 @@
 /**
- * 
- */
+*
+*/
 package m2glre.marsupilami.moodlexmlapi.core.data;
 
 import java.util.List;
@@ -17,8 +17,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 
 /**
- * @author fsil
- *
+ * Classe commune ayant les propriétés de bases qui correspondent au balises du format Moodle XML
+ * @author Marsupilami's Band
  */
 @XmlSeeAlso({MultipleChoiceQuestion.class,
 	         TrueFalseQuestion.class,
@@ -27,12 +27,12 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
 	         MatchingQuestion.class,
 	         EssayQuestion.class})
 public class GenericQuestion extends QuestionImpl {
-	
+
 
 	/**
 	 * @param questionType the questionType to set
 	 */
-	public void setQuestionType(QuestionType type) {
+	public void setType(QuestionType type) {
 		this.type = type;
 	}
 
@@ -42,7 +42,7 @@ public class GenericQuestion extends QuestionImpl {
 	public void setName(String name) {
 		String nameR = "";
 		nameR = nameR.concat("<text>").concat(name).concat("</text>");
-		this.name = nameR;
+		this.name = name;
 	}
 
 	/**
@@ -101,6 +101,6 @@ public class GenericQuestion extends QuestionImpl {
 		this.errors = errors;
 	}
 
-	
+
 
 }

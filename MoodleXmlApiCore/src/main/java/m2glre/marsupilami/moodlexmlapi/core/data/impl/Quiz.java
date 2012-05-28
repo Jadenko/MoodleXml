@@ -11,22 +11,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuiz;
 
 
-
+/**
+ * An implementation of a quiz 
+ * @author Marsupilami's Band
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
 public class Quiz implements IQuiz {
-   //XmlAccessType.FIELD pour ne pas avoir une confusion entre le get et la propriété elle meme
 	
-	
+
+	/**
+	 * The list of question representing a quiz (One CategoryQuestion and many GenericQuestion)
+	 */
 	@XmlElement(name = "question")
-	public List<QuestionImpl> questionList;
-	
+	public List<QuestionImpl> lquestionList;
+
+	/**
+	 * 
+	 * @param questionList the list of questions to set
+	 */
 	public void setQuestionList(List<QuestionImpl> questionList) {
-		this.questionList = questionList;
+		this.lquestionList = questionList;
 	}
 
+	/**
+	 * @return the list of questions
+	 */
 	public List<QuestionImpl> getQuestionList() {
-		return questionList;
+		return lquestionList;
 	}
 
 }

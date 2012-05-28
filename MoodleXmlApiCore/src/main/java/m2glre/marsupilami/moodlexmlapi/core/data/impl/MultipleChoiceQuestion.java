@@ -2,86 +2,152 @@ package m2glre.marsupilami.moodlexmlapi.core.data.impl;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAccessType;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.GenericQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.QuestionType;
 
+/**
+ * Class representing a multiple choice question. 
+ * More than the attributes of a generic question, this class defines her specific attributes.
+ * @author Marsupilami's Band
+ *
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MultipleChoiceQuestion extends GenericQuestion {
 
-	private boolean single;
-	private boolean shuffleanswers;
-	private List<Answer> answer;
-	private AnswerNumbering answernumbering;
-	private String correctfeedback;
-	private String partiallycorrectfeedback;
-	private String incorrectfeedback;
+	/**
+	 *  single is used to distinguish single response (radio button) and multiple response (checkbox) variants.
+	 */
+	private boolean bsingle;
+	private boolean bshuffleanswers;
+	private List<Answer> lanswer;
+	private AnswerNumbering oanswernumbering;
+	private String scorrectfeedback;
+	private String spartiallycorrectfeedback;
+	private String sincorrectfeedback;
 
 
-	
+	/**
+	 * Construct a new multiple choice question 
+	 */
 	public MultipleChoiceQuestion() {
 		super();
-		this.setQuestionType(QuestionType.multichoice);
+		this.setType(QuestionType.multichoice);
 	}
 
+	/**
+	 * 
+	 * @return is the single tag set to true or false
+	 */
 	public boolean isSingle() {
-		return single;
+		return bsingle;
 	}
 
+	/**
+	 * 
+	 * @param setting the single tag
+	 */
 	public void setSingle(boolean single) {
-		this.single = single;
+		this.bsingle = single;
 	}
 
+	/**
+	 * 
+	 * @return getting the shuffle answers tag
+	 */
 	public boolean getShuffleanswers() {
-		return shuffleanswers;
+		return bshuffleanswers;
 	}
 
+	/**
+	 * 
+	 * @param shuffleanswers setting the shuffle answers tag
+	 */
 	public void setShuffleanswers(boolean shuffleanswers) {
-		this.shuffleanswers = shuffleanswers;
+		this.bshuffleanswers = shuffleanswers;
 	}
 
+	/**
+	 * 
+	 * @return getting the list of answer
+	 */
 	public List<Answer> getAnswer() {
-		return answer;
+		return lanswer;
 	}
 
+	/**
+	 * 
+	 * @param answer the list of answer 
+	 */
 	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+		this.lanswer = answer;
 	}
 
+	/**
+	 * 
+	 * @return getting the answer numbering
+	 * @see AnswerNumerical
+	 */
 	public AnswerNumbering getAnswernumbering() {
-		return answernumbering;
+		return oanswernumbering;
 	}
 
+	/**
+	 * 
+	 * @param answernumbering setting the answer numbering
+	 */
 	public void setAnswernumbering(AnswerNumbering answernumbering) {
-		this.answernumbering = answernumbering;
+		this.oanswernumbering = answernumbering;
 	}
 
+	/**
+	 * 
+	 * @return the correct feedback
+	 */
 	public String getCorrectfeedback() {
-		return correctfeedback;
+		return scorrectfeedback;
 	}
 
+	/**
+	 * 
+	 * @param correctfeedback the correct feedback
+	 */
 	public void setCorrectfeedback(String correctfeedback) {
-		this.correctfeedback = correctfeedback;
+		this.scorrectfeedback = correctfeedback;
 	}
 
+	/**
+	 * 
+	 * @return the partially correct feedback
+	 */
 	public String getPartiallycorrectfeedback() {
-		return partiallycorrectfeedback;
+		return spartiallycorrectfeedback;
 	}
 
+	/**
+	 * 
+	 * @param partiallycorrectfeedback the partially correct feedback
+	 */
 	public void setPartiallycorrectfeedback(String partiallycorrectfeedback) {
-		this.partiallycorrectfeedback = partiallycorrectfeedback;
+		this.spartiallycorrectfeedback = partiallycorrectfeedback;
 	}
 
+	/**
+	 * 
+	 * @return the incorrect feedback
+	 */
 	public String getIncorrectfeedback() {
-		return incorrectfeedback;
+		return sincorrectfeedback;
 	}
 
+	/**
+	 * 
+	 * @param incorrectfeedback the incorrect feedback
+	 */
 	public void setIncorrectfeedback(String incorrectfeedback) {
-		this.incorrectfeedback = incorrectfeedback;
+		this.sincorrectfeedback = incorrectfeedback;
 	}
 
 }
-

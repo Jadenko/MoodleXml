@@ -15,7 +15,7 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 /**
  * Class representing the dummy question of type category.
  * 
- * @author fsil
+ * @author Marsupilami's Band
  * 
  */
 @XmlAccessorType(XmlAccessType.NONE)
@@ -36,7 +36,9 @@ public class CategoryQuestion extends QuestionImpl {
 	 * @param category  the category to set
 	 */
 	public void setCategory(String category) {
-		this.category = category;
+		String rslt = "";
+		rslt = course+"/"+category;
+		this.category = rslt;
 	}
 
 	/**

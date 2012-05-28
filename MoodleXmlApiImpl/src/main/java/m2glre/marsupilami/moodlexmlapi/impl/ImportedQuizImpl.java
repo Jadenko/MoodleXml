@@ -4,17 +4,38 @@ import java.util.List;
 
 import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.IQuestion;
-import m2glre.marsupilami.moodlexmlapi.core.data.impl.ImportedQuiz;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 
-public class ImportedQuizImpl extends ImportedQuiz {
+public class ImportedQuizImpl implements IImportedQuiz {
 	
-	List<IQuestion> questionList;
-	List<IQuestion> processedQuestionList;
-	List<IQuestion> extractedQuestionList;
-	List<IQuestion> nonExtractedQuestionList;
-	
+	private List<IQuestion> processedQuestionList;
+	private List<IQuestion> extractedQuestionList;
+	private List<IQuestion> nonExtractedQuestionList;
+
+	public void setProcessedQuestionList(List<IQuestion> processedQuestionList) {
+		this.processedQuestionList = processedQuestionList;
+	}
+
+	public void setExtractedQuestionList(List<IQuestion> extractedQuestionList) {
+		this.extractedQuestionList = extractedQuestionList;
+	}
+
+	public void setNonExtractedQuestionList(List<IQuestion> nonExtractedQuestionList) {
+		this.nonExtractedQuestionList = nonExtractedQuestionList;
+	}
+
+	private List<QuestionImpl> questionList;
+
 	public ImportedQuizImpl() {
-		
+
+	}
+
+	public List<QuestionImpl> getQuestionList() {
+		return this.questionList;
+	}
+	
+	public void setQuestionList(List<QuestionImpl> questionList) {
+		this.questionList = questionList;
 	}
 
 	public int getProcessedQuestionCount() {

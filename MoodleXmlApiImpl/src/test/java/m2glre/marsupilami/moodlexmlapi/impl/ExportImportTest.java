@@ -37,15 +37,6 @@ public class ExportImportTest {
 
 	}
 
-	@Test
-	public void testImportQuiz() {
-
-	}
-
-	@Test
-	public void testExportQuiz() {
-	
-	}
 
 	@Test
 	public void testExportImport() {

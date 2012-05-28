@@ -755,18 +755,18 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 							}
 							importedQuiz.getProcessedQuestionList().add(genericQuestion);
 							}
-							System.out.println("processed = "+importedQuiz.getProcessedQuestionCount());
-							System.out.println("extracted = "+importedQuiz.getExtractedQuestionCount());
-							System.out.println("nonExcracted = "+importedQuiz.getNonExtractedQuestionCount());
-			 for (int i = 0; i < importedQuiz.getQuestionList().size(); i++) {
-			 if (importedQuiz.getQuestionList().get(i) instanceof
- GenericQuestion) {
-					System.out.println(((GenericQuestion) importedQuiz
-							.getQuestionList().get(i)).getName());
-					System.out.println(((GenericQuestion) importedQuiz
-							.getQuestionList().get(i)).getImageUrl());
-				}
-			 }
+//							System.out.println("processed = "+importedQuiz.getProcessedQuestionCount());
+//							System.out.println("extracted = "+importedQuiz.getExtractedQuestionCount());
+//							System.out.println("nonExcracted = "+importedQuiz.getNonExtractedQuestionCount());
+//			 for (int i = 0; i < importedQuiz.getQuestionList().size(); i++) {
+//			 if (importedQuiz.getQuestionList().get(i) instanceof
+// GenericQuestion) {
+//					System.out.println(((GenericQuestion) importedQuiz
+//							.getQuestionList().get(i)).getName());
+//					System.out.println(((GenericQuestion) importedQuiz
+//							.getQuestionList().get(i)).getImageUrl());
+//				}
+//			 }
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

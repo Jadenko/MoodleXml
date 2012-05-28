@@ -17,6 +17,8 @@ import m2glre.marsupilami.moodlexmlapi.core.data.impl.EssayQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MatchingQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.MultipleChoiceQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.NumericalQuestion;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
+import m2glre.marsupilami.moodlexmlapi.core.data.impl.Quiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.ShortAnswerQuestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Subquestion;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.TrueFalseQuestion;
@@ -33,7 +35,8 @@ public class InitObjetFactory {
 	static NumericalQuestion numericalQuestion = new NumericalQuestion();
 	static EssayQuestion essayQuestion = new EssayQuestion();
 	static InvalidQuizFormatException invalidQuizFormatException;
-
+	static Quiz unQuiz = new Quiz();
+	
 	public static GenericQuestion initGenericQuestion() {
 		genericQuestionForTest.setType(QuestionType.calculated);
 		genericQuestionForTest.setName("LeNom");
@@ -171,6 +174,13 @@ public class InitObjetFactory {
 		Throwable throwable = new Throwable("Les Invalides");
 		invalidQuizFormatException = new InvalidQuizFormatException(throwable);
 		return invalidQuizFormatException;
+	}
+
+	public static Quiz initQuiz() {
+		List<QuestionImpl> questionList = new ArrayList(){};
+		questionList.add(initGenericQuestion());
+		unQuiz.setQuestionList(questionList);
+		return unQuiz;
 	}
 
 }

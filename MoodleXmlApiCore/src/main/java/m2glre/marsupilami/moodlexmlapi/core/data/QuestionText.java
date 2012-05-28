@@ -14,9 +14,9 @@ import javax.xml.bind.annotation.XmlElement;
 public class QuestionText {
 
 	@XmlElement(name = "text")
-	private String stext;
+	private String text;
 	@XmlAttribute
-	private QuestionTextFormat oformat;
+	private QuestionTextFormat format;
 
 	public QuestionText() {
 	}
@@ -29,9 +29,9 @@ public class QuestionText {
  * @param format
  * the text format
  */
-	public QuestionText(String text, QuestionTextFormat format) {
-		this.stext = text;
-		this.oformat = format;
+	public QuestionText(String _text, QuestionTextFormat _format) {
+		this.text = _text;
+		this.format = _format;
 	}
 
 	/**
@@ -41,45 +41,45 @@ public class QuestionText {
 	 * Ce qui permet une meilleur visibilité du text sur le fichier XML.
 	 * @param text Le Long Text à insérer ou un court text.
 	 */
-	public QuestionText(String text) {
+	public QuestionText(String _text) {
 		int beginIndex = 0;
 		int endIndex = 60;
 
-		if (text.length() > 60) {
+		if (_text.length() > 60) {
 			String textResult = "";
-			while (endIndex < text.length()) {
-				textResult = textResult.concat(text.substring(beginIndex, endIndex));
+			while (endIndex < _text.length()) {
+				textResult = textResult.concat(_text.substring(beginIndex, endIndex));
 				textResult = textResult.concat("\n\t\t");
 				beginIndex += 60;
 				endIndex += 60;
 			}
-				textResult = textResult.concat(text.substring(beginIndex, text.length()));
+				textResult = textResult.concat(_text.substring(beginIndex, _text.length()));
 			
-			text = textResult;
+			_text = textResult;
 		}
 
-		this.stext = text;
+		this.text = _text;
 	}
 
 	/**
 	 * @return the text
 	 */
 	public String getText() {
-		return stext;
+		return text;
 	}
 
 	/**
 	 * @param text Le texte à insérer
 	 */
-	public void setText(String stext) {
-		this.stext = stext;
+	public void setText(String _text) {
+		this.text = _text;
 	}
 
 	/**
 	 * @return the format
 	 */
 	public QuestionTextFormat getQuestionTextFormat() {
-		return oformat;
+		return format;
 	}
 
 }

@@ -32,73 +32,75 @@ public class GenericQuestion extends QuestionImpl {
 	/**
 	 * @param questionType the questionType to set
 	 */
-	public void setType(QuestionType type) {
-		this.type = type;
+	public void setType(QuestionType _type) {
+		this.type = _type;
 	}
 
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
+	public void setName(String _name) {
 		String nameR = "";
-		//nameR = nameR.concat("<text>").concat(name).concat("</text>");
-		this.name = name;
+		if(name != null){
+			nameR = nameR.concat("<text>").concat(name).concat("</text>");	
+		}
+		this.name = _name;
 	}
 
 	/**
 	 * @param questionText the questionText to set
 	 */
-	public void setQuestionText(QuestionText questionText) {
-		this.questionText = questionText;
+	public void setQuestionText(QuestionText _questionText) {
+		this.questionText = _questionText;
 	}
 
 	/**
 	 * @param generalFeedBack the generalFeedBack to set
 	 */
-	public void setGeneralFeedBack(String generalFeedBack) {
-		this.generalFeedBack = generalFeedBack;
+	public void setGeneralFeedBack(String _generalFeedBack) {
+		this.generalFeedBack = _generalFeedBack;
 	}
 
 	/**
 	 * @param penalty the penalty to set
 	 */
-	public void setPenalty(Float penalty) {
-		this.penalty = penalty;
+	public void setPenalty(Float _penalty) {
+		this.penalty = _penalty;
 	}
 
 	/**
 	 * @param defaultGrade the defaultGrade to set
 	 */
-	public void setDefaultGrade(Float defaultGrade) {
-		this.defaultGrade = defaultGrade;
+	public void setDefaultGrade(Float _defaultGrade) {
+		this.defaultGrade = _defaultGrade;
 	}
 
 	/**
 	 * @param isHidden the isHidden to set
 	 */
-	public void setIsHidden(Boolean isHidden) {
-		this.isHidden = isHidden;
+	public void setIsHidden(Boolean _isHidden) {
+		this.isHidden = _isHidden;
 	}
 
 	/**
 	 * @param imageUrl the imageUrl to set
 	 */
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImageUrl(String _imageUrl) {
+		this.imageUrl = _imageUrl;
 	}
 
 	/**
 	 * @param imageBase64 the imageBase64 to set
 	 */
-	public void setImageBase64(String imageBase64) {
-		this.imageBase64 = imageBase64;
+	public void setImageBase64(String _imageBase64) {
+		this.imageBase64 = _imageBase64;
 	}
 
 	/**
 	 * @param errors the errors to set
 	 */
-	public void setErrors(List<QuestionError> errors) {
-		this.errors = errors;
+	public void setErrors(List<QuestionError> _errors) {
+		this.errors = _errors;
 	}
 
 

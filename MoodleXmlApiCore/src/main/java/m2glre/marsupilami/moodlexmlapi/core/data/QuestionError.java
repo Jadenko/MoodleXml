@@ -6,8 +6,8 @@ package m2glre.marsupilami.moodlexmlapi.core.data;
  */
 public class QuestionError {
 
-	private String scode;
-	private String sdescription;
+	private String code;
+	private String description;
 	public QuestionError() {
 	}
 
@@ -17,23 +17,23 @@ public class QuestionError {
  * @param code
  * @param description
  */
-	public QuestionError(String code, String description) {
-		this.scode = code;
-		this.sdescription = description;
+	public QuestionError(String _code, String _description) {
+		this.code = _code;
+		this.description = _description;
 	}
 
 	/**
 	* @return the code
 	*/
 	public String getCode() {
-		return scode;
+		return code;
 	}
 
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
-		return sdescription;
+		return description;
 	}
 
 }

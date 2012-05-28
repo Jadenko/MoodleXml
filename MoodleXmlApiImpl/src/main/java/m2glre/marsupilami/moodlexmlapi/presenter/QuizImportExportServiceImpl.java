@@ -796,9 +796,9 @@ public class QuizImportExportServiceImpl implements QuizImportExportService {
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			// m.setProperty(Marshaller.JAXB_NO_NAMESPACE_SCHEMA_LOCATION,"");
 			os = new FileOutputStream(PATH_FILE);
-			//m.marshal(quiz, os);
+			m.marshal(quiz, os);
 			//ligne suivante à enlever
-			//m.marshal(quiz, System.out);
+			m.marshal(quiz, System.out);
 
 		} catch (JAXBException e1) {
 			//TODO Priorité: 3 - externaliser les msgs

@@ -4,7 +4,8 @@
   <local-check-config name="checkstyle-checker" location="E:\GitRepository\Marsupilami\MoodleXmlApiImpl\src\main\resources\checkstyle-checker.xml" type="external" description="">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="Sun Checks" local="false">
+  <local-check-config name="mychecker.xml" location="internal_config__1338211570029.xml" type="internal" description=""/>
+  <fileset name="all" enabled="true" check-config-name="mychecker.xml" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

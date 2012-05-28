@@ -45,21 +45,21 @@ public class Main {
 
 		//InputStream inputStream = new ByteArrayInputStream(((ByteArrayOutputStream) outputStream).toByteArray());
 		
-		try {
-			//if(Main.class.getResource("MoodleXmlApiImpl/src/main/resources/quiz-exemple.xml")!=null) {
-			InputStream is = new FileInputStream(Main.class.getResource("/"+inputFileName).getPath());
-			@SuppressWarnings("unused")
-			IImportedQuiz importedQuiz = quizImportExportServiceImpl.importQuiz(is);
-//			} else {
-//				System.out.println("file not found");
-//			}
-		} catch (InvalidQuizFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidStreamSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			//if(Main.class.getResource("MoodleXmlApiImpl/src/main/resources/quiz-exemple.xml")!=null) {
+//			InputStream is = new FileInputStream(Main.class.getResource("/"+inputFileName).getPath());
+//			@SuppressWarnings("unused")
+//			IImportedQuiz importedQuiz = quizImportExportServiceImpl.importQuiz(is);
+////			} else {
+////				System.out.println("file not found");
+////			}
+//		} catch (InvalidQuizFormatException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (InvalidStreamSizeException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 
 	}
 }

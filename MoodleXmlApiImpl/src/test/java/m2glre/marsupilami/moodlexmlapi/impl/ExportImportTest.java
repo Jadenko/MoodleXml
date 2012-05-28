@@ -18,7 +18,7 @@ import m2glre.marsupilami.moodlexmlapi.core.QuizImportExportService;
 import m2glre.marsupilami.moodlexmlapi.core.data.IImportedQuiz;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.QuestionImpl;
 import m2glre.marsupilami.moodlexmlapi.core.data.impl.Quiz;
-import m2glre.marsupilami.moodlexmlapi.presenter.InitObjetFactory;
+//import m2glre.marsupilami.moodlexmlapi.presenter.InitObjetFactory;
 import m2glre.marsupilami.moodlexmlapi.presenter.QuizImportExportServiceImpl;
 
 import org.junit.Before;
@@ -34,8 +34,8 @@ public class ExportImportTest {
 	public void setUp() throws Exception {
 		aQuiz = new Quiz();
 		listQuestions = new ArrayList<QuestionImpl>();
-		listQuestions.add(InitObjetFactory.initGenericQuestion());
-		listQuestions.add(InitObjetFactory.initMultipleChoiceQuestion());
+//		listQuestions.add(InitObjetFactory.initGenericQuestion());
+//		listQuestions.add(InitObjetFactory.initMultipleChoiceQuestion());
 		aQuiz.setQuestionList(listQuestions);
 
 	}

@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Unit {
 
-	int imultiplier;
-	String sunitname;
+	int multiplier;
+	String unitname;
 
 	/**
 	 * The default constructor of a new Unit
@@ -29,10 +29,10 @@ public class Unit {
 	 * @param multiplier
 	 * @param unitname
 	 */
-	public Unit(int multiplier, String unitname) {
+	public Unit(int _multiplier, String _unitname) {
 		super();
-		this.imultiplier = multiplier;
-		this.sunitname = unitname;
+		this.multiplier = _multiplier;
+		this.unitname = _unitname;
 	}
 
 	/**
@@ -40,15 +40,15 @@ public class Unit {
 	 * @return the multiplier
 	 */
 	public int getMultiplier() {
-		return imultiplier;
+		return multiplier;
 	}
 
 	/**
 	 * 
 	 * @param multiplier the multiplier
 	 */
-	public void setMultiplier(int multiplier) {
-		this.imultiplier = multiplier;
+	public void setMultiplier(int _multiplier) {
+		this.multiplier = _multiplier;
 	}
 
 
@@ -57,14 +57,14 @@ public class Unit {
 	 * @return the unit name
 	 */
 	public String getUnitname() {
-		return sunitname;
+		return unitname;
 	}
 	/**
 	 * 
 	 * @param unit_name the unit name
 	 */
-	public void setUnit_name(String unitname) {
-		this.sunitname = unitname;
+	public void setUnit_name(String _unitname) {
+		this.unitname = _unitname;
 	}
 
 }

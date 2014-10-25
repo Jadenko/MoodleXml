@@ -1,7 +1,7 @@
 package m2glre.marsupilami.moodlexmlapi.core;
 /**
  * Class representing a special exception, and it's thrown when importing an invalid quiz format 
- * @author Marsupilami's Band
+ * @author Marsupilami's Band 
  *
  */
 public class InvalidQuizFormatException extends Exception {
